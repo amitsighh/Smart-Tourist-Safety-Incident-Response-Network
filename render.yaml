@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: suraksha-yatra
+    env: node
+    plan: free
+    region: singapore
+    buildCommand: npm run render-build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        value: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+      - key: DPDP_RETENTION_DAYS
+        value: 30

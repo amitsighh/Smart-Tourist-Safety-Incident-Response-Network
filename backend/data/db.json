@@ -1,0 +1,2350 @@
+{
+  "users": [
+    {
+      "id": "usr-tourist-01",
+      "email": "priya.sharma@example.com",
+      "passwordHash": "$2a$12$O.xZQSAdtf/cKKlKub/AiOokJsTuHCn5sujgeQWwLYxIYrlc3nbje",
+      "fullName": "Priya Sharma",
+      "role": "tourist",
+      "phone": "+91 98765 43210",
+      "mfaEnabled": false,
+      "createdAt": "2026-10-01T08:00:00.000Z"
+    },
+    {
+      "id": "usr-tourist-02",
+      "email": "john.miller@example.co.uk",
+      "passwordHash": "$2a$12$O.xZQSAdtf/cKKlKub/AiOokJsTuHCn5sujgeQWwLYxIYrlc3nbje",
+      "fullName": "John Miller",
+      "role": "tourist",
+      "phone": "+44 7700 900123",
+      "mfaEnabled": false,
+      "createdAt": "2026-10-02T10:00:00.000Z"
+    },
+    {
+      "id": "usr-operator-01",
+      "email": "operator.airport@surakshayatra.gov.in",
+      "passwordHash": "$2a$12$O.xZQSAdtf/cKKlKub/AiOokJsTuHCn5sujgeQWwLYxIYrlc3nbje",
+      "fullName": "Inspector Animesh Roy",
+      "role": "operator",
+      "badgeNumber": "ASM-ENTRY-771",
+      "stationName": "Guwahati LGBI Airport Checkpost",
+      "mfaEnabled": true,
+      "createdAt": "2026-09-15T09:00:00.000Z"
+    },
+    {
+      "id": "usr-police-01",
+      "email": "control.room@police.gov.in",
+      "passwordHash": "$2a$12$O.xZQSAdtf/cKKlKub/AiOokJsTuHCn5sujgeQWwLYxIYrlc3nbje",
+      "fullName": "DSP Bimal Das",
+      "role": "police",
+      "badgeNumber": "ASM-POL-009",
+      "stationName": "North-East Integrated Command & Control Center (ICCC)",
+      "mfaEnabled": true,
+      "createdAt": "2026-09-10T09:00:00.000Z"
+    },
+    {
+      "id": "usr-tourism-01",
+      "email": "director@tourism.gov.in",
+      "passwordHash": "$2a$12$O.xZQSAdtf/cKKlKub/AiOokJsTuHCn5sujgeQWwLYxIYrlc3nbje",
+      "fullName": "Dr. R. K. Hazarika",
+      "role": "tourism_official",
+      "designation": "Director of Tourism, Northeast Regional Board",
+      "mfaEnabled": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "usr-admin-01",
+      "email": "admin@surakshayatra.gov.in",
+      "passwordHash": "$2a$12$O.xZQSAdtf/cKKlKub/AiOokJsTuHCn5sujgeQWwLYxIYrlc3nbje",
+      "fullName": "State Cyber Administrator",
+      "role": "admin",
+      "mfaEnabled": true,
+      "createdAt": "2026-09-01T00:00:00.000Z"
+    }
+  ],
+  "touristIds": [
+    {
+      "touristId": "TID-NE-2026-88190",
+      "userId": "usr-tourist-01",
+      "fullName": "Priya Sharma",
+      "nationality": "Indian",
+      "dob": "1994-08-22",
+      "gender": "Female",
+      "bloodGroup": "B+ Positive",
+      "photoUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+      "kycType": "AADHAAR_EKYC",
+      "kycStatus": "VERIFIED",
+      "kycHash": "SHA256:E9B44F8C98218182736154ADBC9902834710129034",
+      "maskedDocId": "********4321",
+      "encryptedDocId": "322c5364217fe7be0804e5a81df42568:aad560ed93ef6efe6692ee8739b78039:139c05a506c572a43cb6d5eb",
+      "emergencyContacts": [
+        {
+          "name": "Rohit Sharma (Brother)",
+          "phone": "+91 98765 11223",
+          "relation": "Brother"
+        },
+        {
+          "name": "Dr. Sunita Sharma",
+          "phone": "+91 98111 22334",
+          "relation": "Mother"
+        }
+      ],
+      "validFrom": "2026-10-05T00:00:00.000Z",
+      "validUntil": "2026-10-25T23:59:59.000Z",
+      "status": "ACTIVE",
+      "optInTracking": true,
+      "trackingRecipients": "police_and_family",
+      "pairedWearableId": "WB-NE-089",
+      "issuedBy": "ASM-ENTRY-771 (Guwahati Airport Checkpost)",
+      "issuedAt": "2026-10-05T09:30:00.000Z",
+      "lastLocation": {
+        "latitude": 25.5788,
+        "longitude": 91.8933,
+        "locationName": "Shillong Peak Eco-Trail, Meghalaya",
+        "timestamp": "2026-10-10T16:15:36.796Z",
+        "batteryLevel": 82,
+        "speedKmh": 4.2
+      },
+      "scheduledCheckIn": {
+        "isActive": true,
+        "trekName": "Dzukou Valley Alpine Trek",
+        "intervalMinutes": 180,
+        "dueTime": "2026-10-10T18:15:36.797Z"
+      },
+      "itinerary": [
+        {
+          "name": "Guwahati LGBI Airport",
+          "lat": 26.1061,
+          "lng": 91.5859,
+          "arrivalDate": "2026-10-05",
+          "status": "COMPLETED"
+        },
+        {
+          "name": "Umiam Lake Viewpoint",
+          "lat": 25.6669,
+          "lng": 91.8953,
+          "arrivalDate": "2026-10-07",
+          "status": "COMPLETED"
+        },
+        {
+          "name": "Shillong Peak & Ward's Lake",
+          "lat": 25.5788,
+          "lng": 91.8933,
+          "arrivalDate": "2026-10-10",
+          "status": "IN_PROGRESS"
+        },
+        {
+          "name": "Cherrapunji Living Root Bridges",
+          "lat": 25.2702,
+          "lng": 91.7323,
+          "arrivalDate": "2026-10-14",
+          "status": "UPCOMING"
+        },
+        {
+          "name": "Dawki Umngot River & Border Point",
+          "lat": 25.1856,
+          "lng": 92.0191,
+          "arrivalDate": "2026-10-18",
+          "status": "UPCOMING"
+        }
+      ]
+    },
+    {
+      "touristId": "TID-NE-2026-90412",
+      "userId": "usr-tourist-02",
+      "fullName": "John Miller",
+      "nationality": "British",
+      "dob": "1988-11-12",
+      "gender": "Male",
+      "bloodGroup": "O+ Positive",
+      "photoUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+      "kycType": "PASSPORT_VERIFICATION",
+      "kycStatus": "VERIFIED",
+      "kycHash": "SHA256:77A23C89DF01128374900192834710129034",
+      "maskedDocId": "GB******89",
+      "encryptedDocId": "bbc834f64d068ed8b3ed007e56eadcbc:461f035bfb1dab40d25c6c0aa052a43c:9f8cb4705abb61f79cc9",
+      "emergencyContacts": [
+        {
+          "name": "Sarah Miller (Spouse)",
+          "phone": "+44 7700 900456",
+          "relation": "Spouse"
+        }
+      ],
+      "validFrom": "2026-10-08T00:00:00.000Z",
+      "validUntil": "2026-10-20T23:59:59.000Z",
+      "status": "ACTIVE",
+      "optInTracking": true,
+      "trackingRecipients": "police_only",
+      "pairedWearableId": null,
+      "issuedBy": "ONLINE_SELF_REGISTRATION",
+      "issuedAt": "2026-10-08T11:00:00.000Z",
+      "lastLocation": {
+        "latitude": 27.5861,
+        "longitude": 91.8594,
+        "locationName": "Tawang Monastery Sector, Arunachal Pradesh",
+        "timestamp": "2026-10-10T16:15:36.797Z",
+        "batteryLevel": 45,
+        "speedKmh": 0
+      },
+      "itinerary": [
+        {
+          "name": "Tezpur Checkpost",
+          "lat": 26.6338,
+          "lng": 92.7926,
+          "arrivalDate": "2026-10-08",
+          "status": "COMPLETED"
+        },
+        {
+          "name": "Bomdila Monastery",
+          "lat": 27.2644,
+          "lng": 92.4159,
+          "arrivalDate": "2026-10-09",
+          "status": "COMPLETED"
+        },
+        {
+          "name": "Sela Pass (13,700 ft)",
+          "lat": 27.5052,
+          "lng": 92.1039,
+          "arrivalDate": "2026-10-10",
+          "status": "IN_PROGRESS"
+        },
+        {
+          "name": "Tawang Town",
+          "lat": 27.5861,
+          "lng": 91.8594,
+          "arrivalDate": "2026-10-12",
+          "status": "UPCOMING"
+        }
+      ]
+    },
+    {
+      "touristId": "TID-NE-2026-27869",
+      "userId": "usr-anon-92297433",
+      "fullName": "Rahul Sen",
+      "nationality": "Indian",
+      "dob": "1996-03-12",
+      "gender": "Male",
+      "bloodGroup": "A+ Positive",
+      "photoUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80",
+      "kycType": "AADHAAR_EKYC",
+      "kycStatus": "VERIFIED",
+      "kycHash": "e2f8096c22b908c8b8aede33f85c64336843fa90d61da7b5f6676bf38a0acf41",
+      "maskedDocId": "********1122",
+      "encryptedDocId": "a218df2db3b2bef29304422454578ef9:c200a439949cc528a67722e518ee43d6:7ce71637f65401ae8ff54471",
+      "emergencyContacts": [
+        {
+          "name": "Deepa Sen",
+          "phone": "+91 98765 99881"
+        }
+      ],
+      "validFrom": "2026-10-10",
+      "validUntil": "2026-10-25",
+      "status": "ACTIVE",
+      "optInTracking": true,
+      "trackingRecipients": "police_and_family",
+      "pairedWearableId": null,
+      "issuedBy": "ONLINE_SELF_REGISTRATION",
+      "issuedAt": "2026-10-10T16:21:46.223Z",
+      "lastLocation": {
+        "latitude": 25.5682,
+        "longitude": 94.0483,
+        "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+        "timestamp": "2026-10-10T16:21:46.225Z",
+        "batteryLevel": 50,
+        "speedKmh": 0,
+        "safetyScore": 55
+      },
+      "scheduledCheckIn": {
+        "isActive": false,
+        "trekName": null,
+        "intervalMinutes": 180,
+        "dueTime": null
+      },
+      "itinerary": []
+    },
+    {
+      "touristId": "TID-NE-2026-72366",
+      "userId": "usr-anon-01e80908",
+      "fullName": "Rahul Sen",
+      "nationality": "Indian",
+      "dob": "1996-03-12",
+      "gender": "Male",
+      "bloodGroup": "A+ Positive",
+      "photoUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80",
+      "kycType": "AADHAAR_EKYC",
+      "kycStatus": "VERIFIED",
+      "kycHash": "452bcf204f39a48235278cbdb5b40db7dbb1036c83eda6425a8f10aebf1173ad",
+      "maskedDocId": "********1122",
+      "encryptedDocId": "d4a51b13aabc0ac376fa549d53d93a36:6f0f4965a834dfd5d404ca43177a5c8b:d0404f64c4cd36ad1bc07770",
+      "emergencyContacts": [
+        {
+          "name": "Deepa Sen",
+          "phone": "+91 98765 99881"
+        }
+      ],
+      "validFrom": "2026-10-10",
+      "validUntil": "2026-10-25",
+      "status": "ACTIVE",
+      "optInTracking": true,
+      "trackingRecipients": "police_and_family",
+      "pairedWearableId": null,
+      "issuedBy": "ONLINE_SELF_REGISTRATION",
+      "issuedAt": "2026-10-10T16:22:08.236Z",
+      "lastLocation": {
+        "latitude": 25.5682,
+        "longitude": 94.0483,
+        "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+        "timestamp": "2026-10-10T16:22:08.237Z",
+        "batteryLevel": 50,
+        "speedKmh": 0,
+        "safetyScore": 55
+      },
+      "scheduledCheckIn": {
+        "isActive": false,
+        "trekName": null,
+        "intervalMinutes": 180,
+        "dueTime": null
+      },
+      "itinerary": []
+    },
+    {
+      "touristId": "TID-NE-2026-29854",
+      "userId": "usr-anon-e0729451",
+      "fullName": "Rahul Sen",
+      "nationality": "Indian",
+      "dob": "1996-03-12",
+      "gender": "Male",
+      "bloodGroup": "A+ Positive",
+      "photoUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80",
+      "kycType": "AADHAAR_EKYC",
+      "kycStatus": "VERIFIED",
+      "kycHash": "d89cf355230f096e84e08154312da6f56ffa11affea54fdc434a49fe81dccd56",
+      "maskedDocId": "********1122",
+      "encryptedDocId": "1e78af61260ac3e7ea897b9db60d1939:34c4d7dbd52d431a5c43f87711420269:b07a117c7c338acc21183f61",
+      "emergencyContacts": [
+        {
+          "name": "Deepa Sen",
+          "phone": "+91 98765 99881"
+        }
+      ],
+      "validFrom": "2026-10-10",
+      "validUntil": "2026-10-25",
+      "status": "ACTIVE",
+      "optInTracking": true,
+      "trackingRecipients": "police_and_family",
+      "pairedWearableId": null,
+      "issuedBy": "ONLINE_SELF_REGISTRATION",
+      "issuedAt": "2026-10-10T17:21:01.315Z",
+      "lastLocation": {
+        "latitude": 25.5682,
+        "longitude": 94.0483,
+        "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+        "timestamp": "2026-10-10T17:21:01.318Z",
+        "batteryLevel": 50,
+        "speedKmh": 0,
+        "safetyScore": 55
+      },
+      "scheduledCheckIn": {
+        "isActive": false,
+        "trekName": null,
+        "intervalMinutes": 180,
+        "dueTime": null
+      },
+      "itinerary": []
+    },
+    {
+      "touristId": "TID-NE-2026-34647",
+      "userId": "usr-anon-44b49fcc",
+      "fullName": "Rahul Sen",
+      "nationality": "Indian",
+      "dob": "1996-03-12",
+      "gender": "Male",
+      "bloodGroup": "A+ Positive",
+      "photoUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80",
+      "kycType": "AADHAAR_EKYC",
+      "kycStatus": "VERIFIED",
+      "kycHash": "2ba23678c90f427bba8f3de0f6ecaed1efa71f9ea791b700625a2492363da4fe",
+      "maskedDocId": "********1122",
+      "encryptedDocId": "b7e5c503f9ea557caabed24808e1e044:974d86d99b070e8fa6fe15bfd5a1604d:18ff088bcff765098a3291b4",
+      "emergencyContacts": [
+        {
+          "name": "Deepa Sen",
+          "phone": "+91 98765 99881"
+        }
+      ],
+      "validFrom": "2026-10-10",
+      "validUntil": "2026-10-25",
+      "status": "ACTIVE",
+      "optInTracking": true,
+      "trackingRecipients": "police_and_family",
+      "pairedWearableId": null,
+      "issuedBy": "ONLINE_SELF_REGISTRATION",
+      "issuedAt": "2026-10-10T17:45:47.217Z",
+      "lastLocation": {
+        "latitude": 25.5682,
+        "longitude": 94.0483,
+        "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+        "timestamp": "2026-10-10T17:45:47.220Z",
+        "batteryLevel": 50,
+        "speedKmh": 0,
+        "safetyScore": 55
+      },
+      "scheduledCheckIn": {
+        "isActive": false,
+        "trekName": null,
+        "intervalMinutes": 180,
+        "dueTime": null
+      },
+      "itinerary": []
+    },
+    {
+      "touristId": "TID-NE-2026-92868",
+      "userId": "usr-anon-e802808d",
+      "fullName": "Rahul Sen",
+      "nationality": "Indian",
+      "dob": "1996-03-12",
+      "gender": "Male",
+      "bloodGroup": "A+ Positive",
+      "photoUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80",
+      "kycType": "AADHAAR_EKYC",
+      "kycStatus": "VERIFIED",
+      "kycHash": "1463dd076cb898a08ce0ca079f4d410be1df8f38b7209a34d007f1b3cca8bff7",
+      "maskedDocId": "********1122",
+      "encryptedDocId": "bdd9c12771245cc58313fab791b0baec:6c3ab4805439dfb24af8a7e4679ef8cf:07dd9130843ec2856b8d3a3d",
+      "emergencyContacts": [
+        {
+          "name": "Deepa Sen",
+          "phone": "+91 98765 99881"
+        }
+      ],
+      "validFrom": "2026-10-10",
+      "validUntil": "2026-10-25",
+      "status": "ACTIVE",
+      "optInTracking": true,
+      "trackingRecipients": "police_and_family",
+      "pairedWearableId": null,
+      "issuedBy": "ONLINE_SELF_REGISTRATION",
+      "issuedAt": "2026-10-10T17:46:32.251Z",
+      "lastLocation": {
+        "latitude": 25.5682,
+        "longitude": 94.0483,
+        "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+        "timestamp": "2026-10-10T17:46:32.253Z",
+        "batteryLevel": 50,
+        "speedKmh": 0,
+        "safetyScore": 55
+      },
+      "scheduledCheckIn": {
+        "isActive": false,
+        "trekName": null,
+        "intervalMinutes": 180,
+        "dueTime": null
+      },
+      "itinerary": []
+    }
+  ],
+  "itineraries": [],
+  "trackingPings": [
+    {
+      "id": "PNG-d5ccb56d",
+      "touristId": "TID-NE-2026-27869",
+      "latitude": 26.1445,
+      "longitude": 91.7362,
+      "speedKmh": 0,
+      "batteryLevel": 90,
+      "timestamp": "2026-10-10T16:21:46.224Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-dc8fea6a",
+      "touristId": "TID-NE-2026-27869",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "speedKmh": 0,
+      "batteryLevel": 50,
+      "timestamp": "2026-10-10T16:21:46.225Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-72d2ea30",
+      "touristId": "TID-NE-2026-72366",
+      "latitude": 26.1445,
+      "longitude": 91.7362,
+      "speedKmh": 0,
+      "batteryLevel": 90,
+      "timestamp": "2026-10-10T16:22:08.237Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-df5517c6",
+      "touristId": "TID-NE-2026-72366",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "speedKmh": 0,
+      "batteryLevel": 50,
+      "timestamp": "2026-10-10T16:22:08.237Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-76145543",
+      "touristId": "TID-NE-2026-29854",
+      "latitude": 26.1445,
+      "longitude": 91.7362,
+      "speedKmh": 0,
+      "batteryLevel": 90,
+      "timestamp": "2026-10-10T17:21:01.317Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-5e4997dc",
+      "touristId": "TID-NE-2026-29854",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "speedKmh": 0,
+      "batteryLevel": 50,
+      "timestamp": "2026-10-10T17:21:01.318Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-43e39be0",
+      "touristId": "TID-NE-2026-34647",
+      "latitude": 26.1445,
+      "longitude": 91.7362,
+      "speedKmh": 0,
+      "batteryLevel": 90,
+      "timestamp": "2026-10-10T17:45:47.219Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-dccdfe15",
+      "touristId": "TID-NE-2026-34647",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "speedKmh": 0,
+      "batteryLevel": 50,
+      "timestamp": "2026-10-10T17:45:47.220Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-265e1f52",
+      "touristId": "TID-NE-2026-92868",
+      "latitude": 26.1445,
+      "longitude": 91.7362,
+      "speedKmh": 0,
+      "batteryLevel": 90,
+      "timestamp": "2026-10-10T17:46:32.252Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-79979719",
+      "touristId": "TID-NE-2026-92868",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "speedKmh": 0,
+      "batteryLevel": 50,
+      "timestamp": "2026-10-10T17:46:32.253Z",
+      "isTransitZone": false
+    }
+  ],
+  "geofences": [
+    {
+      "id": "GF-NE-001",
+      "name": "Indo-Myanmar Border 5km Buffer Zone",
+      "category": "restricted",
+      "severity": "CRITICAL",
+      "type": "polygon",
+      "coordinates": [
+        [
+          25.8,
+          95
+        ],
+        [
+          25.95,
+          95.35
+        ],
+        [
+          25.4,
+          95.25
+        ],
+        [
+          25.2,
+          94.9
+        ]
+      ],
+      "advisory": "Strict military restricted border defense corridor. Civilians without special defense passes are subject to immediate detention.",
+      "safeRouteSuggestion": "Redirect towards National Highway 29 (Kohima-Dimapur corridor).",
+      "isActive": true,
+      "schedule": {
+        "allDay": true
+      }
+    },
+    {
+      "id": "GF-NE-002",
+      "name": "Dzukou Valley Alpine Freezing Night Curfew",
+      "category": "curfew",
+      "severity": "HIGH",
+      "type": "circle",
+      "center": {
+        "lat": 25.5682,
+        "lng": 94.0483
+      },
+      "radiusMeters": 4500,
+      "advisory": "Extreme sub-zero night temperatures & flash fog hazard. Trekking strictly prohibited between 18:00 and 05:30.",
+      "safeRouteSuggestion": "Retreat immediately to Viswema Base Camp or Dzukou Guest Rest House.",
+      "isActive": true,
+      "schedule": {
+        "allDay": false,
+        "startTime": "18:00",
+        "endTime": "05:30"
+      }
+    },
+    {
+      "id": "GF-NE-003",
+      "name": "Kaziranga Core Sector A - High Flood Hazard Zone",
+      "category": "weather_hazard",
+      "severity": "HIGH",
+      "type": "polygon",
+      "coordinates": [
+        [
+          26.65,
+          93.3
+        ],
+        [
+          26.72,
+          93.55
+        ],
+        [
+          26.58,
+          93.6
+        ],
+        [
+          26.5,
+          93.35
+        ]
+      ],
+      "advisory": "Brahmaputra seasonal river swelling & wild elephant corridor. Tourist movement restricted without forest patrol escort.",
+      "safeRouteSuggestion": "Stay on elevated NH-715 bypass.",
+      "isActive": true,
+      "schedule": {
+        "allDay": true
+      }
+    },
+    {
+      "id": "GF-NE-004",
+      "name": "Sela Pass Avalanche & Blizzard Zone",
+      "category": "weather_hazard",
+      "severity": "CRITICAL",
+      "type": "circle",
+      "center": {
+        "lat": 27.5052,
+        "lng": 92.1039
+      },
+      "radiusMeters": 6000,
+      "advisory": "Heavy snowfall and black ice corridor at 13,700 ft. Night travel restricted.",
+      "safeRouteSuggestion": "Halt at Army Transit Camp Baisakhi or Jaswant Garh.",
+      "isActive": true,
+      "schedule": {
+        "allDay": false,
+        "startTime": "17:00",
+        "endTime": "06:00"
+      }
+    },
+    {
+      "id": "GF-NE-005",
+      "name": "Nongriat Cliff Fall Hazard Zone (Cherrapunji)",
+      "category": "high_risk",
+      "severity": "MEDIUM",
+      "type": "circle",
+      "center": {
+        "lat": 25.2505,
+        "lng": 91.685
+      },
+      "radiusMeters": 2500,
+      "advisory": "Steep 3,500 stairs slippery canyon terrain. Flash flooding in monsoon.",
+      "safeRouteSuggestion": "Hire certified local Khasi guide and carry trekking pole.",
+      "isActive": true,
+      "schedule": {
+        "allDay": true
+      }
+    }
+  ],
+  "alerts": [
+    {
+      "id": "SOS-7F260483",
+      "touristId": "TID-NE-2026-92868",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "BUTTON_PRESS",
+      "severity": "CRITICAL",
+      "status": "NEW",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Command Jurisdiction Sector",
+      "batteryLevel": 45,
+      "emergencyNote": "Panic SOS emergency broadcast triggered by tourist.",
+      "assignedUnitId": null,
+      "assignedUnitName": null,
+      "estimatedEtaMinutes": null,
+      "reportedAt": "2026-10-10T17:46:32.253Z",
+      "timeline": [
+        {
+          "time": "2026-10-10T17:46:32.253Z",
+          "action": "Panic SOS triggered via BUTTON_PRESS"
+        }
+      ]
+    },
+    {
+      "id": "ALT-04E4E2B6",
+      "touristId": "TID-NE-2026-92868",
+      "touristName": "Rahul Sen",
+      "type": "GEOFENCE_BREACH",
+      "severity": "HIGH",
+      "status": "NEW",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Northeast Sector",
+      "batteryLevel": 50,
+      "assignedUnitId": null,
+      "reportedAt": "2026-10-10T17:46:32.253Z",
+      "notes": "Geofence breach: Entered Dzukou Valley Alpine Freezing Night Curfew. Advisory: Extreme sub-zero night temperatures & flash fog hazard. Trekking strictly prohibited between 18:00 and 05:30.",
+      "timeline": [
+        {
+          "time": "2026-10-10T17:46:32.253Z",
+          "action": "Geofence breach detected (Dzukou Valley Alpine Freezing Night Curfew)"
+        }
+      ]
+    },
+    {
+      "id": "SOS-DD44F65C",
+      "touristId": "TID-NE-2026-34647",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "BUTTON_PRESS",
+      "severity": "CRITICAL",
+      "status": "NEW",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Command Jurisdiction Sector",
+      "batteryLevel": 45,
+      "emergencyNote": "Panic SOS emergency broadcast triggered by tourist.",
+      "assignedUnitId": null,
+      "assignedUnitName": null,
+      "estimatedEtaMinutes": null,
+      "reportedAt": "2026-10-10T17:45:47.220Z",
+      "timeline": [
+        {
+          "time": "2026-10-10T17:45:47.220Z",
+          "action": "Panic SOS triggered via BUTTON_PRESS"
+        }
+      ]
+    },
+    {
+      "id": "ALT-8FB2F025",
+      "touristId": "TID-NE-2026-34647",
+      "touristName": "Rahul Sen",
+      "type": "GEOFENCE_BREACH",
+      "severity": "HIGH",
+      "status": "NEW",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Northeast Sector",
+      "batteryLevel": 50,
+      "assignedUnitId": null,
+      "reportedAt": "2026-10-10T17:45:47.220Z",
+      "notes": "Geofence breach: Entered Dzukou Valley Alpine Freezing Night Curfew. Advisory: Extreme sub-zero night temperatures & flash fog hazard. Trekking strictly prohibited between 18:00 and 05:30.",
+      "timeline": [
+        {
+          "time": "2026-10-10T17:45:47.220Z",
+          "action": "Geofence breach detected (Dzukou Valley Alpine Freezing Night Curfew)"
+        }
+      ]
+    },
+    {
+      "id": "SOS-5AEAD9D6",
+      "touristId": "TID-NE-2026-29854",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "BUTTON_PRESS",
+      "severity": "CRITICAL",
+      "status": "DISPATCHED",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Command Jurisdiction Sector",
+      "batteryLevel": 45,
+      "emergencyNote": "Panic SOS emergency broadcast triggered by tourist.",
+      "assignedUnitId": "UNIT-TWG-02",
+      "assignedUnitName": "Tawang High-Altitude Rescue Squad",
+      "estimatedEtaMinutes": 6,
+      "reportedAt": "2026-10-10T17:21:01.319Z",
+      "timeline": [
+        {
+          "time": "2026-10-10T17:21:01.319Z",
+          "action": "Panic SOS triggered via BUTTON_PRESS"
+        },
+        {
+          "time": "2026-10-10T17:21:01.319Z",
+          "action": "Auto-dispatched nearest patrol unit: Tawang High-Altitude Rescue Squad (Capt. T. Norbu)"
+        }
+      ]
+    },
+    {
+      "id": "ALT-6DD53B47",
+      "touristId": "TID-NE-2026-29854",
+      "touristName": "Rahul Sen",
+      "type": "GEOFENCE_BREACH",
+      "severity": "HIGH",
+      "status": "NEW",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Northeast Sector",
+      "batteryLevel": 50,
+      "assignedUnitId": null,
+      "reportedAt": "2026-10-10T17:21:01.318Z",
+      "notes": "Geofence breach: Entered Dzukou Valley Alpine Freezing Night Curfew. Advisory: Extreme sub-zero night temperatures & flash fog hazard. Trekking strictly prohibited between 18:00 and 05:30.",
+      "timeline": [
+        {
+          "time": "2026-10-10T17:21:01.318Z",
+          "action": "Geofence breach detected (Dzukou Valley Alpine Freezing Night Curfew)"
+        }
+      ]
+    },
+    {
+      "id": "SOS-44432A88",
+      "touristId": "TID-NE-2026-72366",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "BUTTON_PRESS",
+      "severity": "CRITICAL",
+      "status": "DISPATCHED",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Command Jurisdiction Sector",
+      "batteryLevel": 45,
+      "emergencyNote": "Panic SOS emergency broadcast triggered by tourist.",
+      "assignedUnitId": "UNIT-GHY-01",
+      "assignedUnitName": "Guwahati City Patrol 01",
+      "estimatedEtaMinutes": 6,
+      "reportedAt": "2026-10-10T16:22:08.238Z",
+      "timeline": [
+        {
+          "time": "2026-10-10T16:22:08.238Z",
+          "action": "Panic SOS triggered via BUTTON_PRESS"
+        },
+        {
+          "time": "2026-10-10T16:22:08.238Z",
+          "action": "Auto-dispatched nearest patrol unit: Guwahati City Patrol 01 (Inspector K. Borah)"
+        }
+      ]
+    },
+    {
+      "id": "ALT-9F10E9E9",
+      "touristId": "TID-NE-2026-72366",
+      "touristName": "Rahul Sen",
+      "type": "GEOFENCE_BREACH",
+      "severity": "HIGH",
+      "status": "NEW",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Northeast Sector",
+      "batteryLevel": 50,
+      "assignedUnitId": null,
+      "reportedAt": "2026-10-10T16:22:08.237Z",
+      "notes": "Geofence breach: Entered Dzukou Valley Alpine Freezing Night Curfew. Advisory: Extreme sub-zero night temperatures & flash fog hazard. Trekking strictly prohibited between 18:00 and 05:30.",
+      "timeline": [
+        {
+          "time": "2026-10-10T16:22:08.237Z",
+          "action": "Geofence breach detected (Dzukou Valley Alpine Freezing Night Curfew)"
+        }
+      ]
+    },
+    {
+      "id": "SOS-10BF1EB3",
+      "touristId": "TID-NE-2026-27869",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "BUTTON_PRESS",
+      "severity": "CRITICAL",
+      "status": "DISPATCHED",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Command Jurisdiction Sector",
+      "batteryLevel": 45,
+      "emergencyNote": "Panic SOS emergency broadcast triggered by tourist.",
+      "assignedUnitId": "UNIT-KZG-03",
+      "assignedUnitName": "Kaziranga Forest Protection QRT",
+      "estimatedEtaMinutes": 6,
+      "reportedAt": "2026-10-10T16:21:46.226Z",
+      "timeline": [
+        {
+          "time": "2026-10-10T16:21:46.226Z",
+          "action": "Panic SOS triggered via BUTTON_PRESS"
+        },
+        {
+          "time": "2026-10-10T16:21:46.226Z",
+          "action": "Auto-dispatched nearest patrol unit: Kaziranga Forest Protection QRT (Range Officer P. Gogoi)"
+        }
+      ]
+    },
+    {
+      "id": "ALT-DEA9281A",
+      "touristId": "TID-NE-2026-27869",
+      "touristName": "Rahul Sen",
+      "type": "GEOFENCE_BREACH",
+      "severity": "HIGH",
+      "status": "NEW",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "Dzukou Valley Alpine Freezing Night Curfew",
+      "district": "Northeast Sector",
+      "batteryLevel": 50,
+      "assignedUnitId": null,
+      "reportedAt": "2026-10-10T16:21:46.225Z",
+      "notes": "Geofence breach: Entered Dzukou Valley Alpine Freezing Night Curfew. Advisory: Extreme sub-zero night temperatures & flash fog hazard. Trekking strictly prohibited between 18:00 and 05:30.",
+      "timeline": [
+        {
+          "time": "2026-10-10T16:21:46.225Z",
+          "action": "Geofence breach detected (Dzukou Valley Alpine Freezing Night Curfew)"
+        }
+      ]
+    },
+    {
+      "id": "ALT-2026-9901",
+      "touristId": "TID-NE-2026-88190",
+      "touristName": "Priya Sharma",
+      "type": "PANIC_SOS",
+      "severity": "CRITICAL",
+      "status": "DISPATCHED",
+      "latitude": 25.5788,
+      "longitude": 91.8933,
+      "locationName": "Shillong Peak Forest Sector 4",
+      "district": "East Khasi Hills",
+      "batteryLevel": 24,
+      "assignedUnitId": "UNIT-SHL-04",
+      "assignedUnitName": "Shillong Quick Response Team (QRT-04)",
+      "estimatedEtaMinutes": 8,
+      "reportedAt": "2026-10-10T16:03:36.799Z",
+      "acknowledgedAt": "2026-10-10T16:05:36.799Z",
+      "notes": "Tourist activated Panic SOS via app. Unit 04 en route with medical kit.",
+      "timeline": [
+        {
+          "time": "2026-10-10T16:03:36.799Z",
+          "action": "Panic SOS button triggered by tourist"
+        },
+        {
+          "time": "2026-10-10T16:05:36.799Z",
+          "action": "Control Room Officer acknowledged alert"
+        },
+        {
+          "time": "2026-10-10T16:06:36.799Z",
+          "action": "Dispatched QRT-04 (Sub-Inspector M. Sangma)"
+        }
+      ]
+    },
+    {
+      "id": "ALT-2026-9902",
+      "touristId": "TID-NE-2026-90412",
+      "touristName": "John Miller",
+      "type": "GEOFENCE_BREACH",
+      "severity": "HIGH",
+      "status": "ACKNOWLEDGED",
+      "latitude": 27.5052,
+      "longitude": 92.1039,
+      "locationName": "Sela Pass Blizzard Zone",
+      "district": "Tawang",
+      "batteryLevel": 45,
+      "assignedUnitId": null,
+      "reportedAt": "2026-10-10T15:50:36.799Z",
+      "acknowledgedAt": "2026-10-10T15:55:36.799Z",
+      "notes": "Tourist vehicle entered Sela Pass curfew zone past 17:00.",
+      "timeline": [
+        {
+          "time": "2026-10-10T15:50:36.799Z",
+          "action": "Geofence breach detected (Sela Pass curfew)"
+        },
+        {
+          "time": "2026-10-10T15:55:36.799Z",
+          "action": "Automated SMS advisory dispatched to tourist"
+        }
+      ]
+    }
+  ],
+  "efirRecords": [
+    {
+      "firId": "EFIR-480B70EFCCF8",
+      "firNumber": "FIR/NE/2026/7343",
+      "status": "REGISTERED_AND_DISPATCHED",
+      "registeredAt": "2026-10-10T17:46:32.255Z",
+      "jurisdiction": {
+        "state": "Assam / Meghalaya Joint Command",
+        "district": "Command Jurisdiction Sector",
+        "policeStation": "North-East Integrated Command & Control Center (ICCC)",
+        "investigatingOfficer": "DSP Bimal Das",
+        "badgeNumber": "ASM-POL-009"
+      },
+      "touristDetails": {
+        "touristId": "TID-NE-2026-92868",
+        "fullName": "Rahul Sen",
+        "nationality": "Indian",
+        "dateOfBirth": "1996-03-12",
+        "gender": "Male",
+        "bloodGroup": "A+ Positive",
+        "emergencyContacts": [
+          {
+            "name": "Deepa Sen",
+            "phone": "+91 98765 99881"
+          }
+        ],
+        "kycType": "AADHAAR_EKYC",
+        "kycVerificationHash": "1463dd076cb898a08ce0ca079f4d410be1df8f38b7209a34d007f1b3cca8bff7"
+      },
+      "incidentDetails": {
+        "incidentId": "SOS-7F260483",
+        "natureOfEmergency": "PANIC_SOS",
+        "severity": "CRITICAL",
+        "lastKnownCoordinates": {
+          "latitude": 25.5682,
+          "longitude": 94.0483,
+          "sectorName": "Dzukou Valley Alpine Freezing Night Curfew",
+          "elevation": "1,496m MSL",
+          "timestamp": "2026-10-10T17:46:32.255Z"
+        },
+        "cellTowerTriangulation": {
+          "primaryCID": "BSNL-CID-NE-88219",
+          "lac": "LAC-404-52",
+          "signalStrengthDbm": -108,
+          "accuracyRadiusMeters": 450
+        }
+      },
+      "itineraryTimeline": [],
+      "evidenceTimeline": [
+        {
+          "time": "2026-10-10T14:46:32.255Z",
+          "event": "Check-in confirmed at Umiam Lake Viewpoint Checkpost"
+        },
+        {
+          "time": "2026-10-10T15:46:32.255Z",
+          "event": "AI Anomaly Detector flagged unexpected telemetry drop-off in high-risk zone"
+        },
+        {
+          "time": "2026-10-10T16:46:32.255Z",
+          "event": "Control room attempted two automated voice/SMS calls - No Response"
+        },
+        {
+          "time": "2026-10-10T17:46:32.255Z",
+          "event": "Automated Legal E-FIR generated & SDRF Rapid Response Team dispatched"
+        }
+      ],
+      "legalActs": [
+        {
+          "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+          "section": "Section 140(3) (Missing Person Inquiry & Search Directive)",
+          "description": "Mandatory police inquiry and active search protocol for uncontactable registered foreign/domestic tourist in hazardous sector."
+        },
+        {
+          "act": "Disaster Management Act, 2005",
+          "section": "Section 30 (District Authority Emergency Search & Rescue Dispatch)",
+          "description": "Mobilization of State Disaster Response Force (SDRF) / QRT units."
+        }
+      ],
+      "digitalSignature": {
+        "signingAuthority": "Government of India Digital E-FIR Certification Authority",
+        "algorithm": "ECDSA_SHA256",
+        "certificateThumbprint": "4E98C539B3F612EB8985E9B14AE4EF187C2C223FAD7E622B656A2CC1B8FD6B9E",
+        "isCryptographicallyVerified": true
+      }
+    },
+    {
+      "firId": "EFIR-7A86D00B9637",
+      "firNumber": "FIR/NE/2026/3698",
+      "status": "REGISTERED_AND_DISPATCHED",
+      "registeredAt": "2026-10-10T17:45:47.222Z",
+      "jurisdiction": {
+        "state": "Assam / Meghalaya Joint Command",
+        "district": "Command Jurisdiction Sector",
+        "policeStation": "North-East Integrated Command & Control Center (ICCC)",
+        "investigatingOfficer": "DSP Bimal Das",
+        "badgeNumber": "ASM-POL-009"
+      },
+      "touristDetails": {
+        "touristId": "TID-NE-2026-34647",
+        "fullName": "Rahul Sen",
+        "nationality": "Indian",
+        "dateOfBirth": "1996-03-12",
+        "gender": "Male",
+        "bloodGroup": "A+ Positive",
+        "emergencyContacts": [
+          {
+            "name": "Deepa Sen",
+            "phone": "+91 98765 99881"
+          }
+        ],
+        "kycType": "AADHAAR_EKYC",
+        "kycVerificationHash": "2ba23678c90f427bba8f3de0f6ecaed1efa71f9ea791b700625a2492363da4fe"
+      },
+      "incidentDetails": {
+        "incidentId": "SOS-DD44F65C",
+        "natureOfEmergency": "PANIC_SOS",
+        "severity": "CRITICAL",
+        "lastKnownCoordinates": {
+          "latitude": 25.5682,
+          "longitude": 94.0483,
+          "sectorName": "Dzukou Valley Alpine Freezing Night Curfew",
+          "elevation": "1,496m MSL",
+          "timestamp": "2026-10-10T17:45:47.222Z"
+        },
+        "cellTowerTriangulation": {
+          "primaryCID": "BSNL-CID-NE-88219",
+          "lac": "LAC-404-52",
+          "signalStrengthDbm": -108,
+          "accuracyRadiusMeters": 450
+        }
+      },
+      "itineraryTimeline": [],
+      "evidenceTimeline": [
+        {
+          "time": "2026-10-10T14:45:47.222Z",
+          "event": "Check-in confirmed at Umiam Lake Viewpoint Checkpost"
+        },
+        {
+          "time": "2026-10-10T15:45:47.222Z",
+          "event": "AI Anomaly Detector flagged unexpected telemetry drop-off in high-risk zone"
+        },
+        {
+          "time": "2026-10-10T16:45:47.222Z",
+          "event": "Control room attempted two automated voice/SMS calls - No Response"
+        },
+        {
+          "time": "2026-10-10T17:45:47.222Z",
+          "event": "Automated Legal E-FIR generated & SDRF Rapid Response Team dispatched"
+        }
+      ],
+      "legalActs": [
+        {
+          "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+          "section": "Section 140(3) (Missing Person Inquiry & Search Directive)",
+          "description": "Mandatory police inquiry and active search protocol for uncontactable registered foreign/domestic tourist in hazardous sector."
+        },
+        {
+          "act": "Disaster Management Act, 2005",
+          "section": "Section 30 (District Authority Emergency Search & Rescue Dispatch)",
+          "description": "Mobilization of State Disaster Response Force (SDRF) / QRT units."
+        }
+      ],
+      "digitalSignature": {
+        "signingAuthority": "Government of India Digital E-FIR Certification Authority",
+        "algorithm": "ECDSA_SHA256",
+        "certificateThumbprint": "86B684CC727ABA7AEB991E963E3302F547346A76CB69B827EA23E7A19B51C6B4",
+        "isCryptographicallyVerified": true
+      }
+    },
+    {
+      "firId": "EFIR-F58FBCC5FC45",
+      "firNumber": "FIR/NE/2026/4563",
+      "status": "REGISTERED_AND_DISPATCHED",
+      "registeredAt": "2026-10-10T17:21:01.321Z",
+      "jurisdiction": {
+        "state": "Assam / Meghalaya Joint Command",
+        "district": "Command Jurisdiction Sector",
+        "policeStation": "North-East Integrated Command & Control Center (ICCC)",
+        "investigatingOfficer": "DSP Bimal Das",
+        "badgeNumber": "ASM-POL-009"
+      },
+      "touristDetails": {
+        "touristId": "TID-NE-2026-29854",
+        "fullName": "Rahul Sen",
+        "nationality": "Indian",
+        "dateOfBirth": "1996-03-12",
+        "gender": "Male",
+        "bloodGroup": "A+ Positive",
+        "emergencyContacts": [
+          {
+            "name": "Deepa Sen",
+            "phone": "+91 98765 99881"
+          }
+        ],
+        "kycType": "AADHAAR_EKYC",
+        "kycVerificationHash": "d89cf355230f096e84e08154312da6f56ffa11affea54fdc434a49fe81dccd56"
+      },
+      "incidentDetails": {
+        "incidentId": "SOS-5AEAD9D6",
+        "natureOfEmergency": "PANIC_SOS",
+        "severity": "CRITICAL",
+        "lastKnownCoordinates": {
+          "latitude": 25.5682,
+          "longitude": 94.0483,
+          "sectorName": "Dzukou Valley Alpine Freezing Night Curfew",
+          "elevation": "1,496m MSL",
+          "timestamp": "2026-10-10T17:21:01.321Z"
+        },
+        "cellTowerTriangulation": {
+          "primaryCID": "BSNL-CID-NE-88219",
+          "lac": "LAC-404-52",
+          "signalStrengthDbm": -108,
+          "accuracyRadiusMeters": 450
+        }
+      },
+      "itineraryTimeline": [],
+      "evidenceTimeline": [
+        {
+          "time": "2026-10-10T14:21:01.321Z",
+          "event": "Check-in confirmed at Umiam Lake Viewpoint Checkpost"
+        },
+        {
+          "time": "2026-10-10T15:21:01.321Z",
+          "event": "AI Anomaly Detector flagged unexpected telemetry drop-off in high-risk zone"
+        },
+        {
+          "time": "2026-10-10T16:21:01.321Z",
+          "event": "Control room attempted two automated voice/SMS calls - No Response"
+        },
+        {
+          "time": "2026-10-10T17:21:01.321Z",
+          "event": "Automated Legal E-FIR generated & SDRF Rapid Response Team dispatched"
+        }
+      ],
+      "legalActs": [
+        {
+          "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+          "section": "Section 140(3) (Missing Person Inquiry & Search Directive)",
+          "description": "Mandatory police inquiry and active search protocol for uncontactable registered foreign/domestic tourist in hazardous sector."
+        },
+        {
+          "act": "Disaster Management Act, 2005",
+          "section": "Section 30 (District Authority Emergency Search & Rescue Dispatch)",
+          "description": "Mobilization of State Disaster Response Force (SDRF) / QRT units."
+        }
+      ],
+      "digitalSignature": {
+        "signingAuthority": "Government of India Digital E-FIR Certification Authority",
+        "algorithm": "ECDSA_SHA256",
+        "certificateThumbprint": "3DA1CC3E037126AFF634860F9E1241D931B743DE6F832992D09E3847E6772324",
+        "isCryptographicallyVerified": true
+      }
+    },
+    {
+      "firId": "EFIR-E2B1F5D8F26E",
+      "firNumber": "FIR/NE/2026/9656",
+      "status": "REGISTERED_AND_DISPATCHED",
+      "registeredAt": "2026-10-10T16:22:08.239Z",
+      "jurisdiction": {
+        "state": "Assam / Meghalaya Joint Command",
+        "district": "Command Jurisdiction Sector",
+        "policeStation": "North-East Integrated Command & Control Center (ICCC)",
+        "investigatingOfficer": "DSP Bimal Das",
+        "badgeNumber": "ASM-POL-009"
+      },
+      "touristDetails": {
+        "touristId": "TID-NE-2026-72366",
+        "fullName": "Rahul Sen",
+        "nationality": "Indian",
+        "dateOfBirth": "1996-03-12",
+        "gender": "Male",
+        "bloodGroup": "A+ Positive",
+        "emergencyContacts": [
+          {
+            "name": "Deepa Sen",
+            "phone": "+91 98765 99881"
+          }
+        ],
+        "kycType": "AADHAAR_EKYC",
+        "kycVerificationHash": "452bcf204f39a48235278cbdb5b40db7dbb1036c83eda6425a8f10aebf1173ad"
+      },
+      "incidentDetails": {
+        "incidentId": "SOS-44432A88",
+        "natureOfEmergency": "PANIC_SOS",
+        "severity": "CRITICAL",
+        "lastKnownCoordinates": {
+          "latitude": 25.5682,
+          "longitude": 94.0483,
+          "sectorName": "Dzukou Valley Alpine Freezing Night Curfew",
+          "elevation": "1,496m MSL",
+          "timestamp": "2026-10-10T16:22:08.239Z"
+        },
+        "cellTowerTriangulation": {
+          "primaryCID": "BSNL-CID-NE-88219",
+          "lac": "LAC-404-52",
+          "signalStrengthDbm": -108,
+          "accuracyRadiusMeters": 450
+        }
+      },
+      "itineraryTimeline": [],
+      "evidenceTimeline": [
+        {
+          "time": "2026-10-10T13:22:08.239Z",
+          "event": "Check-in confirmed at Umiam Lake Viewpoint Checkpost"
+        },
+        {
+          "time": "2026-10-10T14:22:08.239Z",
+          "event": "AI Anomaly Detector flagged unexpected telemetry drop-off in high-risk zone"
+        },
+        {
+          "time": "2026-10-10T15:22:08.239Z",
+          "event": "Control room attempted two automated voice/SMS calls - No Response"
+        },
+        {
+          "time": "2026-10-10T16:22:08.239Z",
+          "event": "Automated Legal E-FIR generated & SDRF Rapid Response Team dispatched"
+        }
+      ],
+      "legalActs": [
+        {
+          "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+          "section": "Section 140(3) (Missing Person Inquiry & Search Directive)",
+          "description": "Mandatory police inquiry and active search protocol for uncontactable registered foreign/domestic tourist in hazardous sector."
+        },
+        {
+          "act": "Disaster Management Act, 2005",
+          "section": "Section 30 (District Authority Emergency Search & Rescue Dispatch)",
+          "description": "Mobilization of State Disaster Response Force (SDRF) / QRT units."
+        }
+      ],
+      "digitalSignature": {
+        "signingAuthority": "Government of India Digital E-FIR Certification Authority",
+        "algorithm": "ECDSA_SHA256",
+        "certificateThumbprint": "A9269DF186AFB6BA86A431FFC7C7AC34A1BA3B499863B876DDFEA15AA0F27B36",
+        "isCryptographicallyVerified": true
+      }
+    },
+    {
+      "firId": "EFIR-6E5225703B1E",
+      "firNumber": "FIR/NE/2026/1972",
+      "status": "REGISTERED_AND_DISPATCHED",
+      "registeredAt": "2026-10-10T16:21:46.227Z",
+      "jurisdiction": {
+        "state": "Assam / Meghalaya Joint Command",
+        "district": "Command Jurisdiction Sector",
+        "policeStation": "North-East Integrated Command & Control Center (ICCC)",
+        "investigatingOfficer": "DSP Bimal Das",
+        "badgeNumber": "ASM-POL-009"
+      },
+      "touristDetails": {
+        "touristId": "TID-NE-2026-27869",
+        "fullName": "Rahul Sen",
+        "nationality": "Indian",
+        "dateOfBirth": "1996-03-12",
+        "gender": "Male",
+        "bloodGroup": "A+ Positive",
+        "emergencyContacts": [
+          {
+            "name": "Deepa Sen",
+            "phone": "+91 98765 99881"
+          }
+        ],
+        "kycType": "AADHAAR_EKYC",
+        "kycVerificationHash": "e2f8096c22b908c8b8aede33f85c64336843fa90d61da7b5f6676bf38a0acf41"
+      },
+      "incidentDetails": {
+        "incidentId": "SOS-10BF1EB3",
+        "natureOfEmergency": "PANIC_SOS",
+        "severity": "CRITICAL",
+        "lastKnownCoordinates": {
+          "latitude": 25.5682,
+          "longitude": 94.0483,
+          "sectorName": "Dzukou Valley Alpine Freezing Night Curfew",
+          "elevation": "1,496m MSL",
+          "timestamp": "2026-10-10T16:21:46.227Z"
+        },
+        "cellTowerTriangulation": {
+          "primaryCID": "BSNL-CID-NE-88219",
+          "lac": "LAC-404-52",
+          "signalStrengthDbm": -108,
+          "accuracyRadiusMeters": 450
+        }
+      },
+      "itineraryTimeline": [],
+      "evidenceTimeline": [
+        {
+          "time": "2026-10-10T13:21:46.227Z",
+          "event": "Check-in confirmed at Umiam Lake Viewpoint Checkpost"
+        },
+        {
+          "time": "2026-10-10T14:21:46.227Z",
+          "event": "AI Anomaly Detector flagged unexpected telemetry drop-off in high-risk zone"
+        },
+        {
+          "time": "2026-10-10T15:21:46.227Z",
+          "event": "Control room attempted two automated voice/SMS calls - No Response"
+        },
+        {
+          "time": "2026-10-10T16:21:46.227Z",
+          "event": "Automated Legal E-FIR generated & SDRF Rapid Response Team dispatched"
+        }
+      ],
+      "legalActs": [
+        {
+          "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+          "section": "Section 140(3) (Missing Person Inquiry & Search Directive)",
+          "description": "Mandatory police inquiry and active search protocol for uncontactable registered foreign/domestic tourist in hazardous sector."
+        },
+        {
+          "act": "Disaster Management Act, 2005",
+          "section": "Section 30 (District Authority Emergency Search & Rescue Dispatch)",
+          "description": "Mobilization of State Disaster Response Force (SDRF) / QRT units."
+        }
+      ],
+      "digitalSignature": {
+        "signingAuthority": "Government of India Digital E-FIR Certification Authority",
+        "algorithm": "ECDSA_SHA256",
+        "certificateThumbprint": "6D362F18F0858F8E9DFD56C251C94642F455199F8FD3329659414B24EB79D086",
+        "isCryptographicallyVerified": true
+      }
+    }
+  ],
+  "patrolUnits": [
+    {
+      "id": "UNIT-SHL-04",
+      "name": "Shillong QRT Unit 04",
+      "type": "Police Quick Response Vehicle",
+      "officerInCharge": "SI M. Sangma",
+      "phone": "+91 94361 00223",
+      "status": "ON_MISSION",
+      "assignedIncidentId": "ALT-2026-9901",
+      "latitude": 25.574,
+      "longitude": 91.888,
+      "currentSector": "Shillong Peak Road"
+    },
+    {
+      "id": "UNIT-GHY-01",
+      "name": "Guwahati City Patrol 01",
+      "type": "Highway Interceptor",
+      "officerInCharge": "Inspector K. Borah",
+      "phone": "+91 94350 11990",
+      "status": "ON_MISSION",
+      "assignedIncidentId": "SOS-44432A88",
+      "latitude": 26.1445,
+      "longitude": 91.7362,
+      "currentSector": "GS Road / Khanapara"
+    },
+    {
+      "id": "UNIT-TWG-02",
+      "name": "Tawang High-Altitude Rescue Squad",
+      "type": "4x4 Mountain Ambulance & Rescue",
+      "officerInCharge": "Capt. T. Norbu",
+      "phone": "+91 94360 88712",
+      "status": "ON_MISSION",
+      "assignedIncidentId": "SOS-5AEAD9D6",
+      "latitude": 27.5861,
+      "longitude": 91.8594,
+      "currentSector": "Tawang Valley"
+    },
+    {
+      "id": "UNIT-KZG-03",
+      "name": "Kaziranga Forest Protection QRT",
+      "type": "Riverine & Forest Unit",
+      "officerInCharge": "Range Officer P. Gogoi",
+      "phone": "+91 94351 77234",
+      "status": "ON_MISSION",
+      "assignedIncidentId": "SOS-10BF1EB3",
+      "latitude": 26.58,
+      "longitude": 93.38,
+      "currentSector": "Kohora Range"
+    }
+  ],
+  "wearables": [
+    {
+      "id": "WB-NE-089",
+      "model": "SurakshaBand v2 (LoRa + GPS + HeartRate)",
+      "status": "ASSIGNED",
+      "assignedTouristId": "TID-NE-2026-88190",
+      "batteryPct": 88,
+      "heartRateBpm": 76,
+      "sosButtonState": "NORMAL",
+      "fallDetected": false,
+      "lastHeartbeat": "2026-10-10T16:15:36.799Z"
+    },
+    {
+      "id": "WB-NE-090",
+      "model": "SurakshaBand v2 (LoRa + GPS + HeartRate)",
+      "status": "AVAILABLE_AT_CHECKPOINT",
+      "assignedTouristId": null,
+      "batteryPct": 100,
+      "heartRateBpm": 0,
+      "sosButtonState": "NORMAL",
+      "fallDetected": false,
+      "lastHeartbeat": "2026-10-10T16:15:36.799Z"
+    },
+    {
+      "id": "WB-NE-091",
+      "model": "SurakshaTag Lite (Satellite Beacon)",
+      "status": "AVAILABLE_AT_CHECKPOINT",
+      "assignedTouristId": null,
+      "batteryPct": 95,
+      "heartRateBpm": 0,
+      "sosButtonState": "NORMAL",
+      "fallDetected": false,
+      "lastHeartbeat": "2026-10-10T16:15:36.799Z"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "AUD-13A9FC44",
+      "timestamp": "2026-10-10T17:46:32.470Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "LOCATION_NEWS_PUBLISHED",
+      "targetResource": "NEWS-2026-385",
+      "ipAddress": "127.0.0.1",
+      "details": "Published localized news bulletin: \"BRO Restores Sela Pass Convoy Traffic\" at Sela Pass Corridor (13,700 ft)",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-719DA0CC",
+      "timestamp": "2026-10-10T17:46:32.466Z",
+      "userId": "usr-admin-01",
+      "userName": "State Cyber Administrator",
+      "userRole": "admin",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-admin-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-01E351B7",
+      "timestamp": "2026-10-10T17:46:32.256Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "GENERATE_LEGAL_EFIR",
+      "targetResource": "TID-NE-2026-92868",
+      "ipAddress": "::1",
+      "userAgent": "Unknown",
+      "statusCode": 201
+    },
+    {
+      "id": "AUD-F980076A",
+      "timestamp": "2026-10-10T17:46:32.256Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "EFIR_GENERATED",
+      "targetResource": "FIR/NE/2026/7343",
+      "ipAddress": "127.0.0.1",
+      "details": "Generated Legal E-FIR FIR/NE/2026/7343 for Tourist TID-NE-2026-92868. Anchored in Block #6",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-109A69EB",
+      "timestamp": "2026-10-10T17:46:32.254Z",
+      "userId": "usr-anon-e802808d",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "PANIC_SOS_TRIGGERED",
+      "targetResource": "SOS-7F260483",
+      "ipAddress": "127.0.0.1",
+      "details": "CRITICAL Panic SOS initiated. Anchored in Block #5",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-08EA948E",
+      "timestamp": "2026-10-10T17:46:32.251Z",
+      "userId": "usr-anon-e802808d",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "DIGITAL_ID_ISSUED",
+      "targetResource": "TID-NE-2026-92868",
+      "ipAddress": "127.0.0.1",
+      "details": "Issued Digital Tourist ID anchored in Block #4",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-C917087C",
+      "timestamp": "2026-10-10T17:46:32.250Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-police-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-B7976153",
+      "timestamp": "2026-10-10T17:46:32.044Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-EFA83B23",
+      "timestamp": "2026-10-10T17:45:47.435Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "LOCATION_NEWS_PUBLISHED",
+      "targetResource": "NEWS-2026-993",
+      "ipAddress": "127.0.0.1",
+      "details": "Published localized news bulletin: \"BRO Restores Sela Pass Convoy Traffic\" at Sela Pass Corridor (13,700 ft)",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-A7608A80",
+      "timestamp": "2026-10-10T17:45:47.431Z",
+      "userId": "usr-admin-01",
+      "userName": "State Cyber Administrator",
+      "userRole": "admin",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-admin-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-64ED5ACE",
+      "timestamp": "2026-10-10T17:45:47.223Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "GENERATE_LEGAL_EFIR",
+      "targetResource": "TID-NE-2026-34647",
+      "ipAddress": "::1",
+      "userAgent": "Unknown",
+      "statusCode": 201
+    },
+    {
+      "id": "AUD-F2796DAF",
+      "timestamp": "2026-10-10T17:45:47.223Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "EFIR_GENERATED",
+      "targetResource": "FIR/NE/2026/3698",
+      "ipAddress": "127.0.0.1",
+      "details": "Generated Legal E-FIR FIR/NE/2026/3698 for Tourist TID-NE-2026-34647. Anchored in Block #3",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-25D0F229",
+      "timestamp": "2026-10-10T17:45:47.221Z",
+      "userId": "usr-anon-44b49fcc",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "PANIC_SOS_TRIGGERED",
+      "targetResource": "SOS-DD44F65C",
+      "ipAddress": "127.0.0.1",
+      "details": "CRITICAL Panic SOS initiated. Anchored in Block #2",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-2F8873D1",
+      "timestamp": "2026-10-10T17:45:47.218Z",
+      "userId": "usr-anon-44b49fcc",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "DIGITAL_ID_ISSUED",
+      "targetResource": "TID-NE-2026-34647",
+      "ipAddress": "127.0.0.1",
+      "details": "Issued Digital Tourist ID anchored in Block #1",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-1D04784C",
+      "timestamp": "2026-10-10T17:45:47.216Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-police-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-5A7E0984",
+      "timestamp": "2026-10-10T17:45:47.012Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-FF993064",
+      "timestamp": "2026-10-10T17:21:01.524Z",
+      "userId": "usr-admin-01",
+      "userName": "State Cyber Administrator",
+      "userRole": "admin",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-admin-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-B5A65FB5",
+      "timestamp": "2026-10-10T17:21:01.321Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "GENERATE_LEGAL_EFIR",
+      "targetResource": "TID-NE-2026-29854",
+      "ipAddress": "::1",
+      "userAgent": "Unknown",
+      "statusCode": 201
+    },
+    {
+      "id": "AUD-F44CCD20",
+      "timestamp": "2026-10-10T17:21:01.321Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "EFIR_GENERATED",
+      "targetResource": "FIR/NE/2026/4563",
+      "ipAddress": "127.0.0.1",
+      "details": "Generated Legal E-FIR FIR/NE/2026/4563 for Tourist TID-NE-2026-29854. Anchored in Block #3",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-80E5CD9D",
+      "timestamp": "2026-10-10T17:21:01.320Z",
+      "userId": "usr-anon-e0729451",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "PANIC_SOS_TRIGGERED",
+      "targetResource": "SOS-5AEAD9D6",
+      "ipAddress": "127.0.0.1",
+      "details": "CRITICAL Panic SOS initiated. Anchored in Block #2",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-A56B8BAF",
+      "timestamp": "2026-10-10T17:21:01.316Z",
+      "userId": "usr-anon-e0729451",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "DIGITAL_ID_ISSUED",
+      "targetResource": "TID-NE-2026-29854",
+      "ipAddress": "127.0.0.1",
+      "details": "Issued Digital Tourist ID anchored in Block #1",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-6B94680B",
+      "timestamp": "2026-10-10T17:21:01.314Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-police-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-EB768BDA",
+      "timestamp": "2026-10-10T17:21:01.112Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-C7E82A73",
+      "timestamp": "2026-10-10T16:22:08.443Z",
+      "userId": "usr-admin-01",
+      "userName": "State Cyber Administrator",
+      "userRole": "admin",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-admin-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-C270B798",
+      "timestamp": "2026-10-10T16:22:08.239Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "GENERATE_LEGAL_EFIR",
+      "targetResource": "TID-NE-2026-72366",
+      "ipAddress": "::1",
+      "userAgent": "Unknown",
+      "statusCode": 201
+    },
+    {
+      "id": "AUD-EE70B00E",
+      "timestamp": "2026-10-10T16:22:08.239Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "EFIR_GENERATED",
+      "targetResource": "FIR/NE/2026/9656",
+      "ipAddress": "127.0.0.1",
+      "details": "Generated Legal E-FIR FIR/NE/2026/9656 for Tourist TID-NE-2026-72366. Anchored in Block #6",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-7AE44580",
+      "timestamp": "2026-10-10T16:22:08.238Z",
+      "userId": "usr-anon-01e80908",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "PANIC_SOS_TRIGGERED",
+      "targetResource": "SOS-44432A88",
+      "ipAddress": "127.0.0.1",
+      "details": "CRITICAL Panic SOS initiated. Anchored in Block #5",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-BCD05EEB",
+      "timestamp": "2026-10-10T16:22:08.236Z",
+      "userId": "usr-anon-01e80908",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "DIGITAL_ID_ISSUED",
+      "targetResource": "TID-NE-2026-72366",
+      "ipAddress": "127.0.0.1",
+      "details": "Issued Digital Tourist ID anchored in Block #4",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-90D5E846",
+      "timestamp": "2026-10-10T16:22:08.235Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-police-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-4105E361",
+      "timestamp": "2026-10-10T16:22:08.035Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-AB769485",
+      "timestamp": "2026-10-10T16:21:46.228Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "GENERATE_LEGAL_EFIR",
+      "targetResource": "TID-NE-2026-27869",
+      "ipAddress": "::1",
+      "userAgent": "Unknown",
+      "statusCode": 201
+    },
+    {
+      "id": "AUD-4DFDEBF1",
+      "timestamp": "2026-10-10T16:21:46.228Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "EFIR_GENERATED",
+      "targetResource": "FIR/NE/2026/1972",
+      "ipAddress": "127.0.0.1",
+      "details": "Generated Legal E-FIR FIR/NE/2026/1972 for Tourist TID-NE-2026-27869. Anchored in Block #3",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-CCC27C66",
+      "timestamp": "2026-10-10T16:21:46.226Z",
+      "userId": "usr-anon-92297433",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "PANIC_SOS_TRIGGERED",
+      "targetResource": "SOS-10BF1EB3",
+      "ipAddress": "127.0.0.1",
+      "details": "CRITICAL Panic SOS initiated. Anchored in Block #2",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-EF8C7FA3",
+      "timestamp": "2026-10-10T16:21:46.223Z",
+      "userId": "usr-anon-92297433",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "DIGITAL_ID_ISSUED",
+      "targetResource": "TID-NE-2026-27869",
+      "ipAddress": "127.0.0.1",
+      "details": "Issued Digital Tourist ID anchored in Block #1",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-E043416E",
+      "timestamp": "2026-10-10T16:21:46.222Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-police-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-BB29EC67",
+      "timestamp": "2026-10-10T16:21:46.019Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-901",
+      "timestamp": "2026-10-05T09:30:15.000Z",
+      "userId": "usr-operator-01",
+      "userRole": "operator",
+      "action": "DIGITAL_ID_ISSUED",
+      "targetResource": "TID-NE-2026-88190",
+      "ipAddress": "10.14.2.89",
+      "details": "Issued Digital Tourist ID after Aadhaar e-KYC biometric check at LGBI Airport."
+    },
+    {
+      "id": "AUD-902",
+      "timestamp": "2026-10-10T16:05:36.799Z",
+      "userId": "usr-police-01",
+      "userRole": "police",
+      "action": "SENSITIVE_RECORD_INSPECTED",
+      "targetResource": "TID-NE-2026-88190",
+      "ipAddress": "10.200.1.12",
+      "details": "Authorized inspection of medical notes & emergency contacts upon Panic SOS trigger."
+    }
+  ],
+  "advisories": [
+    {
+      "id": "ADV-2026-101",
+      "title": "IMD Orange Alert: Heavy Rain in East Khasi Hills",
+      "region": "Meghalaya (Shillong & Cherrapunji)",
+      "severity": "WARNING",
+      "issuedBy": "State Disaster Management Authority (SDMA)",
+      "message": "Intense spells of rain expected over next 24 hours. Avoid single root bridge trails and mountain riverbanks.",
+      "publishedAt": "2026-10-10T06:00:00.000Z"
+    },
+    {
+      "id": "ADV-2026-102",
+      "title": "Night Travel Curfew Active: Sela Pass Corridor",
+      "region": "Arunachal Pradesh (Tawang Route)",
+      "severity": "CRITICAL",
+      "issuedBy": "District Magistrate Office, West Kameng",
+      "message": "Sela Pass (NH-13) closed for civilian transit between 17:00 and 06:00 due to black ice and freezing fog.",
+      "publishedAt": "2026-10-10T08:00:00.000Z"
+    }
+  ],
+  "lostPassports": [
+    {
+      "id": "LP-2026-8589",
+      "type": "LOST_PASSPORT",
+      "applicantName": "Lucas Vance",
+      "nationality": "United Kingdom",
+      "contactPhone": "+44 7700 900888",
+      "email": "lucas.vance@example.co.uk",
+      "lastKnownLocation": "Cherrapunji Living Root Bridge",
+      "incidentDate": "2026-10-10",
+      "passportNumberMasked": "GB****912",
+      "issuingCountry": "United Kingdom",
+      "embassyContacted": false,
+      "policeStationVisited": "Pending Assignment",
+      "details": "Lost sling bag containing passport on the trail.",
+      "status": "RECEIVED",
+      "assignedDesk": "State Tourist Police Special Assistance Cell (Guwahati HQ)",
+      "createdAt": "2026-10-10T17:46:32.467Z",
+      "nextSteps": [
+        "Collect your official Lost Document Report (LDR) acknowledgment from the designated Tourist Police station.",
+        "Contact the Embassy/Consulate of United Kingdom in India for an Emergency Travel Document / Emergency Certificate (EC).",
+        "File an online Exit Visa / Visa Regularization application on the official e-FRRO Portal (indianfrro.gov.in).",
+        "Keep your SurakshaYatra Digital Tourist ID active as temporary travel identification within authorized transit zones."
+      ],
+      "timeline": [
+        {
+          "time": "2026-10-10T17:46:32.467Z",
+          "title": "Lost Passport Assistance Report Registered",
+          "description": "Case LP-2026-8589 created and dispatched to North-East Tourist Police Assistance Cell."
+        },
+        {
+          "time": "2026-10-10T17:46:32.467Z",
+          "title": "Automated Alert Sent to Liaison Desk",
+          "description": "Designated nodal officer alerted for document loss coordination."
+        }
+      ]
+    },
+    {
+      "id": "LP-2026-9623",
+      "type": "LOST_PASSPORT",
+      "applicantName": "Lucas Vance",
+      "nationality": "United Kingdom",
+      "contactPhone": "+44 7700 900888",
+      "email": "lucas.vance@example.co.uk",
+      "lastKnownLocation": "Cherrapunji Living Root Bridge",
+      "incidentDate": "2026-10-10",
+      "passportNumberMasked": "GB****912",
+      "issuingCountry": "United Kingdom",
+      "embassyContacted": false,
+      "policeStationVisited": "Pending Assignment",
+      "details": "Lost sling bag containing passport on the trail.",
+      "status": "RECEIVED",
+      "assignedDesk": "State Tourist Police Special Assistance Cell (Guwahati HQ)",
+      "createdAt": "2026-10-10T17:45:47.432Z",
+      "nextSteps": [
+        "Collect your official Lost Document Report (LDR) acknowledgment from the designated Tourist Police station.",
+        "Contact the Embassy/Consulate of United Kingdom in India for an Emergency Travel Document / Emergency Certificate (EC).",
+        "File an online Exit Visa / Visa Regularization application on the official e-FRRO Portal (indianfrro.gov.in).",
+        "Keep your SurakshaYatra Digital Tourist ID active as temporary travel identification within authorized transit zones."
+      ],
+      "timeline": [
+        {
+          "time": "2026-10-10T17:45:47.432Z",
+          "title": "Lost Passport Assistance Report Registered",
+          "description": "Case LP-2026-9623 created and dispatched to North-East Tourist Police Assistance Cell."
+        },
+        {
+          "time": "2026-10-10T17:45:47.432Z",
+          "title": "Automated Alert Sent to Liaison Desk",
+          "description": "Designated nodal officer alerted for document loss coordination."
+        }
+      ]
+    },
+    {
+      "id": "LP-2026-9120",
+      "type": "LOST_PASSPORT",
+      "applicantName": "Lucas Vance",
+      "nationality": "United Kingdom",
+      "contactPhone": "+44 7700 900888",
+      "email": "lucas.vance@example.co.uk",
+      "lastKnownLocation": "Cherrapunji Living Root Bridge",
+      "incidentDate": "2026-10-10",
+      "passportNumberMasked": "GB****912",
+      "issuingCountry": "United Kingdom",
+      "embassyContacted": false,
+      "policeStationVisited": "Pending Assignment",
+      "details": "Lost sling bag containing passport on the trail.",
+      "status": "RECEIVED",
+      "assignedDesk": "State Tourist Police Special Assistance Cell (Guwahati HQ)",
+      "createdAt": "2026-10-10T17:21:01.525Z",
+      "nextSteps": [
+        "Collect your official Lost Document Report (LDR) acknowledgment from the designated Tourist Police station.",
+        "Contact the Embassy/Consulate of United Kingdom in India for an Emergency Travel Document / Emergency Certificate (EC).",
+        "File an online Exit Visa / Visa Regularization application on the official e-FRRO Portal (indianfrro.gov.in).",
+        "Keep your SurakshaYatra Digital Tourist ID active as temporary travel identification within authorized transit zones."
+      ],
+      "timeline": [
+        {
+          "time": "2026-10-10T17:21:01.525Z",
+          "title": "Lost Passport Assistance Report Registered",
+          "description": "Case LP-2026-9120 created and dispatched to North-East Tourist Police Assistance Cell."
+        },
+        {
+          "time": "2026-10-10T17:21:01.525Z",
+          "title": "Automated Alert Sent to Liaison Desk",
+          "description": "Designated nodal officer alerted for document loss coordination."
+        }
+      ]
+    },
+    {
+      "id": "LP-2026-3304",
+      "type": "LOST_PASSPORT",
+      "applicantName": "Lucas Vance",
+      "nationality": "United Kingdom",
+      "contactPhone": "+44 7700 900888",
+      "email": "lucas.vance@example.co.uk",
+      "lastKnownLocation": "Cherrapunji Double Decker Root Bridge",
+      "incidentDate": "2026-10-10",
+      "passportNumberMasked": "GB****912",
+      "issuingCountry": "United Kingdom",
+      "embassyContacted": false,
+      "policeStationVisited": "Pending Assignment",
+      "details": "Lost sling bag containing UK passport on the trail.",
+      "status": "RECEIVED",
+      "assignedDesk": "State Tourist Police Special Assistance Cell (Guwahati HQ)",
+      "createdAt": "2026-10-10T17:17:53.757Z",
+      "nextSteps": [
+        "Collect your official Lost Document Report (LDR) acknowledgment from the designated Tourist Police station.",
+        "Contact the Embassy/Consulate of United Kingdom in India for an Emergency Travel Document / Emergency Certificate (EC).",
+        "File an online Exit Visa / Visa Regularization application on the official e-FRRO Portal (indianfrro.gov.in).",
+        "Keep your SurakshaYatra Digital Tourist ID active as temporary travel identification within authorized transit zones."
+      ],
+      "timeline": [
+        {
+          "time": "2026-10-10T17:17:53.757Z",
+          "title": "Lost Passport Assistance Report Registered",
+          "description": "Case LP-2026-3304 created and dispatched to North-East Tourist Police Assistance Cell."
+        },
+        {
+          "time": "2026-10-10T17:17:53.757Z",
+          "title": "Automated Alert Sent to Liaison Desk",
+          "description": "Designated nodal officer alerted for document loss coordination."
+        }
+      ]
+    }
+  ],
+  "grievances": [
+    {
+      "id": "GRV-2026-4873",
+      "type": "GRIEVANCE",
+      "touristName": "Priya Sharma",
+      "touristId": "",
+      "contactEmail": "priya.sharma@example.com",
+      "contactPhone": "+91 98765 43210",
+      "category": "Safety Concern / Hazard Report",
+      "location": "Shillong Peak Eco-Trail",
+      "description": "Fallen trees blocking main path after rainfall.",
+      "urgency": "Urgent",
+      "status": "SUBMITTED",
+      "assignedAuthority": "State Tourism Redressal & Tourist Police Joint Cell",
+      "createdAt": "2026-10-10T17:46:32.468Z",
+      "estimatedResolutionHours": 24,
+      "timeline": [
+        {
+          "time": "2026-10-10T17:46:32.468Z",
+          "title": "Grievance Ticket Created",
+          "description": "Filed under \"Safety Concern / Hazard Report\" with Urgent priority. Assigned ticket ID GRV-2026-4873."
+        }
+      ]
+    },
+    {
+      "id": "GRV-2026-3140",
+      "type": "GRIEVANCE",
+      "touristName": "Priya Sharma",
+      "touristId": "",
+      "contactEmail": "priya.sharma@example.com",
+      "contactPhone": "+91 98765 43210",
+      "category": "Safety Concern / Hazard Report",
+      "location": "Shillong Peak Eco-Trail",
+      "description": "Fallen trees blocking main path after rainfall.",
+      "urgency": "Urgent",
+      "status": "SUBMITTED",
+      "assignedAuthority": "State Tourism Redressal & Tourist Police Joint Cell",
+      "createdAt": "2026-10-10T17:45:47.433Z",
+      "estimatedResolutionHours": 24,
+      "timeline": [
+        {
+          "time": "2026-10-10T17:45:47.433Z",
+          "title": "Grievance Ticket Created",
+          "description": "Filed under \"Safety Concern / Hazard Report\" with Urgent priority. Assigned ticket ID GRV-2026-3140."
+        }
+      ]
+    },
+    {
+      "id": "GRV-2026-3586",
+      "type": "GRIEVANCE",
+      "touristName": "Priya Sharma",
+      "touristId": "",
+      "contactEmail": "priya.sharma@example.com",
+      "contactPhone": "+91 98765 43210",
+      "category": "Safety Concern / Hazard Report",
+      "location": "Shillong Peak Eco-Trail",
+      "description": "Fallen trees blocking main path after rainfall.",
+      "urgency": "Urgent",
+      "status": "SUBMITTED",
+      "assignedAuthority": "State Tourism Redressal & Tourist Police Joint Cell",
+      "createdAt": "2026-10-10T17:21:01.526Z",
+      "estimatedResolutionHours": 24,
+      "timeline": [
+        {
+          "time": "2026-10-10T17:21:01.526Z",
+          "title": "Grievance Ticket Created",
+          "description": "Filed under \"Safety Concern / Hazard Report\" with Urgent priority. Assigned ticket ID GRV-2026-3586."
+        }
+      ]
+    }
+  ],
+  "locationNews": [
+    {
+      "id": "NEWS-2026-385",
+      "headline": "BRO Restores Sela Pass Convoy Traffic",
+      "locationName": "Sela Pass Corridor (13,700 ft)",
+      "region": "Tawang Route, Arunachal Pradesh",
+      "state": "Arunachal Pradesh",
+      "latitude": 27.5052,
+      "longitude": 92.1039,
+      "category": "ROAD_TRANSIT",
+      "severity": "WARNING",
+      "sourceAgency": "DSP Bimal Das (POLICE)",
+      "summary": "Snow clearing dozers completed black ice clearance.",
+      "travelAdvice": "4x4 with chains permitted.",
+      "isBreaking": false,
+      "publishedAt": "2026-10-10T17:46:32.469Z",
+      "verified": true
+    },
+    {
+      "id": "NEWS-2026-993",
+      "headline": "BRO Restores Sela Pass Convoy Traffic",
+      "locationName": "Sela Pass Corridor (13,700 ft)",
+      "region": "Tawang Route, Arunachal Pradesh",
+      "state": "Arunachal Pradesh",
+      "latitude": 27.5052,
+      "longitude": 92.1039,
+      "category": "ROAD_TRANSIT",
+      "severity": "WARNING",
+      "sourceAgency": "DSP Bimal Das (POLICE)",
+      "summary": "Snow clearing dozers completed black ice clearance.",
+      "travelAdvice": "4x4 with chains permitted.",
+      "isBreaking": false,
+      "publishedAt": "2026-10-10T17:45:47.435Z",
+      "verified": true
+    },
+    {
+      "id": "NEWS-2026-001",
+      "headline": "BRO Clears Black Ice on NH-13; Night Curfew Enforced From 17:00",
+      "locationName": "Sela Pass Corridor (13,700 ft)",
+      "region": "Tawang Route, Arunachal Pradesh",
+      "state": "Arunachal Pradesh",
+      "latitude": 27.5052,
+      "longitude": 92.1039,
+      "category": "ROAD_TRANSIT",
+      "severity": "CRITICAL",
+      "sourceAgency": "Border Roads Organisation (BRO) Project Vartak",
+      "summary": "Snow clearing dozers have restored one-way convoy traffic on Sela Pass. Anti-skid chains mandatory for 4x4 vehicles. Civilian traffic strictly halted post 17:00 IST.",
+      "travelAdvice": "Transit only in official morning convoys. Ensure adequate anti-freeze, thermal rations, and portable oxygen before leaving Dirang.",
+      "isBreaking": true,
+      "publishedAt": "2026-10-10T16:57:21.264Z",
+      "verified": true
+    },
+    {
+      "id": "NEWS-2026-002",
+      "headline": "Flash Rain Warning: Wet Trail Alert for Double Decker Root Bridges",
+      "locationName": "Nongriat & Cherrapunji Canyon",
+      "region": "East Khasi Hills, Meghalaya",
+      "state": "Meghalaya",
+      "latitude": 25.2505,
+      "longitude": 91.685,
+      "category": "WEATHER_DISASTER",
+      "severity": "WARNING",
+      "sourceAgency": "IMD Shillong & SDMA Meghalaya",
+      "summary": "Sudden precipitation of 85mm recorded. Steps from Tyrna to Nongriat are extremely slippery. Forest department cautionary advisory active.",
+      "travelAdvice": "Do not attempt return trek after 16:00. Hire certified local Khasi village guides and carry trekking poles.",
+      "isBreaking": false,
+      "publishedAt": "2026-10-10T15:42:21.264Z",
+      "verified": true
+    },
+    {
+      "id": "NEWS-2026-003",
+      "headline": "Speed Limit 40 km/h on NH-715 Wildlife Corridors Active via Sensor Cameras",
+      "locationName": "Kaziranga National Park (Kohora Range)",
+      "region": "Golaghat & Nagaon, Assam",
+      "state": "Assam",
+      "latitude": 26.58,
+      "longitude": 93.38,
+      "category": "WILDLIFE_PARKS",
+      "severity": "INFO",
+      "sourceAgency": "Assam Forest Department (Eastern Wildlife Division)",
+      "summary": "Wildlife crossing activity observed between Kohora and Bagori ranges. Automated sensor speed interceptors and patrol squads active.",
+      "travelAdvice": "Maintain strict 40 km/h speed limit. Do not alight from tourist vehicles on the highway strip.",
+      "isBreaking": false,
+      "publishedAt": "2026-10-10T14:42:21.264Z",
+      "verified": true
+    },
+    {
+      "id": "NEWS-2026-004",
+      "headline": "River Ferry & Brahmaputra Aerial Ropeway Running on Normal Schedule",
+      "locationName": "Guwahati Inland Waterway Terminal / Ropeway Ghat",
+      "region": "Kamrup Metropolitan, Assam",
+      "state": "Assam",
+      "latitude": 26.185,
+      "longitude": 91.745,
+      "category": "INFRASTRUCTURE",
+      "severity": "INFO",
+      "sourceAgency": "Inland Waterways Authority of India (IWAI)",
+      "summary": "River water levels stable at 48.2 meters. Passenger ro-pax vessels and aerial ropeway operational till 18:30 IST for Kamakhya-North Guwahati transit.",
+      "travelAdvice": "Carry SurakshaYatra Digital Tourist ID for express digital boarding pass scanning at ghat counters.",
+      "isBreaking": false,
+      "publishedAt": "2026-10-10T13:42:21.264Z",
+      "verified": true
+    },
+    {
+      "id": "NEWS-2026-005",
+      "headline": "Sub-Zero Temperatures (-3°C) Overnight; Mandatory Check-in at Dzukou Rest House",
+      "locationName": "Dzukou Valley Alpine Trail (Viswema & Jakhama)",
+      "region": "Kohima & Senapati Border, Nagaland",
+      "state": "Nagaland",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "category": "WEATHER_DISASTER",
+      "severity": "CRITICAL",
+      "sourceAgency": "Nagaland Tourism & Southern Angami Youth Organisation (SAYO)",
+      "summary": "Sudden frost front approaching alpine valley. Solo campers must register with SAYO guide desk at Viswema trailhead before ascending.",
+      "travelAdvice": "Trekking prohibited after 15:30. Carry high-altitude rated sleeping gear and satellite emergency beacons.",
+      "isBreaking": true,
+      "publishedAt": "2026-10-10T12:42:21.264Z",
+      "verified": true
+    },
+    {
+      "id": "NEWS-2026-006",
+      "headline": "Shillong Peak Eco-Walk Open; One-Way Traffic Loop from Upper Shillong",
+      "locationName": "Shillong Peak & Laitkor Sector",
+      "region": "East Khasi Hills, Meghalaya",
+      "state": "Meghalaya",
+      "latitude": 25.5788,
+      "longitude": 91.8933,
+      "category": "ROAD_TRANSIT",
+      "severity": "INFO",
+      "sourceAgency": "East Khasi Hills Traffic Police & Meghalaya Tourism",
+      "summary": "Weekend tourist influx managed with smooth one-way loop. Parking capacity currently at 65%. Viewpoint security desk active.",
+      "travelAdvice": "Electronic toll payment via FASTag and SurakshaYatra Tourist ID QR accepted for express vehicle entry.",
+      "isBreaking": false,
+      "publishedAt": "2026-10-10T11:42:21.264Z",
+      "verified": true
+    },
+    {
+      "id": "NEWS-2026-007",
+      "headline": "5km Border Defense Corridor: Valid Inner Line Permit (ILP) Mandatory",
+      "locationName": "Longwa Village & Mon Border Corridor",
+      "region": "Mon District, Nagaland",
+      "state": "Nagaland",
+      "latitude": 25.8,
+      "longitude": 95,
+      "category": "CIVIL_SAFETY",
+      "severity": "WARNING",
+      "sourceAgency": "Assam Rifles & Mon District Magistrate",
+      "summary": "Enhanced patrol checkpoints active along international boundary. Tourist movement permitted on designated cultural trail only with registered village guides.",
+      "travelAdvice": "Keep SurakshaYatra Digital ID and ILP QR code ready for quick scanning at defense gates.",
+      "isBreaking": false,
+      "publishedAt": "2026-10-10T09:42:21.264Z",
+      "verified": true
+    },
+    {
+      "id": "NEWS-2026-008",
+      "headline": "Crystal Clear Water Conditions at Dawki; Boatman Safety Gear Mandatory",
+      "locationName": "Dawki Umngot River & Tamabil Border Point",
+      "region": "West Jaintia Hills, Meghalaya",
+      "state": "Meghalaya",
+      "latitude": 25.1856,
+      "longitude": 92.0191,
+      "category": "WILDLIFE_PARKS",
+      "severity": "INFO",
+      "sourceAgency": "Meghalaya Tourism Development Corporation (MTDC)",
+      "summary": "Visibility depth exceeds 5 meters. All tourist boats equipped with life vests and emergency geo-tags.",
+      "travelAdvice": "Avoid crossing designated international maritime buoy line marked with orange flags.",
+      "isBreaking": false,
+      "publishedAt": "2026-10-10T07:42:21.264Z",
+      "verified": true
+    }
+  ]
+}
