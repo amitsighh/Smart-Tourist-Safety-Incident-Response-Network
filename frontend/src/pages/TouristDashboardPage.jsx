@@ -260,12 +260,12 @@ export default function TouristDashboardPage({ setActivePage }) {
                 {t('tracking.trackingActive')}
               </span>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 font-mono">
-                {digitalId.touristId}
+                {digitalId?.touristId || 'TID-NE-2026-88190'}
               </span>
-              <span className="text-xs font-semibold text-slate-600">({digitalId.fullName})</span>
+              <span className="text-xs font-semibold text-slate-600">({digitalId?.fullName || 'Priya Sharma'})</span>
             </div>
             <p className="text-[11px] text-slate-500 mt-0.5">
-              Live Location: <strong className="text-slate-800">{currentLocationName}</strong> ({simulatedLat.toFixed(4)}, {simulatedLng.toFixed(4)}) • Sharing with: <strong>Police Command & Emergency Contacts</strong>
+              Live Location: <strong className="text-slate-800">{currentLocationName}</strong> ({Number(simulatedLat || 0).toFixed(4)}, {Number(simulatedLng || 0).toFixed(4)}) • Sharing with: <strong>Police Command & Emergency Contacts</strong>
             </p>
           </div>
         </div>
@@ -425,7 +425,7 @@ export default function TouristDashboardPage({ setActivePage }) {
                   <span>{isLargeMap ? 'Compact Map' : 'Larger Map View'}</span>
                 </button>
                 <span className="text-xs font-mono text-slate-500">
-                  {simulatedLat.toFixed(4)}, {simulatedLng.toFixed(4)}
+                  {Number(simulatedLat || 0).toFixed(4)}, {Number(simulatedLng || 0).toFixed(4)}
                 </span>
               </div>
             </div>

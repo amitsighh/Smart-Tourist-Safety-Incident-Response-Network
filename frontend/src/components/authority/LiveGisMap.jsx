@@ -536,31 +536,38 @@ export default function LiveGisMap({
         )}
 
         {/* Render Weather Station Markers */}
-        {showWeatherOverlay && layerFilter.weather && REGIONAL_WEATHER_DATA.map((station) => (
-          <Marker
-            key={station.id}
-            position={[station.lat, station.lng]}
-            icon={createWeatherMarkerIcon(station)}
-            eventHandlers={{
-              click: () => setSelectedWeather(station)
-            }}
-          >
-            <Popup>
-              <div className="text-xs space-y-1 p-1 min-w-[180px]">
-                <div className="font-extrabold text-slate-900">{station.city}</div>
-                <div className="text-blue-600 font-bold">{station.temp}°C • {station.condition}</div>
-                <div className="text-[11px] text-slate-600">Rain Prob: {station.rainProb} • Wind: {station.wind}</div>
-                <div className="text-[10px] font-bold text-amber-700 bg-amber-50 p-1 rounded mt-1">
-                  {station.advisory}
+        {showWeatherOverlay && layerFilter.weather && Array.isArray(REGIONAL_WEATHER_DATA) && REGIONAL_WEATHER_DATA.map((station) => {
+          if (!station) return null;
+          const lat = parseFloat(station.lat);
+          const lng = parseFloat(station.lng);
+          if (isNaN(lat) || isNaN(lng)) return null;
+
+          return (
+            <Marker
+              key={station.id}
+              position={[lat, lng]}
+              icon={createWeatherMarkerIcon(station)}
+              eventHandlers={{
+                click: () => setSelectedWeather(station)
+              }}
+            >
+              <Popup>
+                <div className="text-xs space-y-1 p-1 min-w-[180px]">
+                  <div className="font-extrabold text-slate-900">{station.city}</div>
+                  <div className="text-blue-600 font-bold">{station.temp}°C • {station.condition}</div>
+                  <div className="text-[11px] text-slate-600">Rain Prob: {station.rainProb} • Wind: {station.wind}</div>
+                  <div className="text-[10px] font-bold text-amber-700 bg-amber-50 p-1 rounded mt-1">
+                    {station.advisory}
+                  </div>
                 </div>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+              </Popup>
+            </Marker>
+          );
+        })}
 
         {/* Render Geofence Zones */}
-        {layerFilter.geofences && geofences.map((fence) => {
-          if (!fence.isActive) return null;
+        {layerFilter.geofences && Array.isArray(geofences) && geofences.map((fence) => {
+          if (!fence || !fence.isActive) return null;
           const isRestricted = fence.category === 'restricted';
           const isCurfew = fence.category === 'curfew';
           const color = isRestricted ? '#ef4444' : (isCurfew ? '#f59e0b' : '#3b82f6');
@@ -642,11 +649,13 @@ export default function LiveGisMap({
         })}
 
         {/* Render Tourist Pins */}
-        {layerFilter.tourists && tourists.map((tourist) => {
-          const hasActiveSos = tourist.hasActiveSos || activeSosTouristIds.has(tourist.touristId);
+        {layerFilter.tourists && Array.isArray(tourists) && tourists.map((tourist) => {
+          if (!tourist) return null;
+          const hasActiveSos = Boolean(tourist.hasActiveSos || activeSosTouristIds.has(tourist.touristId));
           if (layerFilter.sosOnly && !hasActiveSos) return null;
-          const lat = tourist.lastLocation?.latitude || 26.1445;
-          const lng = tourist.lastLocation?.longitude || 91.7362;
+          const lat = parseFloat(tourist.lastLocation?.latitude ?? 26.1445);
+          const lng = parseFloat(tourist.lastLocation?.longitude ?? 91.7362);
+          if (isNaN(lat) || isNaN(lng)) return null;
 
           return (
             <Marker
@@ -688,32 +697,45 @@ export default function LiveGisMap({
         })}
 
         {/* Render Patrol Unit Pins */}
-        {layerFilter.patrols && patrolUnits.map((unit) => (
-          <Marker
-            key={unit.id}
-            position={[unit.latitude, unit.longitude]}
-            icon={createPatrolIcon(unit.status)}
-          >
-            <Popup>
-              <div className="text-xs space-y-1 p-1">
-                <div className="font-extrabold text-slate-900">{unit.name}</div>
-                <div className="text-[10px] text-blue-600 font-bold">{unit.type}</div>
-                <div className="text-[11px] text-slate-600">Officer: {unit.officerInCharge}</div>
-                <div className="text-[10px] font-bold uppercase text-emerald-600">
-                  Status: {unit.status?.replace('_', ' ')}
+        {layerFilter.patrols && Array.isArray(patrolUnits) && patrolUnits.map((unit) => {
+          if (!unit) return null;
+          const lat = parseFloat(unit.latitude);
+          const lng = parseFloat(unit.longitude);
+          if (isNaN(lat) || isNaN(lng)) return null;
+
+          return (
+            <Marker
+              key={unit.id}
+              position={[lat, lng]}
+              icon={createPatrolIcon(unit.status)}
+            >
+              <Popup>
+                <div className="text-xs space-y-1 p-1">
+                  <div className="font-extrabold text-slate-900">{unit.name}</div>
+                  <div className="text-[10px] text-blue-600 font-bold">{unit.type}</div>
+                  <div className="text-[11px] text-slate-600">Officer: {unit.officerInCharge}</div>
+                  <div className="text-[10px] font-bold uppercase text-emerald-600">
+                    Status: {unit.status?.replace('_', ' ')}
+                  </div>
                 </div>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+              </Popup>
+            </Marker>
+          );
+        })}
 
         {/* Render Live Location News Markers */}
-        {showNewsOverlay && locationNews.map((news) => (
-          <Marker
-            key={news.id}
-            position={[news.latitude, news.longitude]}
-            icon={createNewsMarkerIcon(news)}
-          >
+        {showNewsOverlay && Array.isArray(locationNews) && locationNews.map((news) => {
+          if (!news) return null;
+          const lat = parseFloat(news.latitude);
+          const lng = parseFloat(news.longitude);
+          if (isNaN(lat) || isNaN(lng)) return null;
+
+          return (
+            <Marker
+              key={news.id}
+              position={[lat, lng]}
+              icon={createNewsMarkerIcon(news)}
+            >
             <Popup>
               <div className="text-xs space-y-2 p-1 min-w-[240px] max-w-xs">
                 <div className="flex items-center justify-between gap-1 border-b border-slate-100 pb-1">
@@ -745,7 +767,8 @@ export default function LiveGisMap({
               </div>
             </Popup>
           </Marker>
-        ))}
+          );
+        })}
         </MapContainer>
       </MapErrorBoundary>
     </div>

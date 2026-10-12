@@ -82,35 +82,65 @@ export default function SafetyScoreGauge({ score = 85, tier = 'EXCELLENT', advis
           </div>
 
           <div className="space-y-1.5">
-            <div className="flex items-center justify-between text-slate-600 dark:text-slate-400 text-[11px]">
-              <span className="flex items-center space-x-1.5">
-                <CheckCircle2 className="w-3 h-3 text-emerald-500" />
-                <span>{t('safetyScore.zoneSensitivity')}</span>
-              </span>
-              <span className="font-semibold text-slate-800 dark:text-slate-200">
-                {deductions.some(d => d.includes('geo-fence')) ? 'Risk Zone Penalty (-30)' : 'Normal Sector (+30)'}
-              </span>
-            </div>
+            {(() => {
+              const hasDeduction = (pattern) => {
+                if (!Array.isArray(deductions) || deductions.length === 0) return false;
+                const p = pattern.toLowerCase();
+                return deductions.some(d => {
+                  const text = typeof d === 'string' ? d : (d?.reason || '');
+                  return text.toLowerCase().includes(p);
+                });
+              };
 
-            <div className="flex items-center justify-between text-slate-600 dark:text-slate-400 text-[11px]">
-              <span className="flex items-center space-x-1.5">
-                <CheckCircle2 className="w-3 h-3 text-emerald-500" />
-                <span>{t('safetyScore.timeOfDay')}</span>
-              </span>
-              <span className="font-semibold text-slate-800 dark:text-slate-200">
-                {deductions.some(d => d.includes('Night travel')) ? 'Night Curfew (-15)' : 'Daylight Nominal (+25)'}
-              </span>
-            </div>
+              const getDeductionLabel = (pattern, fallback) => {
+                if (!Array.isArray(deductions) || deductions.length === 0) return fallback;
+                const p = pattern.toLowerCase();
+                const found = deductions.find(d => {
+                  const text = typeof d === 'string' ? d : (d?.reason || '');
+                  return text.toLowerCase().includes(p);
+                });
+                if (!found) return fallback;
+                return typeof found === 'string' ? found : (found.reason || fallback);
+              };
 
-            <div className="flex items-center justify-between text-slate-600 dark:text-slate-400 text-[11px]">
-              <span className="flex items-center space-x-1.5">
-                <CheckCircle2 className="w-3 h-3 text-emerald-500" />
-                <span>{t('safetyScore.routeAdherence')}</span>
-              </span>
-              <span className="font-semibold text-slate-800 dark:text-slate-200">
-                {deductions.some(d => d.includes('Off-route')) ? deductions.find(d => d.includes('Off-route')) : 'On Planned Route (+25)'}
-              </span>
-            </div>
+              const isZonePenalty = hasDeduction('geo-fence') || hasDeduction('restricted') || hasDeduction('breach') || hasDeduction('hazard');
+              const isNightPenalty = hasDeduction('night travel') || hasDeduction('curfew');
+              const isOffRoutePenalty = hasDeduction('off-route') || hasDeduction('deviation');
+
+              return (
+                <>
+                  <div className="flex items-center justify-between text-slate-600 dark:text-slate-400 text-[11px]">
+                    <span className="flex items-center space-x-1.5">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                      <span>{t('safetyScore.zoneSensitivity')}</span>
+                    </span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                      {isZonePenalty ? 'Risk Zone Penalty (-30)' : 'Normal Sector (+30)'}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-slate-600 dark:text-slate-400 text-[11px]">
+                    <span className="flex items-center space-x-1.5">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                      <span>{t('safetyScore.timeOfDay')}</span>
+                    </span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                      {isNightPenalty ? 'Night Curfew (-15)' : 'Daylight Nominal (+25)'}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-slate-600 dark:text-slate-400 text-[11px]">
+                    <span className="flex items-center space-x-1.5">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                      <span>{t('safetyScore.routeAdherence')}</span>
+                    </span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">
+                      {isOffRoutePenalty ? getDeductionLabel('off-route', 'Off-Route Penalty (-25)') : 'On Planned Route (+25)'}
+                    </span>
+                  </div>
+                </>
+              );
+            })()}
           </div>
         </div>
       </div>

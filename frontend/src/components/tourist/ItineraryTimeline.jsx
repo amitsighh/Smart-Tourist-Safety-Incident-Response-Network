@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, CheckCircle2, Clock, Plus, Lock, ArrowRight, Loader2 } from 'lucide-react';
 import { api } from '../../services/api';
 
 export default function ItineraryTimeline({ touristId, itinerary = [], onItineraryUpdated }) {
   const [items, setItems] = useState(itinerary);
+
+  useEffect(() => {
+    if (Array.isArray(itinerary)) {
+      setItems(itinerary);
+    }
+  }, [itinerary]);
   const [isAdding, setIsAdding] = useState(false);
   const [newName, setNewName] = useState('');
   const [newLat, setNewLat] = useState('25.2702');
@@ -181,7 +187,7 @@ export default function ItineraryTimeline({ touristId, itinerary = [], onItinera
                   </span>
                 </div>
                 <div className="text-[11px] text-slate-500 mt-0.5">
-                  GPS: {item.lat?.toFixed(4)}, {item.lng?.toFixed(4)} • Arrival: {item.arrivalDate || 'TBD'}
+                  GPS: {Number(item.lat || 0).toFixed(4)}, {Number(item.lng || 0).toFixed(4)} • Arrival: {item.arrivalDate || 'TBD'}
                 </div>
               </div>
 
