@@ -59,3 +59,20 @@
     color: #000 !important;
   }
 }
+
+/* Leaflet Tactical GIS Map Container Fix */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 350px !important;
+  z-index: 10 !important;
+  background-color: #0f172a !important;
+}
+
+.custom-leaflet-marker,
+.custom-news-marker,
+.custom-patrol-marker,
+.custom-weather-marker {
+  background: transparent !important;
+  border: none !important;
+}

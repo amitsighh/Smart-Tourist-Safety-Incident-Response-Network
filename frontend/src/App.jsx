@@ -22,16 +22,52 @@ import MessageLogPage from './pages/MessageLogPage';
 import PublicVerifyPage from './pages/PublicVerifyPage';
 import AuthorityLoginPage from './pages/AuthorityLoginPage';
 
-function AppContent() {
-  const initialPage = window.location.pathname.startsWith('/verify')
-    ? 'verify'
-    : window.location.pathname.startsWith('/message-log')
-    ? 'message-log'
-    : window.location.pathname.startsWith('/authority-login')
-    ? 'authority-login'
-    : 'home';
+function getPageFromUrl() {
+  const path = (window.location.pathname || '').toLowerCase();
+  const hash = (window.location.hash || '').toLowerCase().replace('#', '');
+  const target = hash || path;
 
-  const [activePage, setActivePage] = useState(initialPage);
+  if (target.includes('dashboard') || target.includes('safety-hub')) return 'dashboard';
+  if (target.includes('authority-command') || target.includes('gis') || target.includes('command')) return 'authority-command';
+  if (target.includes('geofence')) return 'geofences';
+  if (target.includes('authority-login') || target.includes('official-login')) return 'authority-login';
+  if (target.includes('operator-console') || target.includes('checkpost')) return 'operator-console';
+  if (target.includes('analytics')) return 'analytics';
+  if (target.includes('blockchain')) return 'blockchain';
+  if (target.includes('admin-audit') || target.includes('audit')) return 'admin-audit';
+  if (target.includes('help') || target.includes('grievance') || target.includes('faq')) return 'help';
+  if (target.includes('message-log')) return 'message-log';
+  if (target.includes('verify')) return 'verify';
+  if (target.includes('register') || target.includes('kyc')) return 'register';
+  if (target.includes('digital-id')) return 'digital-id';
+  return 'home';
+}
+
+function AppContent() {
+  const [activePage, setActivePageState] = useState(getPageFromUrl);
+
+  const setActivePage = (page) => {
+    setActivePageState(page);
+    try {
+      const newPath = page === 'home' ? '/' : `/${page}`;
+      if (window.location.pathname !== newPath) {
+        window.history.pushState({ page }, '', newPath);
+      }
+    } catch {}
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setActivePageState(getPageFromUrl());
+    };
+    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handlePopState);
+    };
+  }, []);
 
   const renderPage = () => {
     switch (activePage) {

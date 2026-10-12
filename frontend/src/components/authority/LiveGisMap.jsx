@@ -21,7 +21,12 @@ import {
   Flame,
   Newspaper,
   Building2,
-  Clock
+  Clock,
+  Maximize2,
+  Minimize2,
+  Map as MapIcon,
+  Globe,
+  Compass
 } from 'lucide-react';
 import { api } from '../../services/api';
 
@@ -107,16 +112,65 @@ const createWeatherMarkerIcon = (station) => {
 function ChangeView({ center, zoom }) {
   const map = useMap();
   useEffect(() => {
+    if (!map) return;
     map.invalidateSize();
     const timer = setTimeout(() => {
-      map.invalidateSize();
+      try {
+        map.invalidateSize();
+      } catch {}
     }, 250);
-    if (center && center[0] && center[1]) {
-      map.setView(center, zoom || map.getZoom());
+
+    let target = null;
+    if (Array.isArray(center) && center.length >= 2 && !isNaN(center[0]) && !isNaN(center[1])) {
+      target = [center[0], center[1]];
+    } else if (center && typeof center === 'object' && !isNaN(center.lat) && !isNaN(center.lng)) {
+      target = [center.lat, center.lng];
     }
+
+    if (target) {
+      try {
+        map.setView(target, zoom || map.getZoom());
+      } catch (e) {
+        // Safe guard against view animation exceptions
+      }
+    }
+
     return () => clearTimeout(timer);
   }, [center, zoom, map]);
   return null;
+}
+
+class MapErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(err) {
+    console.error('Leaflet ErrorBoundary captured:', err);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="w-full h-full min-h-[360px] bg-slate-900 text-white rounded-2xl p-6 flex flex-col items-center justify-center space-y-3 text-center">
+          <ShieldAlert className="w-10 h-10 text-amber-400" />
+          <div className="font-extrabold text-sm">Tactical GIS Map Interface Ready</div>
+          <p className="text-xs text-slate-400 max-w-md">
+            Click below to initialize the high-definition geospatial radar canvas.
+          </p>
+          <button
+            onClick={() => this.setState({ hasError: false })}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all shadow-md"
+          >
+            Launch Tactical Radar
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
 }
 
 export const REGIONAL_WEATHER_DATA = [
@@ -205,8 +259,6 @@ export const REGIONAL_WEATHER_DATA = [
     advisory: 'Gorge river swelling. Single root bridge paths halted.'
   }
 ];
-
-import { Maximize2, Minimize2, Map as MapIcon, Globe, Compass } from 'lucide-react';
 
 const REGIONAL_SECTORS = [
   { name: 'All Northeast', center: [26.1445, 91.7362], zoom: 7 },
@@ -461,14 +513,15 @@ export default function LiveGisMap({
         </div>
       </div>
 
-      {/* Leaflet Map */}
-      <MapContainer
-        center={mapCenter}
-        zoom={mapZoom}
-        scrollWheelZoom={true}
-        className="w-full h-full"
-      >
-        <ChangeView center={mapCenter} zoom={mapZoom} />
+      {/* Leaflet Map with Error Boundary Protection */}
+      <MapErrorBoundary>
+        <MapContainer
+          center={mapCenter}
+          zoom={mapZoom}
+          scrollWheelZoom={true}
+          className="w-full h-full"
+        >
+          <ChangeView center={mapCenter} zoom={mapZoom} />
 
         {baseMapType === 'satellite' ? (
           <TileLayer
@@ -693,7 +746,8 @@ export default function LiveGisMap({
             </Popup>
           </Marker>
         ))}
-      </MapContainer>
+        </MapContainer>
+      </MapErrorBoundary>
     </div>
   );
 }

@@ -33,20 +33,20 @@ export default function Navbar({ activePage, setActivePage }) {
 
   const role = user?.role || 'tourist';
 
-  // Core navigation items
+  // Core navigation items - ALWAYS visible to all users across every role
   const mainNavLinks = [
-    { id: 'home', label: t('nav.home') || 'Home', icon: ShieldCheck },
-    { id: 'register', label: t('nav.register') || 'Get Digital ID', icon: UserCheck },
-    { id: 'dashboard', label: t('nav.myDashboard') || 'Safety Hub', icon: Radio },
-    { id: 'digital-id', label: t('nav.digitalId') || 'My Digital ID', icon: ShieldCheck },
-    { id: 'blockchain', label: t('nav.blockchain') || 'Blockchain Ledger', icon: Lock },
-    { id: 'help', label: t('nav.help') || 'Help & Grievance', icon: LifeBuoy }
+    { id: 'home', label: 'Home', icon: ShieldCheck },
+    { id: 'dashboard', label: 'Safety Hub', icon: Radio, badge: 'RADAR' },
+    { id: 'authority-command', label: 'Safety Hub & GIS', icon: MapPin, badge: 'LIVE' },
+    { id: 'geofences', label: 'Geofences', icon: Layers },
+    { id: 'register', label: 'Get Digital ID', icon: UserCheck },
+    { id: 'digital-id', label: 'My Digital ID', icon: ShieldCheck },
+    { id: 'blockchain', label: 'Blockchain Ledger', icon: Lock },
+    { id: 'help', label: 'Help & Grievance', icon: LifeBuoy }
   ];
 
-  // Authority-specific navigation items
+  // Authority-specific specialized workstations
   const authorityNavLinks = [
-    { id: 'authority-command', label: 'Safety Hub & GIS', icon: MapPin, roles: ['police', 'operator', 'tourism_official', 'admin'], badge: 'LIVE' },
-    { id: 'geofences', label: 'Geofences', icon: Layers, roles: ['police', 'tourism_official', 'admin'] },
     { id: 'operator-console', label: 'Checkpost Desk', icon: UserCheck, roles: ['operator', 'admin'] },
     { id: 'analytics', label: 'Analytics', icon: BarChart3, roles: ['police', 'tourism_official', 'admin'] },
     { id: 'admin-audit', label: 'Audit Logs', icon: FileText, roles: ['admin'] },
@@ -133,7 +133,7 @@ export default function Navbar({ activePage, setActivePage }) {
                   <button
                     key={link.id}
                     onClick={() => setActivePage(link.id)}
-                    className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-all ${
+                    className={`flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
                       isActive
                         ? 'bg-blue-50 text-blue-700 border border-blue-200 shadow-xs'
                         : 'text-slate-600 hover:text-blue-700 hover:bg-slate-50'
@@ -141,6 +141,13 @@ export default function Navbar({ activePage, setActivePage }) {
                   >
                     <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600' : 'text-slate-400'}`} />
                     <span>{link.label}</span>
+                    {link.badge && (
+                      <span className={`ml-1 text-[9px] font-black px-1.5 py-0.2 rounded-full ${
+                        link.badge === 'LIVE' ? 'bg-red-600 text-white animate-pulse' : 'bg-blue-100 text-blue-800'
+                      }`}>
+                        {link.badge}
+                      </span>
+                    )}
                   </button>
                 );
               })}
@@ -288,6 +295,13 @@ export default function Navbar({ activePage, setActivePage }) {
                     <Icon className="w-4 h-4 text-blue-600" />
                     <span>{link.label}</span>
                   </div>
+                  {link.badge && (
+                    <span className={`text-[9px] font-black px-1.5 py-0.2 rounded-full ${
+                      link.badge === 'LIVE' ? 'bg-red-600 text-white animate-pulse' : 'bg-blue-100 text-blue-800'
+                    }`}>
+                      {link.badge}
+                    </span>
+                  )}
                 </button>
               );
             })}

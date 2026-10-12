@@ -52,6 +52,7 @@ const PRESET_ZONES = [
     category: 'high_risk',
     severity: 'HIGH',
     type: 'circle',
+    center: { lat: 26.6500, lng: 93.3500 },
     centerLat: '26.6500',
     centerLng: '93.3500',
     radiusMeters: '4500',
@@ -63,6 +64,7 @@ const PRESET_ZONES = [
     category: 'restricted',
     severity: 'CRITICAL',
     type: 'circle',
+    center: { lat: 27.3867, lng: 88.8317 },
     centerLat: '27.3867',
     centerLng: '88.8317',
     radiusMeters: '3500',
@@ -71,7 +73,7 @@ const PRESET_ZONES = [
   }
 ];
 
-export default function GeofenceManagerPage() {
+export default function GeofenceManagerPage({ setActivePage }) {
   const [geofences, setGeofences] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isCreating, setIsCreating] = useState(false);
