@@ -39,7 +39,9 @@ import {
   ChevronRight,
   Loader2,
   Filter,
-  Newspaper
+  Newspaper,
+  UserCheck,
+  Maximize2
 } from 'lucide-react';
 
 const FALLBACK_TOURISTS = [

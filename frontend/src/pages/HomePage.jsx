@@ -141,7 +141,7 @@ export default function HomePage({ setActivePage }) {
                 const isCurrent = user?.email === p.email;
                 return (
                   <button
-                    key={p.role}
+                    key={p.email || p.role}
                     onClick={() => {
                       loginWithDemo(p.email);
                       if (p.role === 'tourist') setActivePage('dashboard');

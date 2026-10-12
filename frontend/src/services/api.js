@@ -1,5 +1,35 @@
 const API_BASE = '/api';
 
+const nativeFetch = typeof window !== 'undefined' ? window.fetch.bind(window) : globalThis.fetch;
+
+async function fetch(url, options = {}) {
+  try {
+    const res = await nativeFetch(url, options);
+    return {
+      ok: res.ok,
+      status: res.status,
+      headers: res.headers,
+      json: async () => {
+        try {
+          const text = await res.text();
+          if (!text) return { success: false, message: `Empty response (${res.status})` };
+          return JSON.parse(text);
+        } catch {
+          return { success: false, message: `Unexpected response format (${res.status})` };
+        }
+      },
+      text: () => res.text()
+    };
+  } catch (err) {
+    return {
+      ok: false,
+      status: 0,
+      json: async () => ({ success: false, message: err.message }),
+      text: async () => err.message
+    };
+  }
+}
+
 function getAuthHeaders() {
   const token = localStorage.getItem('suraksha_token');
   return {

@@ -2875,6 +2875,54 @@
   ],
   "auditLogs": [
     {
+      "id": "AUD-C378F8ED",
+      "timestamp": "2026-10-12T08:46:49.139Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-F5E2DC0A",
+      "timestamp": "2026-10-12T08:46:49.013Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-0A9F3F7A",
+      "timestamp": "2026-10-12T08:44:56.718Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-925FD4E3",
+      "timestamp": "2026-10-12T08:44:56.591Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
       "id": "AUD-44C184B2",
       "timestamp": "2026-10-12T08:38:31.091Z",
       "userId": "SMS_INBOUND",

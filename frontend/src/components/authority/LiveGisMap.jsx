@@ -26,7 +26,8 @@ import {
   Minimize2,
   Map as MapIcon,
   Globe,
-  Compass
+  Compass,
+  MapPin
 } from 'lucide-react';
 import { api } from '../../services/api';
 
