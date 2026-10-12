@@ -390,7 +390,7 @@ export default function LiveLocationNewsFeed({
                           <span>Source: <strong className="text-slate-700">{item.sourceAgency}</strong></span>
                         </div>
                         <div className="font-mono text-[10px]">
-                          GPS: {item.latitude?.toFixed(4)}, {item.longitude?.toFixed(4)}
+                          GPS: {Number(item.latitude || 0).toFixed(4)}, {Number(item.longitude || 0).toFixed(4)}
                         </div>
                       </div>
                     </div>

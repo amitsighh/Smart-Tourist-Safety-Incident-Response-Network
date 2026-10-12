@@ -143,7 +143,7 @@ function ChangeView({ center, zoom }) {
 class MapErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, reloadKey: 0 };
   }
   static getDerivedStateFromError() {
     return { hasError: true };
@@ -161,7 +161,7 @@ class MapErrorBoundary extends React.Component {
             Click below to initialize the high-definition geospatial radar canvas.
           </p>
           <button
-            onClick={() => this.setState({ hasError: false })}
+            onClick={() => this.setState(prev => ({ hasError: false, reloadKey: prev.reloadKey + 1 }))}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all shadow-md"
           >
             Launch Tactical Radar
@@ -169,7 +169,7 @@ class MapErrorBoundary extends React.Component {
         </div>
       );
     }
-    return this.props.children;
+    return <React.Fragment key={this.state.reloadKey}>{this.props.children}</React.Fragment>;
   }
 }
 
@@ -516,6 +516,7 @@ export default function LiveGisMap({
       {/* Leaflet Map with Error Boundary Protection */}
       <MapErrorBoundary>
         <MapContainer
+          key={baseMapType}
           center={mapCenter}
           zoom={mapZoom}
           scrollWheelZoom={true}

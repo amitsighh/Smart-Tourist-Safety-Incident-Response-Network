@@ -150,24 +150,36 @@ export default function TouristDashboardPage({ setActivePage }) {
   }, [user]);
 
   const evaluateLocalBreach = (lat, lng) => {
+    if (!Array.isArray(geofences)) return null;
     for (const fence of geofences) {
-      if (!fence.isActive) continue;
-      if (fence.type === 'circle' && fence.center) {
-        const dist = Math.hypot(fence.center.lat - lat, fence.center.lng - lng) * 111;
-        if (dist <= (fence.radiusMeters || 3000) / 1000) {
-          return fence;
+      if (!fence || !fence.isActive) continue;
+      if (fence.type === 'circle') {
+        const cLat = fence.center?.lat ?? fence.centerLat;
+        const cLng = fence.center?.lng ?? fence.centerLng;
+        if (cLat !== undefined && cLng !== undefined) {
+          const dist = Math.hypot(parseFloat(cLat) - lat, parseFloat(cLng) - lng) * 111;
+          if (dist <= (parseFloat(fence.radiusMeters) || 3000) / 1000) {
+            return fence;
+          }
         }
-      } else if (fence.type === 'polygon' && fence.coordinates && fence.coordinates.length >= 3) {
+      } else if (fence.type === 'polygon' && Array.isArray(fence.coordinates) && fence.coordinates.length >= 3) {
         let inside = false;
-        const coords = fence.coordinates;
-        for (let i = 0, j = coords.length - 1; i < coords.length; j = i++) {
-          const [latI, lngI] = coords[i];
-          const [latJ, lngJ] = coords[j];
-          const intersect = ((latI > lat) !== (latJ > lat)) &&
-            (lng < (lngJ - lngI) * (lat - latI) / (latJ - latI) + lngI);
-          if (intersect) inside = !inside;
+        const coords = fence.coordinates.map(pt => {
+          if (Array.isArray(pt)) return [parseFloat(pt[0]), parseFloat(pt[1])];
+          if (pt && typeof pt === 'object') return [parseFloat(pt.lat), parseFloat(pt.lng)];
+          return null;
+        }).filter(Boolean);
+
+        if (coords.length >= 3) {
+          for (let i = 0, j = coords.length - 1; i < coords.length; j = i++) {
+            const [latI, lngI] = coords[i];
+            const [latJ, lngJ] = coords[j];
+            const intersect = ((latI > lat) !== (latJ > lat)) &&
+              (lng < (lngJ - lngI) * (lat - latI) / (latJ - latI) + lngI);
+            if (intersect) inside = !inside;
+          }
+          if (inside) return fence;
         }
-        if (inside) return fence;
       }
     }
     return null;
@@ -200,8 +212,8 @@ export default function TouristDashboardPage({ setActivePage }) {
 
     try {
       emitTelemetry({
-        touristId: digitalId.touristId,
-        fullName: digitalId.fullName,
+        touristId: digitalId?.touristId || 'TID-NE-2026-88190',
+        fullName: digitalId?.fullName || 'Priya Sharma',
         latitude: lat,
         longitude: lng,
         batteryLevel: simulatedBattery,
@@ -211,7 +223,7 @@ export default function TouristDashboardPage({ setActivePage }) {
 
       if (!offlineMode) {
         await api.submitPing({
-          touristId: digitalId.touristId,
+          touristId: digitalId?.touristId || 'TID-NE-2026-88190',
           latitude: lat,
           longitude: lng,
           locationName: locName,
@@ -232,15 +244,15 @@ export default function TouristDashboardPage({ setActivePage }) {
   };
 
   const touristsOnMap = useMemo(() => [{
-    touristId: digitalId.touristId,
-    fullName: digitalId.fullName,
-    nationality: digitalId.nationality,
-    phone: digitalId.phone,
+    touristId: digitalId?.touristId || 'TID-NE-2026-88190',
+    fullName: digitalId?.fullName || 'Priya Sharma',
+    nationality: digitalId?.nationality || 'Indian',
+    phone: digitalId?.phone || '+91 98765 43210',
     lastLocation: {
-      latitude: simulatedLat,
-      longitude: simulatedLng,
-      locationName: currentLocationName,
-      batteryLevel: simulatedBattery,
+      latitude: Number(simulatedLat) || 25.5788,
+      longitude: Number(simulatedLng) || 91.8933,
+      locationName: currentLocationName || 'Shillong Peak Ridge Sector',
+      batteryLevel: Number(simulatedBattery) || 84,
       timestamp: new Date().toISOString()
     }
   }], [digitalId, simulatedLat, simulatedLng, currentLocationName, simulatedBattery]);
@@ -439,8 +451,8 @@ export default function TouristDashboardPage({ setActivePage }) {
 
           {/* Itinerary Waypoints */}
           <ItineraryTimeline
-            touristId={digitalId.touristId}
-            itinerary={digitalId.itinerary || []}
+            touristId={digitalId?.touristId || 'TID-NE-2026-88190'}
+            itinerary={digitalId?.itinerary || []}
           />
         </div>
       </div>
@@ -449,9 +461,9 @@ export default function TouristDashboardPage({ setActivePage }) {
       <div className="pt-4 border-t border-[#DCE7F3]">
         <LiveLocationNewsFeed
           currentLocation={{
-            latitude: simulatedLat,
-            longitude: simulatedLng,
-            locationName: currentLocationName
+            latitude: Number(simulatedLat) || 25.5788,
+            longitude: Number(simulatedLng) || 91.8933,
+            locationName: currentLocationName || 'Shillong Peak Ridge Sector'
           }}
           showBroadcastButton={['police', 'tourism_official', 'operator', 'admin'].includes(user?.role)}
         />
@@ -461,7 +473,7 @@ export default function TouristDashboardPage({ setActivePage }) {
       <CheckInModal
         isOpen={isCheckInOpen}
         onClose={() => setIsCheckInOpen(false)}
-        touristId={digitalId.touristId}
+        touristId={digitalId?.touristId || 'TID-NE-2026-88190'}
       />
     </div>
   );
