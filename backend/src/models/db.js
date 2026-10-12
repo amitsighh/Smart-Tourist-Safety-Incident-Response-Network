@@ -30,7 +30,8 @@ class Database {
       advisories: [],
       lostPassports: [],
       grievances: [],
-      locationNews: []
+      locationNews: [],
+      notificationLogs: []
     };
     this.load();
     if (this.data.users.length === 0) {
@@ -49,6 +50,7 @@ class Database {
     }
     if (!this.data.lostPassports) this.data.lostPassports = [];
     if (!this.data.grievances) this.data.grievances = [];
+    if (!this.data.notificationLogs) this.data.notificationLogs = [];
     if (!this.data.locationNews || this.data.locationNews.length === 0) {
       this.data.locationNews = this.getDefaultLocationNews();
       this.save();

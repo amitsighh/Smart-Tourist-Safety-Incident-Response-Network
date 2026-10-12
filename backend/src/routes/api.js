@@ -12,6 +12,7 @@ import { wearableController } from '../controllers/wearableController.js';
 import { advisoryController } from '../controllers/advisoryController.js';
 import { helpController } from '../controllers/helpController.js';
 import { newsController } from '../controllers/newsController.js';
+import { notificationController } from '../controllers/notificationController.js';
 import { authenticateToken, requireRole, authorizeResourceOwner } from '../middleware/authMiddleware.js';
 import { auditLog } from '../middleware/auditLogger.js';
 import { authLimiter, emergencySosLimiter } from '../middleware/rateLimiter.js';
@@ -31,6 +32,7 @@ router.get('/tourist-id/my-id', authenticateToken, touristIdController.getMyDigi
 router.get('/tourist-id/all', authenticateToken, requireRole(['operator', 'police', 'tourism_official', 'admin']), auditLog('VIEW_ALL_TOURIST_IDS'), touristIdController.listAll);
 router.get('/tourist-id/:touristId', authenticateToken, authorizeResourceOwner, auditLog('VIEW_TOURIST_ID_RECORD'), touristIdController.getById);
 router.post('/tourist-id/verify-qr', auditLog('QR_CODE_VERIFICATION'), touristIdController.verifyQrCode);
+router.get('/tourist-id/verify-public/:touristId', touristIdController.getPublicVerification);
 router.put('/tourist-id/:touristId/itinerary', authenticateToken, authorizeResourceOwner, touristIdController.updateItinerary);
 router.post('/tourist-id/:touristId/check-in', authenticateToken, authorizeResourceOwner, touristIdController.submitCheckIn);
 router.put('/tourist-id/:touristId/tracking-consent', authenticateToken, authorizeResourceOwner, touristIdController.updateTrackingConsent);
@@ -96,5 +98,11 @@ router.get('/news', newsController.listNews);
 router.get('/news/nearby', newsController.getNearbyNews);
 router.post('/news', authenticateToken, requireRole(['police', 'tourism_official', 'operator', 'admin']), newsController.publishNews);
 router.delete('/news/:id', authenticateToken, requireRole(['police', 'tourism_official', 'admin']), newsController.deleteNews);
+
+// --- Notification & Dispatch Service Routes ---
+router.get('/notifications/logs', authenticateToken, requireRole(['police', 'tourism_official', 'medical', 'disaster_response', 'admin']), notificationController.getLogs);
+router.post('/notifications/sms-inbound', notificationController.handleInboundSms);
+router.post('/notifications/webhook', notificationController.handleDeliveryWebhook);
+router.post('/notifications/simulate-scenario', authenticateToken, requireRole(['police', 'tourism_official', 'admin', 'operator']), notificationController.simulateScenario);
 
 export default router;

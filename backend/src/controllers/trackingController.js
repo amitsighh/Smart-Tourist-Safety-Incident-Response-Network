@@ -4,6 +4,7 @@ import { GeofenceEngine } from '../services/geofenceEngine.js';
 import { aiAnomalyDetector } from '../services/aiAnomalyDetector.js';
 import { blockchainLedger } from '../services/blockchainLedger.js';
 import { recordAuditDirect } from '../middleware/auditLogger.js';
+import { notificationService } from '../services/notificationService.js';
 
 const geofenceEngine = new GeofenceEngine(db.data.geofences);
 
@@ -206,6 +207,21 @@ export const trackingController = {
         action: 'PANIC_SOS_TRIGGERED',
         targetResource: incidentId,
         details: `CRITICAL Panic SOS initiated. Anchored in Block #${block.index}`
+      });
+
+      // Multi-division notification dispatch (Police, Tourism, Medical, SDRF, Contacts)
+      await notificationService.dispatchEvent('SOS_PANIC', {
+        incidentId,
+        touristId: tourist.touristId,
+        touristName: tourist.fullName,
+        latitude: sosLat,
+        longitude: sosLng,
+        locationName: newAlert.locationName,
+        emergencyNote: newAlert.emergencyNote,
+        triggerType,
+        assignedUnitName: nearestUnit ? nearestUnit.name : 'PU-07',
+        via: 'Internet',
+        timestamp
       });
 
       // Generate SMS Fallback Payload for low-connectivity zones

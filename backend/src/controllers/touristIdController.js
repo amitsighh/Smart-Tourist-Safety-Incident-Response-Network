@@ -253,6 +253,39 @@ export const touristIdController = {
     }
   },
 
+  async getPublicVerification(req, res) {
+    try {
+      const { touristId } = req.params;
+      const record = db.data.touristIds.find(t => t.touristId === touristId);
+
+      if (!record) {
+        return res.status(404).json({
+          success: false,
+          status: 'NOT_FOUND',
+          message: 'Tourist ID does not exist in registry.'
+        });
+      }
+
+      const isExpired = new Date() > new Date(record.validUntil);
+      const isRevoked = record.status === 'REVOKED';
+      const firstName = record.fullName ? record.fullName.trim().split(' ')[0] : 'Tourist';
+
+      let status = 'VALID';
+      if (isRevoked) status = 'REVOKED';
+      else if (isExpired) status = 'EXPIRED';
+
+      return res.json({
+        success: true,
+        status,
+        firstName,
+        validUntil: record.validUntil,
+        touristId: record.touristId
+      });
+    } catch (err) {
+      return res.status(500).json({ success: false, message: 'Verification error.' });
+    }
+  },
+
   // Update Itinerary (FR-1.6)
   async updateItinerary(req, res) {
     try {

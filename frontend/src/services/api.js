@@ -422,5 +422,37 @@ export const api = {
       headers: getAuthHeaders()
     });
     return res.json();
+  },
+
+  // --- Notifications, SMS & Scenarios ---
+  async getNotificationLogs(params = {}) {
+    const query = new URLSearchParams(params).toString();
+    const res = await fetch(`${API_BASE}/notifications/logs${query ? `?${query}` : ''}`, {
+      headers: getAuthHeaders()
+    });
+    return res.json();
+  },
+
+  async simulateScenario(data) {
+    const res = await fetch(`${API_BASE}/notifications/simulate-scenario`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async sendInboundSms(data) {
+    const res = await fetch(`${API_BASE}/notifications/sms-inbound`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async getPublicVerification(touristId) {
+    const res = await fetch(`${API_BASE}/tourist-id/verify-public/${encodeURIComponent(touristId)}`);
+    return res.json();
   }
 };

@@ -1,0 +1,16 @@
+{
+  "name": "SurakshaYatra - Smart Tourist Safety Monitoring System",
+  "short_name": "SurakshaYatra",
+  "description": "Production Government-Grade Smart Tourist Safety, Geo-fencing & Emergency Response Portal",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F9FF",
+  "theme_color": "#2563EB",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

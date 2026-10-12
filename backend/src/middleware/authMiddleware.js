@@ -54,8 +54,9 @@ export function requireRole(allowedRoles = []) {
       });
     }
 
-    // For authority & admin accounts, ensure MFA was verified
-    if (['police', 'operator', 'tourism_official', 'admin'].includes(req.user.role) && !req.user.mfaVerified) {
+    const authorityRoles = ['police', 'operator', 'tourism_official', 'medical', 'disaster_response', 'admin'];
+
+    if (authorityRoles.includes(req.user.role) && !req.user.mfaVerified) {
       return res.status(403).json({
         success: false,
         requiresMfa: true,
@@ -70,9 +71,9 @@ export function requireRole(allowedRoles = []) {
 export function authorizeResourceOwner(req, res, next) {
   const resourceUserId = req.params.userId || req.body.userId;
   const resourceTouristId = req.params.touristId;
+  const authorityRoles = ['police', 'operator', 'tourism_official', 'medical', 'disaster_response', 'admin'];
 
-  // Authorities and admins can view any record
-  if (['police', 'operator', 'tourism_official', 'admin'].includes(req.user.role)) {
+  if (authorityRoles.includes(req.user.role)) {
     return next();
   }
 

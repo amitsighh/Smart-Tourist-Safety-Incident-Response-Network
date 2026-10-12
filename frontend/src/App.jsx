@@ -18,9 +18,17 @@ import AnalyticsReportPage from './pages/AnalyticsReportPage';
 import BlockchainLedgerPage from './pages/BlockchainLedgerPage';
 import AdminAuditPage from './pages/AdminAuditPage';
 import HelpFaqGrievancePage from './pages/HelpFaqGrievancePage';
+import MessageLogPage from './pages/MessageLogPage';
+import PublicVerifyPage from './pages/PublicVerifyPage';
 
 function AppContent() {
-  const [activePage, setActivePage] = useState('home');
+  const initialPage = window.location.pathname.startsWith('/verify')
+    ? 'verify'
+    : window.location.pathname.startsWith('/message-log')
+    ? 'message-log'
+    : 'home';
+
+  const [activePage, setActivePage] = useState(initialPage);
 
   const renderPage = () => {
     switch (activePage) {
@@ -46,6 +54,10 @@ function AppContent() {
         return <AdminAuditPage setActivePage={setActivePage} />;
       case 'help':
         return <HelpFaqGrievancePage setActivePage={setActivePage} />;
+      case 'message-log':
+        return <MessageLogPage setActivePage={setActivePage} />;
+      case 'verify':
+        return <PublicVerifyPage setActivePage={setActivePage} />;
       default:
         return <HomePage setActivePage={setActivePage} />;
     }

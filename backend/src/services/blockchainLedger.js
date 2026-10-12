@@ -197,6 +197,10 @@ class BlockchainLedger {
     };
   }
 
+  verifyChain() {
+    return this.validateChainIntegrity();
+  }
+
   findTransactionByTouristId(touristId) {
     const matched = [];
     for (const block of this.chain) {

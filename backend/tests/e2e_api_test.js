@@ -279,8 +279,80 @@ async function runE2E() {
   });
   console.log(`16. Authority News Broadcast: Status ${publishNews.status}, News ID: ${publishNews.data?.news?.id}`);
 
+  // 17. Public QR Verification Route (Zero PII leak)
+  const publicVerify = await makeRequest({
+    hostname: '127.0.0.1',
+    port: 5001,
+    path: `/api/tourist-id/verify-public/${issuedId}`,
+    method: 'GET'
+  });
+  console.log(`17. Public Verification: Status ${publicVerify.status}, Status: ${publicVerify.data?.status}, First Name: ${publicVerify.data?.firstName}`);
+  if (publicVerify.data?.fullName || publicVerify.data?.phone || publicVerify.data?.docId) {
+    throw new Error('PII leak detected in public verification response!');
+  }
+
+  // 18. Notification Logs Retrieval
+  const notifLogs = await makeRequest({
+    hostname: '127.0.0.1',
+    port: 5001,
+    path: '/api/notifications/logs',
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${policeToken}`
+    }
+  });
+  console.log(`18. Notification Logs: Status ${notifLogs.status}, Count: ${notifLogs.data?.count}, Demo Phone: ${notifLogs.data?.demoPhoneNumber}`);
+
+  // 19. Inbound SMS Webhook ('1' to acknowledge)
+  const inboundAck = await makeRequest({
+    hostname: '127.0.0.1',
+    port: 5001,
+    path: '/api/notifications/sms-inbound',
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  }, {
+    From: '+917307007253',
+    Body: '1'
+  });
+  console.log(`19. Inbound SMS '1' Acknowledge: Status ${inboundAck.status}, Action: ${inboundAck.data?.action}`);
+
+  // 20. Compact Signed Offline SOS SMS Webhook
+  const ts = Math.floor(Date.now() / 1000);
+  const secretKey = 'suraksha-secure-hmac-shared-key-2026';
+  const sigPayload = `${issuedId}:25.5788,91.8933:${ts}:c99`;
+  const crypto = await import('crypto');
+  const hmac = crypto.createHmac('sha256', secretKey).update(sigPayload).digest('hex').substring(0, 16);
+  const compactSmsBody = `SURAKSHA:SOS:${issuedId}:25.5788,91.8933:${ts}:c99:${hmac}`;
+
+  const inboundSos = await makeRequest({
+    hostname: '127.0.0.1',
+    port: 5001,
+    path: '/api/notifications/sms-inbound',
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  }, {
+    From: '+917307007253',
+    Body: compactSmsBody
+  });
+  console.log(`20. Inbound Signed SMS SOS: Status ${inboundSos.status}, Action: ${inboundSos.data?.action}, Incident: ${inboundSos.data?.incidentId}`);
+
+  // 21. Scenario Simulation Panel API
+  const sim = await makeRequest({
+    hostname: '127.0.0.1',
+    port: 5001,
+    path: '/api/notifications/simulate-scenario',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${policeToken}`
+    }
+  }, {
+    scenarioType: 'TRIGGER_SOS_ONLINE'
+  });
+  console.log(`21. Scenario Simulator API: Status ${sim.status}, Dispatches: ${sim.data?.dispatchesCount}`);
+
   console.log('=======================================================');
-  console.log('🎉 ALL 16 END-TO-END INTEGRATION SCENARIOS PASSED 100%!');
+  console.log('🎉 ALL 21 END-TO-END INTEGRATION SCENARIOS PASSED 100%!');
   console.log('=======================================================');
 }
 

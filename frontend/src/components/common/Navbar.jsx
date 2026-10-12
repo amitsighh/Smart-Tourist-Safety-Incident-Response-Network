@@ -20,7 +20,8 @@ import {
   UserCheck,
   ChevronDown,
   ExternalLink,
-  LifeBuoy
+  LifeBuoy,
+  MessageSquare
 } from 'lucide-react';
 
 export default function Navbar({ activePage, setActivePage }) {
@@ -48,7 +49,8 @@ export default function Navbar({ activePage, setActivePage }) {
     { id: 'geofences', label: 'Geofences', icon: Layers, roles: ['police', 'tourism_official', 'admin'] },
     { id: 'operator-console', label: 'Checkpost Desk', icon: UserCheck, roles: ['operator', 'admin'] },
     { id: 'analytics', label: 'Analytics', icon: BarChart3, roles: ['police', 'tourism_official', 'admin'] },
-    { id: 'admin-audit', label: 'Audit Logs', icon: FileText, roles: ['admin'] }
+    { id: 'admin-audit', label: 'Audit Logs', icon: FileText, roles: ['admin'] },
+    { id: 'message-log', label: 'Message Log', icon: MessageSquare, roles: ['police', 'operator', 'tourism_official', 'medical', 'disaster_response', 'admin'], badge: 'DEMO' }
   ].filter(l => l.roles.includes(role));
 
   const isAuthorityRole = ['police', 'operator', 'tourism_official', 'admin'].includes(role);

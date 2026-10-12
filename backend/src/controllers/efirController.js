@@ -2,6 +2,7 @@ import { db } from '../models/db.js';
 import { efirGenerator } from '../services/efirGenerator.js';
 import { blockchainLedger } from '../services/blockchainLedger.js';
 import { recordAuditDirect } from '../middleware/auditLogger.js';
+import { notificationService } from '../services/notificationService.js';
 
 export const efirController = {
   // Generate Automated Legal E-FIR (FR-4.4)
@@ -60,6 +61,14 @@ export const efirController = {
         action: 'EFIR_GENERATED',
         targetResource: efirDoc.firNumber,
         details: `Generated Legal E-FIR ${efirDoc.firNumber} for Tourist ${tourist.touristId}. Anchored in Block #${block.index}`
+      });
+
+      await notificationService.dispatchEvent('EFIR_CREATED', {
+        incidentId: efirDoc.firNumber,
+        firNumber: efirDoc.firNumber,
+        touristId: tourist.touristId,
+        touristName: tourist.fullName,
+        timestamp: efirDoc.registeredAt
       });
 
       return res.status(201).json({

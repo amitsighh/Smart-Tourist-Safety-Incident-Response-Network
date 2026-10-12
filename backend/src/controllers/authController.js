@@ -17,8 +17,8 @@ export const authController = {
         return res.status(400).json({ success: false, message: 'Email, password, and full name are required.' });
       }
 
-      if (password.length < 8) {
-        return res.status(400).json({ success: false, message: 'Password must be at least 8 characters long.' });
+      if (password.length < 12) {
+        return res.status(400).json({ success: false, message: 'Security Policy: Password must be at least 12 characters long.' });
       }
 
       const existing = db.data.users.find(u => u.email.toLowerCase() === email.toLowerCase());
@@ -29,7 +29,7 @@ export const authController = {
       const salt = await bcrypt.genSalt(12);
       const passwordHash = await bcrypt.hash(password, salt);
 
-      const isAuthority = ['police', 'operator', 'tourism_official', 'admin'].includes(role);
+      const isAuthority = ['police', 'operator', 'tourism_official', 'medical', 'disaster_response', 'admin'].includes(role);
 
       const newUser = {
         id: 'usr-' + crypto.randomBytes(6).toString('hex'),
