@@ -20,12 +20,15 @@ import AdminAuditPage from './pages/AdminAuditPage';
 import HelpFaqGrievancePage from './pages/HelpFaqGrievancePage';
 import MessageLogPage from './pages/MessageLogPage';
 import PublicVerifyPage from './pages/PublicVerifyPage';
+import AuthorityLoginPage from './pages/AuthorityLoginPage';
 
 function AppContent() {
   const initialPage = window.location.pathname.startsWith('/verify')
     ? 'verify'
     : window.location.pathname.startsWith('/message-log')
     ? 'message-log'
+    : window.location.pathname.startsWith('/authority-login')
+    ? 'authority-login'
     : 'home';
 
   const [activePage, setActivePage] = useState(initialPage);
@@ -58,6 +61,8 @@ function AppContent() {
         return <MessageLogPage setActivePage={setActivePage} />;
       case 'verify':
         return <PublicVerifyPage setActivePage={setActivePage} />;
+      case 'authority-login':
+        return <AuthorityLoginPage setActivePage={setActivePage} />;
       default:
         return <HomePage setActivePage={setActivePage} />;
     }

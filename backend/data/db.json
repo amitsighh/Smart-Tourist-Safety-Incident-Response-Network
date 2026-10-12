@@ -531,6 +531,51 @@
         "dueTime": null
       },
       "itinerary": []
+    },
+    {
+      "touristId": "TID-NE-2026-52939",
+      "userId": "usr-anon-16a5bbd9",
+      "fullName": "Rahul Sen",
+      "nationality": "Indian",
+      "dob": "1996-03-12",
+      "gender": "Male",
+      "bloodGroup": "A+ Positive",
+      "photoUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80",
+      "kycType": "AADHAAR_EKYC",
+      "kycStatus": "VERIFIED",
+      "kycHash": "a531370592813eb4e8be1fa17b3be725ac6da36d00896fca673f47a1424661c9",
+      "maskedDocId": "********1122",
+      "encryptedDocId": "c168610ab09c61d241c9d6f444014018:c05c3442fa41803ee5ac60c20d4dbaa6:7324f3b33f4a0cf06fdb6509",
+      "emergencyContacts": [
+        {
+          "name": "Deepa Sen",
+          "phone": "+91 98765 99881"
+        }
+      ],
+      "validFrom": "2026-10-10",
+      "validUntil": "2026-10-25",
+      "status": "ACTIVE",
+      "optInTracking": true,
+      "trackingRecipients": "police_and_family",
+      "pairedWearableId": null,
+      "issuedBy": "ONLINE_SELF_REGISTRATION",
+      "issuedAt": "2026-10-12T06:31:48.255Z",
+      "lastLocation": {
+        "latitude": 25.5682,
+        "longitude": 94.0483,
+        "locationName": "GPS Coordinates",
+        "timestamp": "2026-10-12T06:31:48.257Z",
+        "batteryLevel": 50,
+        "speedKmh": 0,
+        "safetyScore": 100
+      },
+      "scheduledCheckIn": {
+        "isActive": false,
+        "trekName": null,
+        "intervalMinutes": 180,
+        "dueTime": null
+      },
+      "itinerary": []
     }
   ],
   "itineraries": [],
@@ -674,6 +719,26 @@
       "batteryLevel": 50,
       "timestamp": "2026-10-12T05:39:05.358Z",
       "isTransitZone": false
+    },
+    {
+      "id": "PNG-f8516906",
+      "touristId": "TID-NE-2026-52939",
+      "latitude": 26.1445,
+      "longitude": 91.7362,
+      "speedKmh": 0,
+      "batteryLevel": 90,
+      "timestamp": "2026-10-12T06:31:48.256Z",
+      "isTransitZone": false
+    },
+    {
+      "id": "PNG-1cf971b4",
+      "touristId": "TID-NE-2026-52939",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "speedKmh": 0,
+      "batteryLevel": 50,
+      "timestamp": "2026-10-12T06:31:48.257Z",
+      "isTransitZone": false
     }
   ],
   "geofences": [
@@ -799,6 +864,156 @@
     }
   ],
   "alerts": [
+    {
+      "id": "SOS-B3329303",
+      "touristId": "TID-NE-2026-92868",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "BUTTON_PRESS",
+      "severity": "CRITICAL",
+      "status": "DISPATCHED",
+      "latitude": 25.5788,
+      "longitude": 91.8933,
+      "locationName": "Shillong Peak Ridge",
+      "district": "East Khasi Hills",
+      "batteryLevel": 82,
+      "via": "Internet",
+      "assignedUnitId": "UNIT-01",
+      "assignedUnitName": "East Khasi Hills Quick Response Team 1",
+      "reportedAt": "2026-10-12T06:31:48.474Z",
+      "timeline": [
+        {
+          "time": "2026-10-12T06:31:48.474Z",
+          "action": "Online Panic SOS triggered by tourist."
+        }
+      ]
+    },
+    {
+      "id": "SOS-55FD7C42",
+      "touristId": "TID-NE-2026-52939",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "SMS_FALLBACK_OFFLINE",
+      "severity": "CRITICAL",
+      "status": "NEW",
+      "latitude": 25.5788,
+      "longitude": 91.8933,
+      "locationName": "Offline Highway Corridor (SMS Fallback)",
+      "district": "Command Sector",
+      "batteryLevel": 65,
+      "via": "SMS(offline)",
+      "emergencyNote": "Verified signed offline SOS received via SMS gateway. Replay counter: #99",
+      "assignedUnitId": null,
+      "assignedUnitName": null,
+      "reportedAt": "2026-10-12T06:31:48.471Z",
+      "timeline": [
+        {
+          "time": "2026-10-12T06:31:48.471Z",
+          "action": "Offline emergency SOS received via SMS gateway from +917307007253. HMAC verified."
+        }
+      ]
+    },
+    {
+      "id": "SOS-D5D0D1C5",
+      "touristId": "TID-NE-2026-52939",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "BUTTON_PRESS",
+      "severity": "CRITICAL",
+      "status": "ACKNOWLEDGED",
+      "latitude": 25.5682,
+      "longitude": 94.0483,
+      "locationName": "GPS Coordinates",
+      "district": "Command Jurisdiction Sector",
+      "batteryLevel": 45,
+      "emergencyNote": "Panic SOS emergency broadcast triggered by tourist.",
+      "assignedUnitId": null,
+      "assignedUnitName": null,
+      "estimatedEtaMinutes": null,
+      "reportedAt": "2026-10-12T06:31:48.258Z",
+      "timeline": [
+        {
+          "time": "2026-10-12T06:31:48.258Z",
+          "action": "Panic SOS triggered via BUTTON_PRESS"
+        },
+        {
+          "time": "2026-10-12T06:31:48.470Z",
+          "action": "Alert acknowledged via SMS reply '1' from +917307007253"
+        }
+      ],
+      "acknowledgedAt": "2026-10-12T06:31:48.470Z",
+      "acknowledgedBy": "SMS Officer (+917307007253)"
+    },
+    {
+      "id": "ALT-7B05AFCA",
+      "touristId": "TID-NE-2026-92868",
+      "touristName": "Rahul Sen",
+      "type": "GEOFENCE_BREACH",
+      "severity": "HIGH",
+      "status": "NEW",
+      "latitude": 27.5052,
+      "longitude": 92.1039,
+      "locationName": "Sela Pass Military Buffer Zone",
+      "district": "Tawang Sector",
+      "batteryLevel": 74,
+      "reportedAt": "2026-10-12T05:51:13.121Z",
+      "notes": "Geofence breach detected inside high-altitude restricted zone.",
+      "timeline": [
+        {
+          "time": "2026-10-12T05:51:13.121Z",
+          "action": "Entered restricted polygon: Sela Pass Military Buffer Zone"
+        }
+      ]
+    },
+    {
+      "id": "SOS-E41BC7F9",
+      "touristId": "TID-NE-2026-92868",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "SMS_FALLBACK_OFFLINE",
+      "severity": "CRITICAL",
+      "status": "NEW",
+      "latitude": 25.5788,
+      "longitude": 91.8933,
+      "locationName": "Offline Highway Corridor (SMS Fallback)",
+      "district": "Command Sector",
+      "batteryLevel": 65,
+      "via": "SMS(offline)",
+      "emergencyNote": "Verified signed offline SOS received via SMS gateway. Replay counter: #1",
+      "assignedUnitId": null,
+      "assignedUnitName": null,
+      "reportedAt": "2026-10-12T05:45:01.275Z",
+      "timeline": [
+        {
+          "time": "2026-10-12T05:45:01.275Z",
+          "action": "Offline emergency SOS received via SMS gateway from +917307007253. HMAC verified."
+        }
+      ]
+    },
+    {
+      "id": "SOS-AE6BF50E",
+      "touristId": "TID-NE-2026-92868",
+      "touristName": "Rahul Sen",
+      "type": "PANIC_SOS",
+      "triggerType": "BUTTON_PRESS",
+      "severity": "CRITICAL",
+      "status": "DISPATCHED",
+      "latitude": 25.5788,
+      "longitude": 91.8933,
+      "locationName": "Shillong Peak Ridge",
+      "district": "East Khasi Hills",
+      "batteryLevel": 82,
+      "via": "Internet",
+      "assignedUnitId": "UNIT-01",
+      "assignedUnitName": "East Khasi Hills Quick Response Team 1",
+      "reportedAt": "2026-10-12T05:44:57.989Z",
+      "timeline": [
+        {
+          "time": "2026-10-12T05:44:57.989Z",
+          "action": "Online Panic SOS triggered by tourist."
+        }
+      ]
+    },
     {
       "id": "SOS-321716FA",
       "touristId": "TID-NE-2026-92868",
@@ -1213,6 +1428,90 @@
     }
   ],
   "efirRecords": [
+    {
+      "firId": "EFIR-7B375A5D4B6E",
+      "firNumber": "FIR/NE/2026/4762",
+      "status": "REGISTERED_AND_DISPATCHED",
+      "registeredAt": "2026-10-12T06:31:48.262Z",
+      "jurisdiction": {
+        "state": "Assam / Meghalaya Joint Command",
+        "district": "Command Jurisdiction Sector",
+        "policeStation": "North-East Integrated Command & Control Center (ICCC)",
+        "investigatingOfficer": "DSP Bimal Das",
+        "badgeNumber": "ASM-POL-009"
+      },
+      "touristDetails": {
+        "touristId": "TID-NE-2026-52939",
+        "fullName": "Rahul Sen",
+        "nationality": "Indian",
+        "dateOfBirth": "1996-03-12",
+        "gender": "Male",
+        "bloodGroup": "A+ Positive",
+        "emergencyContacts": [
+          {
+            "name": "Deepa Sen",
+            "phone": "+91 98765 99881"
+          }
+        ],
+        "kycType": "AADHAAR_EKYC",
+        "kycVerificationHash": "a531370592813eb4e8be1fa17b3be725ac6da36d00896fca673f47a1424661c9"
+      },
+      "incidentDetails": {
+        "incidentId": "SOS-D5D0D1C5",
+        "natureOfEmergency": "PANIC_SOS",
+        "severity": "CRITICAL",
+        "lastKnownCoordinates": {
+          "latitude": 25.5682,
+          "longitude": 94.0483,
+          "sectorName": "GPS Coordinates",
+          "elevation": "1,496m MSL",
+          "timestamp": "2026-10-12T06:31:48.262Z"
+        },
+        "cellTowerTriangulation": {
+          "primaryCID": "BSNL-CID-NE-88219",
+          "lac": "LAC-404-52",
+          "signalStrengthDbm": -108,
+          "accuracyRadiusMeters": 450
+        }
+      },
+      "itineraryTimeline": [],
+      "evidenceTimeline": [
+        {
+          "time": "2026-10-12T03:31:48.262Z",
+          "event": "Check-in confirmed at Umiam Lake Viewpoint Checkpost"
+        },
+        {
+          "time": "2026-10-12T04:31:48.262Z",
+          "event": "AI Anomaly Detector flagged unexpected telemetry drop-off in high-risk zone"
+        },
+        {
+          "time": "2026-10-12T05:31:48.262Z",
+          "event": "Control room attempted two automated voice/SMS calls - No Response"
+        },
+        {
+          "time": "2026-10-12T06:31:48.262Z",
+          "event": "Automated Legal E-FIR generated & SDRF Rapid Response Team dispatched"
+        }
+      ],
+      "legalActs": [
+        {
+          "act": "Bharatiya Nyaya Sanhita (BNS), 2023",
+          "section": "Section 140(3) (Missing Person Inquiry & Search Directive)",
+          "description": "Mandatory police inquiry and active search protocol for uncontactable registered foreign/domestic tourist in hazardous sector."
+        },
+        {
+          "act": "Disaster Management Act, 2005",
+          "section": "Section 30 (District Authority Emergency Search & Rescue Dispatch)",
+          "description": "Mobilization of State Disaster Response Force (SDRF) / QRT units."
+        }
+      ],
+      "digitalSignature": {
+        "signingAuthority": "Government of India Digital E-FIR Certification Authority",
+        "algorithm": "ECDSA_SHA256",
+        "certificateThumbprint": "4B1106871BF3DA9DF8D8F939BD1CB075F550DF053DA7987E7C575C93B87D8E95",
+        "isCryptographicallyVerified": true
+      }
+    },
     {
       "firId": "EFIR-10C67E2F45C6",
       "firNumber": "FIR/NE/2026/4166",
@@ -1888,6 +2187,270 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "AUD-BD744C11",
+      "timestamp": "2026-10-12T06:31:48.470Z",
+      "userId": "SMS_INBOUND",
+      "userName": "Officer SMS (+917307007253)",
+      "userRole": "police",
+      "action": "SMS_ALERT_ACKNOWLEDGED",
+      "targetResource": "SOS-D5D0D1C5",
+      "ipAddress": "127.0.0.1",
+      "details": "Acknowledged via inbound SMS '1'",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-DBB0BB05",
+      "timestamp": "2026-10-12T06:31:48.468Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "LOCATION_NEWS_PUBLISHED",
+      "targetResource": "NEWS-2026-346",
+      "ipAddress": "127.0.0.1",
+      "details": "Published localized news bulletin: \"BRO Restores Sela Pass Convoy Traffic\" at Sela Pass Corridor (13,700 ft)",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-72A72BD5",
+      "timestamp": "2026-10-12T06:31:48.464Z",
+      "userId": "usr-admin-01",
+      "userName": "State Cyber Administrator",
+      "userRole": "admin",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-admin-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-9E8AF03E",
+      "timestamp": "2026-10-12T06:31:48.264Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "GENERATE_LEGAL_EFIR",
+      "targetResource": "TID-NE-2026-52939",
+      "ipAddress": "::1",
+      "userAgent": "Unknown",
+      "statusCode": 201
+    },
+    {
+      "id": "AUD-C55FC0C6",
+      "timestamp": "2026-10-12T06:31:48.263Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "EFIR_GENERATED",
+      "targetResource": "FIR/NE/2026/4762",
+      "ipAddress": "127.0.0.1",
+      "details": "Generated Legal E-FIR FIR/NE/2026/4762 for Tourist TID-NE-2026-52939. Anchored in Block #11",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-84E87DB3",
+      "timestamp": "2026-10-12T06:31:48.258Z",
+      "userId": "usr-anon-16a5bbd9",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "PANIC_SOS_TRIGGERED",
+      "targetResource": "SOS-D5D0D1C5",
+      "ipAddress": "127.0.0.1",
+      "details": "CRITICAL Panic SOS initiated. Anchored in Block #10",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-E1BCA62C",
+      "timestamp": "2026-10-12T06:31:48.256Z",
+      "userId": "usr-anon-16a5bbd9",
+      "userName": "Rahul Sen",
+      "userRole": "tourist",
+      "action": "DIGITAL_ID_ISSUED",
+      "targetResource": "TID-NE-2026-52939",
+      "ipAddress": "127.0.0.1",
+      "details": "Issued Digital Tourist ID anchored in Block #9",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-5409334D",
+      "timestamp": "2026-10-12T06:31:48.254Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-police-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-35BDB3BA",
+      "timestamp": "2026-10-12T06:31:48.053Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-6A8FB371",
+      "timestamp": "2026-10-12T06:00:26.049Z",
+      "userId": "usr-tourism-01",
+      "userName": "Dr. R. K. Hazarika",
+      "userRole": "tourism_official",
+      "action": "VIEW_ALL_TOURIST_IDS",
+      "targetResource": "/api/tourist-id/all",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-2EB5C8DA",
+      "timestamp": "2026-10-12T06:00:26.046Z",
+      "userId": "usr-tourism-01",
+      "userName": "Dr. R. K. Hazarika",
+      "userRole": "tourism_official",
+      "action": "VIEW_LIVE_GIS_MAP",
+      "targetResource": "/api/tracking/live-map",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-D3ECBAC7",
+      "timestamp": "2026-10-12T05:55:31.478Z",
+      "userId": "usr-tourism-01",
+      "userName": "Dr. R. K. Hazarika",
+      "userRole": "tourism_official",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-tourism-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-F30ED693",
+      "timestamp": "2026-10-12T05:47:09.642Z",
+      "userId": "usr-police-01",
+      "userName": "DSP Bimal Das",
+      "userRole": "police",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-police-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-13EEDF92",
+      "timestamp": "2026-10-12T05:47:09.640Z",
+      "userId": "usr-operator-01",
+      "userName": "Inspector Animesh Roy",
+      "userRole": "operator",
+      "action": "VIEW_ALL_TOURIST_IDS",
+      "targetResource": "/api/tourist-id/all",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-B69E5515",
+      "timestamp": "2026-10-12T05:47:09.606Z",
+      "userId": "usr-operator-01",
+      "userName": "Inspector Animesh Roy",
+      "userRole": "operator",
+      "action": "VIEW_LIVE_GIS_MAP",
+      "targetResource": "/api/tracking/live-map",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-4DA7E364",
+      "timestamp": "2026-10-12T05:46:23.137Z",
+      "userId": "usr-operator-01",
+      "userName": "Inspector Animesh Roy",
+      "userRole": "operator",
+      "action": "VIEW_LIVE_GIS_MAP",
+      "targetResource": "/api/tracking/live-map",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-39A27DD2",
+      "timestamp": "2026-10-12T05:46:23.133Z",
+      "userId": "usr-operator-01",
+      "userName": "Inspector Animesh Roy",
+      "userRole": "operator",
+      "action": "VIEW_ALL_TOURIST_IDS",
+      "targetResource": "/api/tourist-id/all",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-A1DAC0B4",
+      "timestamp": "2026-10-12T05:45:24.533Z",
+      "userId": "usr-operator-01",
+      "userName": "Inspector Animesh Roy",
+      "userRole": "operator",
+      "action": "VIEW_ALL_TOURIST_IDS",
+      "targetResource": "/api/tourist-id/all",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-3E44E91A",
+      "timestamp": "2026-10-12T05:44:21.140Z",
+      "userId": "usr-operator-01",
+      "userName": "Inspector Animesh Roy",
+      "userRole": "operator",
+      "action": "VIEW_ALL_TOURIST_IDS",
+      "targetResource": "/api/tourist-id/all",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-42BB190F",
+      "timestamp": "2026-10-12T05:44:21.136Z",
+      "userId": "usr-operator-01",
+      "userName": "Inspector Animesh Roy",
+      "userRole": "operator",
+      "action": "VIEW_LIVE_GIS_MAP",
+      "targetResource": "/api/tracking/live-map",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-5C9EF703",
+      "timestamp": "2026-10-12T05:44:18.147Z",
+      "userId": "usr-operator-01",
+      "userName": "Inspector Animesh Roy",
+      "userRole": "operator",
+      "action": "MFA_VERIFIED_SUCCESS",
+      "targetResource": "usr-operator-01",
+      "ipAddress": "127.0.0.1",
+      "details": "Multi-factor authentication verified successfully.",
+      "statusCode": 200
+    },
+    {
+      "id": "AUD-D343D992",
+      "timestamp": "2026-10-12T05:43:55.915Z",
+      "userId": "usr-tourist-01",
+      "userName": "Priya Sharma",
+      "userRole": "tourist",
+      "action": "USER_LOGIN_SUCCESS",
+      "targetResource": "usr-tourist-01",
+      "ipAddress": "127.0.0.1",
+      "details": "User logged in successfully.",
+      "statusCode": 200
+    },
     {
       "id": "AUD-FE735FD4",
       "timestamp": "2026-10-12T05:39:05.572Z",
@@ -2567,6 +3130,42 @@
   ],
   "lostPassports": [
     {
+      "id": "LP-2026-3606",
+      "type": "LOST_PASSPORT",
+      "applicantName": "Lucas Vance",
+      "nationality": "United Kingdom",
+      "contactPhone": "+44 7700 900888",
+      "email": "lucas.vance@example.co.uk",
+      "lastKnownLocation": "Cherrapunji Living Root Bridge",
+      "incidentDate": "2026-10-12",
+      "passportNumberMasked": "GB****912",
+      "issuingCountry": "United Kingdom",
+      "embassyContacted": false,
+      "policeStationVisited": "Pending Assignment",
+      "details": "Lost sling bag containing passport on the trail.",
+      "status": "RECEIVED",
+      "assignedDesk": "State Tourist Police Special Assistance Cell (Guwahati HQ)",
+      "createdAt": "2026-10-12T06:31:48.466Z",
+      "nextSteps": [
+        "Collect your official Lost Document Report (LDR) acknowledgment from the designated Tourist Police station.",
+        "Contact the Embassy/Consulate of United Kingdom in India for an Emergency Travel Document / Emergency Certificate (EC).",
+        "File an online Exit Visa / Visa Regularization application on the official e-FRRO Portal (indianfrro.gov.in).",
+        "Keep your SurakshaYatra Digital Tourist ID active as temporary travel identification within authorized transit zones."
+      ],
+      "timeline": [
+        {
+          "time": "2026-10-12T06:31:48.466Z",
+          "title": "Lost Passport Assistance Report Registered",
+          "description": "Case LP-2026-3606 created and dispatched to North-East Tourist Police Assistance Cell."
+        },
+        {
+          "time": "2026-10-12T06:31:48.466Z",
+          "title": "Automated Alert Sent to Liaison Desk",
+          "description": "Designated nodal officer alerted for document loss coordination."
+        }
+      ]
+    },
+    {
       "id": "LP-2026-7098",
       "type": "LOST_PASSPORT",
       "applicantName": "Lucas Vance",
@@ -2785,6 +3384,29 @@
   ],
   "grievances": [
     {
+      "id": "GRV-2026-2271",
+      "type": "GRIEVANCE",
+      "touristName": "Priya Sharma",
+      "touristId": "",
+      "contactEmail": "priya.sharma@example.com",
+      "contactPhone": "+91 98765 43210",
+      "category": "Safety Concern / Hazard Report",
+      "location": "Shillong Peak Eco-Trail",
+      "description": "Fallen trees blocking main path after rainfall.",
+      "urgency": "Urgent",
+      "status": "SUBMITTED",
+      "assignedAuthority": "State Tourism Redressal & Tourist Police Joint Cell",
+      "createdAt": "2026-10-12T06:31:48.466Z",
+      "estimatedResolutionHours": 24,
+      "timeline": [
+        {
+          "time": "2026-10-12T06:31:48.466Z",
+          "title": "Grievance Ticket Created",
+          "description": "Filed under \"Safety Concern / Hazard Report\" with Urgent priority. Assigned ticket ID GRV-2026-2271."
+        }
+      ]
+    },
+    {
       "id": "GRV-2026-1563",
       "type": "GRIEVANCE",
       "touristName": "Priya Sharma",
@@ -2901,6 +3523,23 @@
     }
   ],
   "locationNews": [
+    {
+      "id": "NEWS-2026-346",
+      "headline": "BRO Restores Sela Pass Convoy Traffic",
+      "locationName": "Sela Pass Corridor (13,700 ft)",
+      "region": "Tawang Route, Arunachal Pradesh",
+      "state": "Arunachal Pradesh",
+      "latitude": 27.5052,
+      "longitude": 92.1039,
+      "category": "ROAD_TRANSIT",
+      "severity": "WARNING",
+      "sourceAgency": "DSP Bimal Das (POLICE)",
+      "summary": "Snow clearing dozers completed black ice clearance.",
+      "travelAdvice": "4x4 with chains permitted.",
+      "isBreaking": false,
+      "publishedAt": "2026-10-12T06:31:48.468Z",
+      "verified": true
+    },
     {
       "id": "NEWS-2026-668",
       "headline": "BRO Restores Sela Pass Convoy Traffic",
@@ -3107,6 +3746,456 @@
     }
   ],
   "notificationLogs": [
+    {
+      "id": "NOTIF-1DEF6393",
+      "incidentId": "SOS-B3329303",
+      "intendedRole": "disaster_response",
+      "intendedRecipient": "+911077107710",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> DISASTER RESPONSE]\n[DISASTER / SDRF ALERT] High-Altitude / Forest Sector Incident\nID: TID-NE-2026-92868 (Shillong Peak Ridge)\nCoordinates: 25.5788,91.8933\nRescue Link: http://localhost:5173/s/b2cb6f?inc=SOS-B3329303",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_0b442ffdc8279e24",
+      "idempotencyKey": "IDEMP:SOS_SDRF:SOS-B3329303",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.477Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-3CB82910",
+      "incidentId": "SOS-B3329303",
+      "intendedRole": "tourist",
+      "intendedRecipient": "+919988776655",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURIST]\nYour SOS was received at 12:01. Police unit Quick Response Team 1 has been alerted. Stay where you are if safe. Help is on the way.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_411859f4fa01da3a",
+      "idempotencyKey": "IDEMP:SOS_TOURIST_CONFIRM:SOS-B3329303",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.477Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-1D1E682A",
+      "incidentId": "SOS-B3329303",
+      "intendedRole": "tourism_official",
+      "intendedRecipient": "+913612233445",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURISM OFFICIAL]\n[TOURISM ALERT] SOS from tourist TID-NE-2026-92868 near Shillong Peak Ridge, 12:01. Police notified. Case #SOS-B3329303. Details: http://localhost:5173/s/b2cb6f?inc=SOS-B3329303",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_a7e2caa53334bc33",
+      "idempotencyKey": "IDEMP:SOS_TOURISM:SOS-B3329303",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.476Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-51FF07A7",
+      "incidentId": "SOS-B3329303",
+      "intendedRole": "emergency_contact",
+      "intendedRecipient": "+919876543210",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> EMERGENCY CONTACT]\nALERT: Rahul Sen pressed the emergency button at 12:01 on 12-Oct.\nLast location: http://localhost:5173/s/b2cb6f?inc=SOS-B3329303\nPolice have been notified. Please try calling him/her.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_4522a776eb3d17ca",
+      "idempotencyKey": "IDEMP:SOS_EMERGENCY_CONTACT:SOS-B3329303",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.476Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-653706D6",
+      "incidentId": "SOS-B3329303",
+      "intendedRole": "police_unit",
+      "intendedRecipient": "+911122334466",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE UNIT]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-92868\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5788,91.8933 (Shillong Peak Ridge, +/-12m) 12:01 12-Oct\nMap: http://localhost:5173/s/b2cb6f?inc=SOS-B3329303\nVia: Internet | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_58ed3d1087ed3ca5",
+      "idempotencyKey": "IDEMP:SOS_UNIT:SOS-B3329303",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.475Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-14B0DE84",
+      "incidentId": "SOS-B3329303",
+      "intendedRole": "police",
+      "intendedRecipient": "+911122334455",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-92868\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5788,91.8933 (Shillong Peak Ridge, +/-12m) 12:01 12-Oct\nMap: http://localhost:5173/s/b2cb6f?inc=SOS-B3329303\nVia: Internet | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_63ce5681998819b0",
+      "idempotencyKey": "IDEMP:SOS_POLICE:SOS-B3329303",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.475Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-B903850A",
+      "incidentId": "SOS-55FD7C42",
+      "intendedRole": "tourist",
+      "intendedRecipient": "+919988776655",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURIST]\nYour SOS was received at 12:01. Police unit PU-07 has been alerted. Stay where you are if safe. Help is on the way.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_2356426116ecfcb9",
+      "idempotencyKey": "IDEMP:SOS_TOURIST_CONFIRM:SOS-55FD7C42",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.474Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-56F894A0",
+      "incidentId": "SOS-55FD7C42",
+      "intendedRole": "tourism_official",
+      "intendedRecipient": "+913612233445",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURISM OFFICIAL]\n[TOURISM ALERT] SOS from tourist TID-NE-2026-52939 near Offline Highway Corridor (SMS Fallback), 12:01. Police notified. Case #SOS-55FD7C42. Details: http://localhost:5173/s/781383?inc=SOS-55FD7C42",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_67ae0b232a97bc09",
+      "idempotencyKey": "IDEMP:SOS_TOURISM:SOS-55FD7C42",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.473Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-9C33B2EF",
+      "incidentId": "SOS-55FD7C42",
+      "intendedRole": "emergency_contact",
+      "intendedRecipient": "+919876543210",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> EMERGENCY CONTACT]\nALERT: Rahul Sen pressed the emergency button at 12:01 on 12-Oct.\nLast location: http://localhost:5173/s/781383?inc=SOS-55FD7C42\nPolice have been notified. Please try calling him/her.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_0622c4dd9febfdd0",
+      "idempotencyKey": "IDEMP:SOS_EMERGENCY_CONTACT:SOS-55FD7C42",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.473Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-8092D2EE",
+      "incidentId": "SOS-55FD7C42",
+      "intendedRole": "police_unit",
+      "intendedRecipient": "+911122334466",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE UNIT]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-52939\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5788,91.8933 (Offline Highway Corridor (SMS Fallback), +/-12m) 12:01 12-Oct\nMap: http://localhost:5173/s/781383?inc=SOS-55FD7C42\nVia: SMS(offline) | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_f2e8797e1f19dafe",
+      "idempotencyKey": "IDEMP:SOS_UNIT:SOS-55FD7C42",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.472Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-EAC457C5",
+      "incidentId": "SOS-55FD7C42",
+      "intendedRole": "police",
+      "intendedRecipient": "+911122334455",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-52939\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5788,91.8933 (Offline Highway Corridor (SMS Fallback), +/-12m) 12:01 12-Oct\nMap: http://localhost:5173/s/781383?inc=SOS-55FD7C42\nVia: SMS(offline) | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_ab3e0fb4517b23da",
+      "idempotencyKey": "IDEMP:SOS_POLICE:SOS-55FD7C42",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.472Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-18E8E9B6",
+      "incidentId": "FIR/NE/2026/4762",
+      "intendedRole": "tourism_official",
+      "intendedRecipient": "+913612233445",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURISM OFFICIAL]\n[TOURISM ALERT] SOS from tourist TID-NE-2026-52939 near Sector Zone, 12:01. Police notified. Case #FIR/NE/2026/4762. Details: http://localhost:5173/s/0f4f57?inc=FIR/NE/2026/4762",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_7146e2442ac536a7",
+      "idempotencyKey": "IDEMP:EFIR_TOURISM:FIR/NE/2026/4762",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.264Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-A24C0F54",
+      "incidentId": "FIR/NE/2026/4762",
+      "intendedRole": "efir",
+      "intendedRecipient": "+911122334455",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> EFIR]\n[EFIR CREATED] Legal Missing Person Case #FIR/NE/2026/4762 generated for TID-NE-2026-52939 (Rahul Sen). Certified copy: http://localhost:5173/s/0f4f57?inc=FIR/NE/2026/4762",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_bdb7fe91ac3bd261",
+      "idempotencyKey": "IDEMP:EFIR_POLICE:FIR/NE/2026/4762",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.263Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-4793F1E6",
+      "incidentId": "SOS-D5D0D1C5",
+      "intendedRole": "tourist",
+      "intendedRecipient": "+919988776655",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURIST]\nYour SOS was received at 12:01. Police unit PU-07 has been alerted. Stay where you are if safe. Help is on the way.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_1f1d6b1537a3480f",
+      "idempotencyKey": "IDEMP:SOS_TOURIST_CONFIRM:SOS-D5D0D1C5",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.260Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-89265B97",
+      "incidentId": "SOS-D5D0D1C5",
+      "intendedRole": "tourism_official",
+      "intendedRecipient": "+913612233445",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURISM OFFICIAL]\n[TOURISM ALERT] SOS from tourist TID-NE-2026-52939 near GPS Coordinates, 12:01. Police notified. Case #SOS-D5D0D1C5. Details: http://localhost:5173/s/1baaa2?inc=SOS-D5D0D1C5",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_195b37ce7144f1d7",
+      "idempotencyKey": "IDEMP:SOS_TOURISM:SOS-D5D0D1C5",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.260Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-6F6E992D",
+      "incidentId": "SOS-D5D0D1C5",
+      "intendedRole": "emergency_contact",
+      "intendedRecipient": "+919876543210",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> EMERGENCY CONTACT]\nALERT: Rahul Sen pressed the emergency button at 12:01 on 12-Oct.\nLast location: http://localhost:5173/s/1baaa2?inc=SOS-D5D0D1C5\nPolice have been notified. Please try calling him/her.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_23e030524a6078c5",
+      "idempotencyKey": "IDEMP:SOS_EMERGENCY_CONTACT:SOS-D5D0D1C5",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.260Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-168DF9F8",
+      "incidentId": "SOS-D5D0D1C5",
+      "intendedRole": "police_unit",
+      "intendedRecipient": "+911122334466",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE UNIT]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-52939\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5682,94.0483 (GPS Coordinates, +/-12m) 12:01 12-Oct\nMap: http://localhost:5173/s/1baaa2?inc=SOS-D5D0D1C5\nVia: Internet | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_39a46be8c7a082d8",
+      "idempotencyKey": "IDEMP:SOS_UNIT:SOS-D5D0D1C5",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.259Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-A0493B5C",
+      "incidentId": "SOS-D5D0D1C5",
+      "intendedRole": "police",
+      "intendedRecipient": "+911122334455",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-52939\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5682,94.0483 (GPS Coordinates, +/-12m) 12:01 12-Oct\nMap: http://localhost:5173/s/1baaa2?inc=SOS-D5D0D1C5\nVia: Internet | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_99e3da4130fdbcca",
+      "idempotencyKey": "IDEMP:SOS_POLICE:SOS-D5D0D1C5",
+      "attempts": 1,
+      "timestamp": "2026-10-12T06:31:48.259Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-C9740FCC",
+      "incidentId": "ALT-7B05AFCA",
+      "intendedRole": "police",
+      "intendedRecipient": "+911122334455",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-92868\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 27.5052,92.1039 (Sela Pass Military Buffer Zone, +/-12m) 11:21 12-Oct\nMap: http://localhost:5173/s/46528e?inc=ALT-7B05AFCA\nVia: GPS Geofence Breach | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_d1c8a1faf09bc57f",
+      "idempotencyKey": null,
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:51:13.123Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-1C607F67",
+      "incidentId": "SOS-E41BC7F9",
+      "intendedRole": "tourist",
+      "intendedRecipient": "+919988776655",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURIST]\nYour SOS was received at 11:15. Police unit PU-07 has been alerted. Stay where you are if safe. Help is on the way.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_4dcc8d6c45987801",
+      "idempotencyKey": "IDEMP:SOS_TOURIST_CONFIRM:SOS-E41BC7F9",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:45:01.288Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-2E570184",
+      "incidentId": "SOS-E41BC7F9",
+      "intendedRole": "tourism_official",
+      "intendedRecipient": "+913612233445",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURISM OFFICIAL]\n[TOURISM ALERT] SOS from tourist TID-NE-2026-92868 near Offline Highway Corridor (SMS Fallback), 11:15. Police notified. Case #SOS-E41BC7F9. Details: http://localhost:5173/s/798240?inc=SOS-E41BC7F9",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_04446b11c2c9875e",
+      "idempotencyKey": "IDEMP:SOS_TOURISM:SOS-E41BC7F9",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:45:01.286Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-F54C9D4B",
+      "incidentId": "SOS-E41BC7F9",
+      "intendedRole": "emergency_contact",
+      "intendedRecipient": "+919876543210",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> EMERGENCY CONTACT]\nALERT: Rahul Sen pressed the emergency button at 11:15 on 12-Oct.\nLast location: http://localhost:5173/s/798240?inc=SOS-E41BC7F9\nPolice have been notified. Please try calling him/her.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_fdb4e0c0adb1decc",
+      "idempotencyKey": "IDEMP:SOS_EMERGENCY_CONTACT:SOS-E41BC7F9",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:45:01.283Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-A60EFD94",
+      "incidentId": "SOS-E41BC7F9",
+      "intendedRole": "police_unit",
+      "intendedRecipient": "+911122334466",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE UNIT]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-92868\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5788,91.8933 (Offline Highway Corridor (SMS Fallback), +/-12m) 11:15 12-Oct\nMap: http://localhost:5173/s/798240?inc=SOS-E41BC7F9\nVia: SMS(offline) | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_d41e081fbf38558a",
+      "idempotencyKey": "IDEMP:SOS_UNIT:SOS-E41BC7F9",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:45:01.280Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-AD98C98A",
+      "incidentId": "SOS-E41BC7F9",
+      "intendedRole": "police",
+      "intendedRecipient": "+911122334455",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-92868\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5788,91.8933 (Offline Highway Corridor (SMS Fallback), +/-12m) 11:15 12-Oct\nMap: http://localhost:5173/s/798240?inc=SOS-E41BC7F9\nVia: SMS(offline) | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_e3bc8c22bbbade11",
+      "idempotencyKey": "IDEMP:SOS_POLICE:SOS-E41BC7F9",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:45:01.277Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-EF9A75F7",
+      "incidentId": "SOS-AE6BF50E",
+      "intendedRole": "disaster_response",
+      "intendedRecipient": "+911077107710",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> DISASTER RESPONSE]\n[DISASTER / SDRF ALERT] High-Altitude / Forest Sector Incident\nID: TID-NE-2026-92868 (Shillong Peak Ridge)\nCoordinates: 25.5788,91.8933\nRescue Link: http://localhost:5173/s/feeb45?inc=SOS-AE6BF50E",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_0241c85fbf0255c7",
+      "idempotencyKey": "IDEMP:SOS_SDRF:SOS-AE6BF50E",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:44:58.005Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-33E2B15C",
+      "incidentId": "SOS-AE6BF50E",
+      "intendedRole": "tourist",
+      "intendedRecipient": "+919988776655",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURIST]\nYour SOS was received at 11:14. Police unit Quick Response Team 1 has been alerted. Stay where you are if safe. Help is on the way.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_b39ccc708628ddd0",
+      "idempotencyKey": "IDEMP:SOS_TOURIST_CONFIRM:SOS-AE6BF50E",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:44:58.002Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-64EE3702",
+      "incidentId": "SOS-AE6BF50E",
+      "intendedRole": "tourism_official",
+      "intendedRecipient": "+913612233445",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> TOURISM OFFICIAL]\n[TOURISM ALERT] SOS from tourist TID-NE-2026-92868 near Shillong Peak Ridge, 11:14. Police notified. Case #SOS-AE6BF50E. Details: http://localhost:5173/s/feeb45?inc=SOS-AE6BF50E",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_735f360dfe3428bb",
+      "idempotencyKey": "IDEMP:SOS_TOURISM:SOS-AE6BF50E",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:44:57.998Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-209214F6",
+      "incidentId": "SOS-AE6BF50E",
+      "intendedRole": "emergency_contact",
+      "intendedRecipient": "+919876543210",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> EMERGENCY CONTACT]\nALERT: Rahul Sen pressed the emergency button at 11:14 on 12-Oct.\nLast location: http://localhost:5173/s/feeb45?inc=SOS-AE6BF50E\nPolice have been notified. Please try calling him/her.",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_297c1c6f9ae253a3",
+      "idempotencyKey": "IDEMP:SOS_EMERGENCY_CONTACT:SOS-AE6BF50E",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:44:57.996Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-D8D51FAE",
+      "incidentId": "SOS-AE6BF50E",
+      "intendedRole": "police_unit",
+      "intendedRecipient": "+911122334466",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE UNIT]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-92868\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5788,91.8933 (Shillong Peak Ridge, +/-12m) 11:14 12-Oct\nMap: http://localhost:5173/s/feeb45?inc=SOS-AE6BF50E\nVia: Internet | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_9dc528aafd363b37",
+      "idempotencyKey": "IDEMP:SOS_UNIT:SOS-AE6BF50E",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:44:57.993Z",
+      "error": null
+    },
+    {
+      "id": "NOTIF-384F2526",
+      "incidentId": "SOS-AE6BF50E",
+      "intendedRole": "police",
+      "intendedRecipient": "+911122334455",
+      "actualRecipient": "+917307007253",
+      "channel": "SMS",
+      "messageText": "[DEMO -> POLICE]\n[TOURIST SOS] HIGH\nID: TID-NE-2026-92868\nName: Rahul Sen | Ph: +91 98XXXXXX10\nLoc: 25.5788,91.8933 (Shillong Peak Ridge, +/-12m) 11:14 12-Oct\nMap: http://localhost:5173/s/feeb45?inc=SOS-AE6BF50E\nVia: Internet | Reply 1 to acknowledge",
+      "status": "DELIVERED",
+      "providerMessageId": "SM_MOCK_331a7799fd066579",
+      "idempotencyKey": "IDEMP:SOS_POLICE:SOS-AE6BF50E",
+      "attempts": 1,
+      "timestamp": "2026-10-12T05:44:57.991Z",
+      "error": null
+    },
     {
       "id": "NOTIF-00DBD6E4",
       "incidentId": "SOS-321716FA",

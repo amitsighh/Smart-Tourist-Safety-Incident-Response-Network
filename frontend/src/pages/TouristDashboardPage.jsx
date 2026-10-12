@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useSocket } from '../contexts/SocketContext';
@@ -24,16 +24,87 @@ import {
   Sliders,
   AlertTriangle,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Maximize2
 } from 'lucide-react';
+
+const DEFAULT_DEMO_TOURIST = {
+  touristId: 'TID-NE-2026-88190',
+  fullName: 'Priya Sharma',
+  nationality: 'Indian',
+  bloodGroup: 'B+ Positive',
+  phone: '+91 98765 43210',
+  trackingRecipients: 'police_and_contacts',
+  validUntil: '2026-10-28T23:59:59.000Z',
+  itinerary: [
+    { day: 1, name: 'Guwahati Transit Hub', lat: 26.1445, lng: 91.7362, status: 'COMPLETED' },
+    { day: 2, name: 'Umiam Lake Viewpoint', lat: 25.6667, lng: 91.8833, status: 'COMPLETED' },
+    { day: 3, name: 'Shillong Peak & Laitkor', lat: 25.5788, lng: 91.8933, status: 'ACTIVE' },
+    { day: 4, name: 'Cherrapunji Living Root Bridges', lat: 25.2505, lng: 91.6850, status: 'UPCOMING' },
+    { day: 5, name: 'Dawki Umngot River Border', lat: 25.1856, lng: 92.0191, status: 'UPCOMING' }
+  ],
+  lastLocation: {
+    latitude: 25.5788,
+    longitude: 91.8933,
+    locationName: 'Shillong Peak Ridge Sector',
+    batteryLevel: 84
+  }
+};
+
+const DEFAULT_GEOFENCES = [
+  {
+    id: 'GEOFENCE-01',
+    name: 'Sela Pass Avalanche & Snowbound Corridor',
+    category: 'restricted',
+    severity: 'CRITICAL',
+    type: 'polygon',
+    isActive: true,
+    coordinates: [
+      [27.49, 92.08],
+      [27.53, 92.08],
+      [27.53, 92.13],
+      [27.49, 92.13]
+    ],
+    advisory: 'Zero visibility blizzard active. Heavy black ice on NH-13 hairpin curves.',
+    safeRouteSuggestion: 'Halt vehicle convoy at Dirang transit gate until BRO green clearance.'
+  },
+  {
+    id: 'GEOFENCE-02',
+    name: 'Dzukou Valley Alpine Curfew Zone',
+    category: 'curfew',
+    severity: 'HIGH',
+    type: 'polygon',
+    isActive: true,
+    coordinates: [
+      [25.54, 94.02],
+      [25.58, 94.02],
+      [25.58, 94.07],
+      [25.54, 94.07]
+    ],
+    advisory: 'Sub-zero temperatures post 17:00 IST. Strict night trekking curfew enforced.',
+    safeRouteSuggestion: 'Check into registered SDRF Viswema base camp.'
+  },
+  {
+    id: 'GEOFENCE-03',
+    name: 'Kaziranga Core Elephant & Rhino Corridor',
+    category: 'high_risk',
+    severity: 'HIGH',
+    type: 'circle',
+    isActive: true,
+    center: { lat: 26.6500, lng: 93.3500 },
+    radiusMeters: 4000,
+    advisory: 'Wildlife migration crossing highway. Night speed limit 40 km/h enforced by forest sensors.',
+    safeRouteSuggestion: 'Maintain single-lane highway convoy without honking.'
+  }
+];
 
 export default function TouristDashboardPage({ setActivePage }) {
   const { user } = useAuth();
   const { t } = useLanguage();
   const { emitTelemetry } = useSocket();
 
-  const [digitalId, setDigitalId] = useState(null);
-  const [geofences, setGeofences] = useState([]);
+  const [digitalId, setDigitalId] = useState(DEFAULT_DEMO_TOURIST);
+  const [geofences, setGeofences] = useState(DEFAULT_GEOFENCES);
   const [safetyScoreData, setSafetyScoreData] = useState({
     safetyScore: 85,
     tier: 'EXCELLENT',
@@ -42,148 +113,199 @@ export default function TouristDashboardPage({ setActivePage }) {
   });
   const [isCheckInOpen, setIsCheckInOpen] = useState(false);
   const [offlineMode, setOfflineMode] = useState(false);
-  const [queuedSosList, setQueuedSosList] = useState([]);
   const [activeBreachAlert, setActiveBreachAlert] = useState(null);
+  const [isLargeMap, setIsLargeMap] = useState(false);
 
-  // Simulation controls
   const [simulatedLat, setSimulatedLat] = useState(25.5788);
   const [simulatedLng, setSimulatedLng] = useState(91.8933);
-  const [simulatedBattery, setSimulatedBattery] = useState(82);
+  const [simulatedBattery, setSimulatedBattery] = useState(84);
+  const [currentLocationName, setCurrentLocationName] = useState('Shillong Peak Ridge Sector');
 
-  // Load Digital ID and geofences
   useEffect(() => {
     async function loadData() {
       try {
         const idRes = await api.getMyDigitalId();
         if (idRes.success && idRes.digitalId) {
           setDigitalId(idRes.digitalId);
-          setSimulatedLat(idRes.digitalId.lastLocation?.latitude || 25.5788);
-          setSimulatedLng(idRes.digitalId.lastLocation?.longitude || 91.8933);
+          if (idRes.digitalId.lastLocation?.latitude) {
+            setSimulatedLat(idRes.digitalId.lastLocation.latitude);
+            setSimulatedLng(idRes.digitalId.lastLocation.longitude);
+            setCurrentLocationName(idRes.digitalId.lastLocation.locationName || 'Shillong Sector');
+          }
         }
+      } catch {
+        // Keep default demo tourist
+      }
 
+      try {
         const geoRes = await api.getGeofences();
-        if (geoRes.success) {
-          setGeofences(geoRes.geofences || []);
+        if (geoRes.success && geoRes.geofences && geoRes.geofences.length > 0) {
+          setGeofences(geoRes.geofences);
         }
-      } catch (err) {
-        console.error('Error loading dashboard:', err);
+      } catch {
+        // Keep default geofences
       }
     }
     loadData();
   }, [user]);
 
-  // Send periodic telemetry ping & evaluate safety score
-  const sendPing = async (lat = simulatedLat, lng = simulatedLng, battery = simulatedBattery) => {
-    if (!digitalId) return;
+  const evaluateLocalBreach = (lat, lng) => {
+    for (const fence of geofences) {
+      if (!fence.isActive) continue;
+      if (fence.type === 'circle' && fence.center) {
+        const dist = Math.hypot(fence.center.lat - lat, fence.center.lng - lng) * 111;
+        if (dist <= (fence.radiusMeters || 3000) / 1000) {
+          return fence;
+        }
+      } else if (fence.type === 'polygon' && fence.coordinates && fence.coordinates.length >= 3) {
+        let inside = false;
+        const coords = fence.coordinates;
+        for (let i = 0, j = coords.length - 1; i < coords.length; j = i++) {
+          const [latI, lngI] = coords[i];
+          const [latJ, lngJ] = coords[j];
+          const intersect = ((latI > lat) !== (latJ > lat)) &&
+            (lng < (lngJ - lngI) * (lat - latI) / (latJ - latI) + lngI);
+          if (intersect) inside = !inside;
+        }
+        if (inside) return fence;
+      }
+    }
+    return null;
+  };
 
-    if (offlineMode) {
-      // simulate queued buffer
-      return;
+  const sendPing = async (lat = simulatedLat, lng = simulatedLng, locName = currentLocationName) => {
+    const breach = evaluateLocalBreach(lat, lng);
+    setActiveBreachAlert(breach);
+
+    let score = 85;
+    let tier = 'EXCELLENT';
+    let advisory = 'Your travel conditions are nominal. Stay on designated trails.';
+    let deductions = [];
+
+    if (breach) {
+      if (breach.severity === 'CRITICAL') {
+        score = 35;
+        tier = 'CRITICAL';
+        advisory = `Entered restricted zone: ${breach.name}. Police dispatch alerted.`;
+        deductions = [{ reason: `Restricted Zone Breach (${breach.name})`, points: -50 }];
+      } else {
+        score = 50;
+        tier = 'MODERATE';
+        advisory = `Caution: Active curfew or hazard in ${breach.name}.`;
+        deductions = [{ reason: `Hazard Zone Warning (${breach.name})`, points: -35 }];
+      }
     }
 
+    setSafetyScoreData({ safetyScore: score, tier, advisory, deductions });
+
     try {
-      const pingData = {
+      emitTelemetry({
         touristId: digitalId.touristId,
+        fullName: digitalId.fullName,
         latitude: lat,
         longitude: lng,
-        batteryLevel: battery,
-        speedKmh: 4.5
-      };
+        batteryLevel: simulatedBattery,
+        hasActiveSos: breach?.severity === 'CRITICAL',
+        timestamp: new Date().toISOString()
+      });
 
-      const res = await api.submitPing(pingData);
-      if (res.success) {
-        if (res.safetyScore) setSafetyScoreData(res.safetyScore);
-        if (res.geofence?.hasBreach) {
-          setActiveBreachAlert(res.geofence.insideBreaches[0]);
-        } else {
-          setActiveBreachAlert(null);
-        }
-
-        // Broadcast real-time telemetry on socket
-        emitTelemetry({
+      if (!offlineMode) {
+        await api.submitPing({
           touristId: digitalId.touristId,
-          fullName: digitalId.fullName,
           latitude: lat,
           longitude: lng,
-          batteryLevel: battery,
-          hasActiveSos: false,
-          timestamp: new Date().toISOString()
+          locationName: locName,
+          batteryLevel: simulatedBattery,
+          speedKmh: 4.5
         });
       }
     } catch (e) {
-      console.error('Ping failed:', e);
+      console.warn('Ping sync background notice:', e.message);
     }
   };
 
-  // Move GPS to preset test locations
   const handleMoveToPreset = (name, lat, lng) => {
     setSimulatedLat(lat);
     setSimulatedLng(lng);
-    sendPing(lat, lng, simulatedBattery);
+    setCurrentLocationName(name);
+    sendPing(lat, lng, name);
   };
+
+  const touristsOnMap = useMemo(() => [{
+    touristId: digitalId.touristId,
+    fullName: digitalId.fullName,
+    nationality: digitalId.nationality,
+    phone: digitalId.phone,
+    lastLocation: {
+      latitude: simulatedLat,
+      longitude: simulatedLng,
+      locationName: currentLocationName,
+      batteryLevel: simulatedBattery,
+      timestamp: new Date().toISOString()
+    }
+  }], [digitalId, simulatedLat, simulatedLng, currentLocationName, simulatedBattery]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Top Banner / Active Tracking Status */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <div className="flex items-center space-x-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-3xl bg-white border border-[#DCE7F3] shadow-sm">
+        <div className="flex items-center space-x-3.5">
           <div className="relative">
             <span className="w-3.5 h-3.5 rounded-full bg-emerald-500 block animate-pulse"></span>
             <span className="w-3.5 h-3.5 rounded-full bg-emerald-400 absolute inset-0 animate-ping"></span>
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="text-xs font-extrabold text-slate-900 dark:text-white uppercase tracking-wider">
+              <span className="text-xs font-black text-[#172B4D] uppercase tracking-wider">
                 {t('tracking.trackingActive')}
               </span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-mono">
-                {digitalId?.touristId || 'TID-NE-2026-88190'}
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 font-mono">
+                {digitalId.touristId}
               </span>
+              <span className="text-xs font-semibold text-slate-600">({digitalId.fullName})</span>
             </div>
-            <p className="text-[11px] text-slate-500">
-              Sharing live safety telemetry with: <strong>{digitalId?.trackingRecipients === 'police_only' ? 'Police Command' : 'Police & Family Contacts'}</strong>
+            <p className="text-[11px] text-slate-500 mt-0.5">
+              Live Location: <strong className="text-slate-800">{currentLocationName}</strong> ({simulatedLat.toFixed(4)}, {simulatedLng.toFixed(4)}) • Sharing with: <strong>Police Command & Emergency Contacts</strong>
             </p>
           </div>
         </div>
 
         <div className="flex items-center space-x-2">
-          {/* Check-in Trigger */}
           <button
             onClick={() => setIsCheckInOpen(true)}
-            className="px-3.5 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold hover:bg-emerald-100 transition-colors border border-emerald-300 dark:border-emerald-800 flex items-center space-x-1.5"
+            className="px-3.5 py-2 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-bold hover:bg-emerald-100 transition-colors border border-emerald-300 flex items-center space-x-1.5 shadow-xs"
           >
-            <CheckCircle className="w-4 h-4" />
+            <CheckCircle className="w-4 h-4 text-emerald-600" />
             <span>"I'm Safe" Check-In</span>
           </button>
 
-          {/* Offline Toggle */}
           <button
             onClick={() => setOfflineMode(!offlineMode)}
             className={`px-3 py-2 rounded-xl text-xs font-bold border transition-colors flex items-center space-x-1.5 ${
               offlineMode
-                ? 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border-amber-300'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700'
+                ? 'bg-amber-100 text-amber-800 border-amber-300'
+                : 'bg-slate-100 text-slate-700 border-slate-300'
             }`}
             title="Toggle simulated offline mode"
           >
             {offlineMode ? <WifiOff className="w-3.5 h-3.5 text-amber-600" /> : <Wifi className="w-3.5 h-3.5 text-emerald-600" />}
-            <span>{offlineMode ? 'Offline Simulated' : 'Online'}</span>
+            <span>{offlineMode ? 'Offline Simulated' : 'Online Sync'}</span>
           </button>
         </div>
       </div>
 
-      {/* Geofence Breach Warning Banner (if simulated into danger zone) */}
+      {/* Geofence Breach Warning Banner (Live Danger Alarm) */}
       {activeBreachAlert && (
-        <div className="p-4 rounded-2xl bg-red-600 text-white shadow-xl flex items-start justify-between gap-4 animate-bounce">
+        <div className="p-4 rounded-2xl bg-red-600 text-white shadow-xl flex items-start justify-between gap-4 animate-pulse">
           <div className="flex items-start space-x-3">
             <AlertTriangle className="w-6 h-6 shrink-0 mt-0.5" />
             <div className="space-y-1 text-xs">
-              <div className="font-black uppercase tracking-wider text-sm">
-                🚨 RESTRICTED ZONE / CURFEW BREACH: {activeBreachAlert.name}
+              <div className="font-black uppercase tracking-wider text-sm flex items-center space-x-2">
+                <span>RESTRICTED / HAZARD ZONE BREACH DETECTED: {activeBreachAlert.name}</span>
               </div>
-              <p className="opacity-95">{activeBreachAlert.advisory}</p>
+              <p className="opacity-95 text-xs">{activeBreachAlert.advisory}</p>
               {activeBreachAlert.safeRouteSuggestion && (
-                <div className="font-bold text-yellow-300 pt-0.5">
+                <div className="font-bold text-yellow-200 pt-0.5">
                   Safe Route Advice: {activeBreachAlert.safeRouteSuggestion}
                 </div>
               )}
@@ -192,7 +314,7 @@ export default function TouristDashboardPage({ setActivePage }) {
         </div>
       )}
 
-      {/* Dynamic Safety Score Gauge (FR-2.1) */}
+      {/* Dynamic Safety Score Gauge */}
       <SafetyScoreGauge
         score={safetyScoreData.safetyScore}
         tier={safetyScoreData.tier}
@@ -200,117 +322,146 @@ export default function TouristDashboardPage({ setActivePage }) {
         deductions={safetyScoreData.deductions}
       />
 
-      {/* Main Grid: SOS Button & Live Map */}
+      {/* Main Grid: Panic SOS & Live Radar Map */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Column: Panic SOS & Controls */}
+        {/* Left Column: Panic SOS & Interactive Testing Sandbox */}
         <div className="lg:col-span-5 space-y-6">
           <PanicButton
-            tourist={digitalId || { touristId: 'TID-NE-2026-88190', fullName: 'Priya Sharma' }}
+            tourist={digitalId}
             onSosTriggered={(alert) => {
-              setSafetyScoreData(prev => ({
-                ...prev,
+              setSafetyScoreData({
                 safetyScore: 20,
                 tier: 'CRITICAL',
-                advisory: 'Emergency SOS Broadcast Active. Stand by for police unit dispatch.'
-              }));
+                advisory: 'Emergency SOS Broadcast Transmitted. Police unit dispatched.',
+                deductions: [{ reason: 'Emergency SOS Active', points: -65 }]
+              });
             }}
           />
 
-          {/* Interactive GPS Sandbox / Simulation Controls */}
-          <div className="p-5 rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3 text-xs">
-            <div className="flex items-center justify-between font-extrabold text-slate-900 dark:text-white">
+          {/* Interactive GPS Simulation Controls */}
+          <div className="p-5 rounded-3xl bg-white border border-[#DCE7F3] shadow-sm space-y-3.5 text-xs">
+            <div className="flex items-center justify-between font-bold text-[#172B4D]">
               <span className="flex items-center space-x-1.5">
-                <Sliders className="w-4 h-4 text-emerald-600" />
-                <span>GPS Simulation & Anomaly Sandbox</span>
+                <Sliders className="w-4 h-4 text-blue-600" />
+                <span>GPS Telemetry & Geofence Testbed</span>
               </span>
-              <span className="text-[10px] text-slate-400 font-mono">Live Testing</span>
+              <span className="text-[10px] text-blue-600 font-mono bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                Interactive Test
+              </span>
             </div>
             <p className="text-slate-500 text-[11px]">
-              Simulate moving the tourist's GPS into hazard/curfew zones to test live geofence triggers and AI anomaly evaluation:
+              Tap any location preset below to move the tourist's GPS in real-time, recalculating safety scores and testing geofence alerts:
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <button
-                onClick={() => handleMoveToPreset("Shillong Safe", 25.5788, 91.8933)}
-                className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-left border hover:border-emerald-500 transition-all font-semibold"
+                onClick={() => handleMoveToPreset("Shillong Safe Sector", 25.5788, 91.8933)}
+                className={`p-3 rounded-xl text-left border transition-all ${
+                  currentLocationName.includes('Shillong')
+                    ? 'border-emerald-500 bg-emerald-50/60 ring-2 ring-emerald-200'
+                    : 'bg-white hover:border-emerald-400'
+                }`}
               >
-                <div className="text-emerald-600 font-bold">1. Shillong Safe Sector</div>
-                <div className="text-[10px] text-slate-400">Normal Highway • Score ~85</div>
+                <div className="text-emerald-700 font-bold">1. Shillong Safe Sector</div>
+                <div className="text-[10px] text-slate-500">Normal highway • Score: 85</div>
               </button>
 
               <button
-                onClick={() => handleMoveToPreset("Dzukou Curfew", 25.5682, 94.0483)}
-                className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-left border hover:border-amber-500 transition-all font-semibold"
+                onClick={() => handleMoveToPreset("Dzukou Alpine Curfew Zone", 25.5600, 94.0400)}
+                className={`p-3 rounded-xl text-left border transition-all ${
+                  currentLocationName.includes('Dzukou')
+                    ? 'border-amber-500 bg-amber-50/60 ring-2 ring-amber-200'
+                    : 'bg-white hover:border-amber-400'
+                }`}
               >
-                <div className="text-amber-600 font-bold">2. Dzukou Alpine Curfew</div>
-                <div className="text-[10px] text-slate-400">Night Trek Freezing • Score ~45</div>
+                <div className="text-amber-800 font-bold">2. Dzukou Alpine Curfew</div>
+                <div className="text-[10px] text-slate-500">Night trek freezing • Score: 50</div>
               </button>
 
               <button
-                onClick={() => handleMoveToPreset("Kaziranga Flood", 26.6500, 93.3500)}
-                className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-left border hover:border-red-500 transition-all font-semibold"
+                onClick={() => handleMoveToPreset("Kaziranga Wildlife Corridor", 26.6500, 93.3500)}
+                className={`p-3 rounded-xl text-left border transition-all ${
+                  currentLocationName.includes('Kaziranga')
+                    ? 'border-amber-500 bg-amber-50/60 ring-2 ring-amber-200'
+                    : 'bg-white hover:border-amber-400'
+                }`}
               >
-                <div className="text-red-600 font-bold">3. Kaziranga Flood Core</div>
-                <div className="text-[10px] text-slate-400">High Risk Wetland • Score ~40</div>
+                <div className="text-amber-700 font-bold">3. Kaziranga Corridor</div>
+                <div className="text-[10px] text-slate-500">Wildlife crossing • Score: 50</div>
               </button>
 
               <button
-                onClick={() => handleMoveToPreset("Sela Pass Avalanche", 27.5052, 92.1039)}
-                className="p-2.5 rounded-xl bg-white dark:bg-slate-800 text-left border hover:border-red-500 transition-all font-semibold"
+                onClick={() => handleMoveToPreset("Sela Pass Avalanche Restricted", 27.5052, 92.1039)}
+                className={`p-3 rounded-xl text-left border transition-all ${
+                  currentLocationName.includes('Sela Pass')
+                    ? 'border-red-500 bg-red-50/60 ring-2 ring-red-200'
+                    : 'bg-white hover:border-red-400'
+                }`}
               >
-                <div className="text-red-600 font-bold">4. Sela Pass Snowbound</div>
-                <div className="text-[10px] text-slate-400">Blizzard Hazard • Score ~35</div>
+                <div className="text-red-700 font-bold">4. Sela Pass Restricted</div>
+                <div className="text-[10px] text-slate-500">Blizzard hazard • Score: 35</div>
               </button>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Live GIS Map */}
+        {/* Right Column: Live Tactical GIS Map */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="bg-white dark:bg-slate-900 p-4 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg space-y-3">
+          <div className="bg-white p-4 rounded-3xl border border-[#DCE7F3] shadow-md space-y-3">
             <div className="flex items-center justify-between px-2">
               <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4 text-emerald-600" />
-                <h3 className="font-extrabold text-sm text-slate-900 dark:text-white">
+                <MapPin className="w-4 h-4 text-blue-600" />
+                <h3 className="font-extrabold text-sm text-[#172B4D]">
                   Live Safety Zone & Geo-Fence Radar
                 </h3>
               </div>
-              <span className="text-xs font-mono text-slate-400">
-                GPS: {simulatedLat.toFixed(4)}, {simulatedLng.toFixed(4)}
-              </span>
+
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setIsLargeMap(!isLargeMap)}
+                  className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold flex items-center space-x-1"
+                >
+                  <Maximize2 className="w-3 h-3" />
+                  <span>{isLargeMap ? 'Compact Map' : 'Larger Map View'}</span>
+                </button>
+                <span className="text-xs font-mono text-slate-500">
+                  {simulatedLat.toFixed(4)}, {simulatedLng.toFixed(4)}
+                </span>
+              </div>
             </div>
 
             <LiveGisMap
-              tourists={digitalId ? [{ ...digitalId, lastLocation: { latitude: simulatedLat, longitude: simulatedLng, locationName: 'Tourist Active Position', batteryLevel: simulatedBattery } }] : []}
+              tourists={touristsOnMap}
               geofences={geofences}
+              heightClass={isLargeMap ? "h-[680px]" : "h-[480px]"}
             />
           </div>
 
           {/* Itinerary Waypoints */}
           <ItineraryTimeline
-            touristId={digitalId?.touristId || 'TID-NE-2026-88190'}
-            itinerary={digitalId?.itinerary || []}
+            touristId={digitalId.touristId}
+            itinerary={digitalId.itinerary || []}
           />
         </div>
       </div>
 
-      {/* Live Sector Location News & Safety Intelligence */}
-      <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+      {/* Live Field Intelligence Feed */}
+      <div className="pt-4 border-t border-[#DCE7F3]">
         <LiveLocationNewsFeed
           currentLocation={{
             latitude: simulatedLat,
             longitude: simulatedLng,
-            locationName: digitalId?.lastLocation?.locationName || 'Shillong Plateau, Meghalaya'
+            locationName: currentLocationName
           }}
           showBroadcastButton={['police', 'tourism_official', 'operator', 'admin'].includes(user?.role)}
         />
       </div>
 
-      {/* Safety Check-in Modal */}
+      {/* Check-In Modal */}
       <CheckInModal
         isOpen={isCheckInOpen}
         onClose={() => setIsCheckInOpen(false)}
-        touristId={digitalId?.touristId || 'TID-NE-2026-88190'}
+        touristId={digitalId.touristId}
       />
     </div>
   );

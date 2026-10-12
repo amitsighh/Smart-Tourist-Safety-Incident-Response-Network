@@ -115,7 +115,15 @@ export default function HomePage({ setActivePage }) {
                 className="px-5 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-bold uppercase tracking-wider border border-slate-700 transition-all flex items-center space-x-2"
               >
                 <MapPin className="w-4 h-4 text-emerald-400" />
-                <span>Police Command Center</span>
+                <span>Safety Hub & GIS</span>
+              </button>
+
+              <button
+                onClick={() => setActivePage('authority-login')}
+                className="px-5 py-3 rounded-xl bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-200 text-xs sm:text-sm font-bold uppercase tracking-wider border border-indigo-400/40 backdrop-blur-md transition-all flex items-center space-x-2"
+              >
+                <ShieldCheck className="w-4 h-4 text-indigo-400" />
+                <span>Authority Official Login</span>
               </button>
             </div>
           </div>

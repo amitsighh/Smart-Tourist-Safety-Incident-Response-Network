@@ -270,6 +270,19 @@ class Database {
         passwordHash: defaultPasswordHash,
         fullName: 'State Cyber Administrator',
         role: 'admin',
+        badgeNumber: 'CYBER-SEC-042',
+        stationName: 'State Cyber Security Operations Center (CSOC)',
+        mfaEnabled: true,
+        createdAt: '2026-09-01T00:00:00.000Z'
+      },
+      {
+        id: 'usr-sysadmin-01',
+        email: 'sysadmin@surakshayatra.gov.in',
+        passwordHash: defaultPasswordHash,
+        fullName: 'System Administrator',
+        role: 'admin',
+        badgeNumber: 'SYS-INFRA-001',
+        stationName: 'NIC Cloud Infrastructure & Sovereign Node Command',
         mfaEnabled: true,
         createdAt: '2026-09-01T00:00:00.000Z'
       }

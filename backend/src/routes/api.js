@@ -55,8 +55,8 @@ router.get('/efir/:id', authenticateToken, requireRole(['police', 'tourism_offic
 
 // --- Geofences Routes ---
 router.get('/geofences', geofenceController.listAll);
-router.post('/geofences', authenticateToken, requireRole(['police', 'tourism_official', 'admin']), geofenceController.create);
-router.patch('/geofences/:id/toggle', authenticateToken, requireRole(['police', 'admin']), geofenceController.toggleActive);
+router.post('/geofences', authenticateToken, requireRole(['police', 'operator', 'tourism_official', 'admin']), geofenceController.create);
+router.patch('/geofences/:id/toggle', authenticateToken, requireRole(['police', 'operator', 'tourism_official', 'admin']), geofenceController.toggleActive);
 router.delete('/geofences/:id', authenticateToken, requireRole(['admin']), geofenceController.delete);
 
 // --- AI Anomaly Detection Routes ---

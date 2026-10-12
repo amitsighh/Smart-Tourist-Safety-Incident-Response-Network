@@ -14,25 +14,31 @@ export const DEMO_PERSONAS = [
     role: 'operator',
     name: 'Inspector Animesh Roy',
     email: 'operator.airport@surakshayatra.gov.in',
-    desc: 'Guwahati Airport Checkpoint Operator'
+    desc: 'Police Inspector — Entry Checkpost & Perimeter Field Verification'
   },
   {
     role: 'police',
     name: 'DSP Bimal Das',
     email: 'control.room@police.gov.in',
-    desc: 'Command Center Dispatch & FIR Officer'
-  },
-  {
-    role: 'tourism_official',
-    name: 'Dr. R. K. Hazarika',
-    email: 'director@tourism.gov.in',
-    desc: 'Northeast Tourism Board Official'
+    desc: 'DSP (Deputy Superintendent of Police) — District Command Center & FIR Dispatch'
   },
   {
     role: 'admin',
     name: 'State Cyber Administrator',
     email: 'admin@surakshayatra.gov.in',
-    desc: 'Platform Admin & DPDP Governance'
+    desc: 'State Cyber Administrator — CSOC Threats, Anomaly Logs & DPDP Governance'
+  },
+  {
+    role: 'admin',
+    name: 'System Administrator',
+    email: 'sysadmin@surakshayatra.gov.in',
+    desc: 'System Administrator — Sovereign Blockchain Consensus & Node Telemetry'
+  },
+  {
+    role: 'tourism_official',
+    name: 'Dr. R. K. Hazarika',
+    email: 'director@tourism.gov.in',
+    desc: 'Northeast Tourism Board — Regional Tourism Inflow & Public Safety Advisories'
   }
 ];
 

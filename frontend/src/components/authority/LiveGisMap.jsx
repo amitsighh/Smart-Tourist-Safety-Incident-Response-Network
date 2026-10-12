@@ -107,9 +107,14 @@ const createWeatherMarkerIcon = (station) => {
 function ChangeView({ center, zoom }) {
   const map = useMap();
   useEffect(() => {
-    if (center) {
+    map.invalidateSize();
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 250);
+    if (center && center[0] && center[1]) {
       map.setView(center, zoom || map.getZoom());
     }
+    return () => clearTimeout(timer);
   }, [center, zoom, map]);
   return null;
 }
@@ -201,6 +206,16 @@ export const REGIONAL_WEATHER_DATA = [
   }
 ];
 
+import { Maximize2, Minimize2, Map as MapIcon, Globe, Compass } from 'lucide-react';
+
+const REGIONAL_SECTORS = [
+  { name: 'All Northeast', center: [26.1445, 91.7362], zoom: 7 },
+  { name: 'Shillong (Meghalaya)', center: [25.5788, 91.8933], zoom: 12 },
+  { name: 'Sela Pass (Arunachal)', center: [27.5052, 92.1039], zoom: 11 },
+  { name: 'Kaziranga (Assam)', center: [26.5800, 93.3800], zoom: 11 },
+  { name: 'Dzukou Valley (Nagaland)', center: [25.5682, 94.0483], zoom: 12 }
+];
+
 export default function LiveGisMap({
   tourists = [],
   patrolUnits = [],
@@ -213,6 +228,8 @@ export default function LiveGisMap({
 }) {
   const [mapCenter, setMapCenter] = useState([26.1445, 91.7362]);
   const [mapZoom, setMapZoom] = useState(8);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [baseMapType, setBaseMapType] = useState('street'); // 'street' or 'satellite'
   const [showWeatherOverlay, setShowWeatherOverlay] = useState(showWeatherLayer);
   const [showNewsOverlay, setShowNewsOverlay] = useState(true);
   const [locationNews, setLocationNews] = useState([]);
@@ -241,12 +258,23 @@ export default function LiveGisMap({
     if (selectedEntity?.latitude && selectedEntity?.longitude) {
       setMapCenter([selectedEntity.latitude, selectedEntity.longitude]);
       setMapZoom(13);
+    } else if (tourists.length > 0 && tourists[0]?.lastLocation?.latitude) {
+      setMapCenter([tourists[0].lastLocation.latitude, tourists[0].lastLocation.longitude]);
+      setMapZoom(11);
     }
-  }, [selectedEntity]);
+  }, [selectedEntity, tourists]);
+
+  const toggleLayer = (key) => {
+    setLayerFilter(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const containerClass = isExpanded
+    ? 'fixed inset-0 z-[9999] w-screen h-screen bg-slate-950 p-4'
+    : `relative w-full ${heightClass} rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl bg-slate-900`;
 
   return (
-    <div className={`relative w-full ${heightClass} rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl bg-slate-900`}>
-      {/* Top Banner Badges (Safe Zones: 24 | Moderate: 12 | Restricted: 5) matching Screenshot */}
+    <div className={containerClass}>
+      {/* Top Banner Badges (Safe Zones | Moderate | Restricted) */}
       <div className="absolute top-4 left-4 z-[1000] flex flex-wrap items-center gap-2 pointer-events-auto">
         <span className="px-3 py-1 rounded-full bg-emerald-600 text-white text-[11px] font-extrabold shadow-md flex items-center space-x-1.5 border border-emerald-400/40">
           <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
@@ -260,39 +288,98 @@ export default function LiveGisMap({
           <span className="w-2 h-2 rounded-full bg-white animate-ping"></span>
           <span>Restricted: 5</span>
         </span>
+
+        {/* Quick Sector Focus Selector */}
+        <div className="hidden xl:flex items-center space-x-1 bg-slate-900/90 backdrop-blur-md px-2 py-1 rounded-full border border-slate-700 shadow-md">
+          <Compass className="w-3.5 h-3.5 text-blue-400 shrink-0 ml-1" />
+          {REGIONAL_SECTORS.map((sector) => (
+            <button
+              key={sector.name}
+              onClick={() => {
+                setMapCenter(sector.center);
+                setMapZoom(sector.zoom);
+              }}
+              className="px-2 py-0.5 rounded-full text-[10px] font-bold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            >
+              {sector.name.split(' ')[0]}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Top Right: Active Tourists Pill & Quick Toggles */}
+      {/* Top Right: Layer Toggles, Satellite Mode & Expand Map */}
       <div className="absolute top-4 right-4 z-[1000] flex flex-wrap items-center gap-2 pointer-events-auto">
+        {/* Street vs Satellite base layer */}
         <button
-          onClick={() => setShowNewsOverlay(!showNewsOverlay)}
+          onClick={() => setBaseMapType(baseMapType === 'street' ? 'satellite' : 'street')}
+          className="px-3 py-1 rounded-full text-[11px] font-extrabold shadow-md flex items-center space-x-1.5 border bg-white/95 text-slate-800 border-slate-300 hover:bg-slate-100 transition-all"
+          title="Toggle Base Map View (Street / Satellite)"
+        >
+          <Globe className="w-3.5 h-3.5 text-blue-600" />
+          <span>{baseMapType === 'street' ? 'Satellite View' : 'Street Map'}</span>
+        </button>
+
+        {/* Geofences Layer Toggle */}
+        <button
+          onClick={() => toggleLayer('geofences')}
           className={`px-3 py-1 rounded-full text-[11px] font-extrabold shadow-md flex items-center space-x-1.5 border transition-all ${
-            showNewsOverlay
-              ? 'bg-rose-600 text-white border-rose-400 ring-2 ring-rose-400/30'
-              : 'bg-white/90 text-slate-700 border-slate-300'
+            layerFilter.geofences
+              ? 'bg-amber-600 text-white border-amber-400'
+              : 'bg-white/90 text-slate-700 border-slate-300 opacity-60'
+          }`}
+          title="Toggle Geofence Boundaries"
+        >
+          <Layers className="w-3.5 h-3.5" />
+          <span>Geofences ({geofences.length})</span>
+        </button>
+
+        {/* Live News Pin Toggle */}
+        <button
+          onClick={() => {
+            setShowNewsOverlay(!showNewsOverlay);
+            toggleLayer('news');
+          }}
+          className={`px-3 py-1 rounded-full text-[11px] font-extrabold shadow-md flex items-center space-x-1.5 border transition-all ${
+            showNewsOverlay && layerFilter.news
+              ? 'bg-rose-600 text-white border-rose-400'
+              : 'bg-white/90 text-slate-700 border-slate-300 opacity-60'
           }`}
           title="Toggle Location News Pins on Map"
         >
           <Newspaper className="w-3.5 h-3.5" />
-          <span>Live News ({locationNews.length})</span>
+          <span>News ({locationNews.length})</span>
         </button>
 
+        {/* Weather Radar Toggle */}
         <button
-          onClick={() => setShowWeatherOverlay(!showWeatherOverlay)}
+          onClick={() => {
+            setShowWeatherOverlay(!showWeatherOverlay);
+            toggleLayer('weather');
+          }}
           className={`px-3 py-1 rounded-full text-[11px] font-extrabold shadow-md flex items-center space-x-1.5 border transition-all ${
-            showWeatherOverlay
-              ? 'bg-blue-600 text-white border-blue-400 ring-2 ring-blue-400/30'
-              : 'bg-white/90 text-slate-700 border-slate-300'
+            showWeatherOverlay && layerFilter.weather
+              ? 'bg-blue-600 text-white border-blue-400'
+              : 'bg-white/90 text-slate-700 border-slate-300 opacity-60'
           }`}
           title="Toggle Live Weather & IMD Radar"
         >
           <CloudRain className="w-3.5 h-3.5" />
-          <span>Live Weather</span>
+          <span>Weather</span>
         </button>
 
-        <span className="px-3 py-1 rounded-full bg-blue-600 text-white text-[11px] font-extrabold shadow-md flex items-center space-x-1.5 border border-blue-400/40">
+        {/* Full Tactical HUD / Expand Mode Button */}
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="px-3 py-1 rounded-full bg-slate-900/90 text-white text-[11px] font-extrabold shadow-md flex items-center space-x-1.5 border border-slate-700 hover:bg-slate-800 transition-all"
+          title={isExpanded ? "Exit Fullscreen Tactical View" : "Expand to Fullscreen Tactical View"}
+        >
+          {isExpanded ? <Minimize2 className="w-3.5 h-3.5 text-amber-400" /> : <Maximize2 className="w-3.5 h-3.5 text-blue-400" />}
+          <span>{isExpanded ? 'Minimize HUD' : 'Fullscreen Tactical'}</span>
+        </button>
+
+        <span className="hidden sm:inline-flex px-3 py-1 rounded-full bg-blue-600 text-white text-[11px] font-extrabold shadow-md items-center space-x-1.5 border border-blue-400/40">
           <span className="w-2 h-2 rounded-full bg-white"></span>
-          <span>{tourists.length > 0 ? `${tourists.length * 12 + 580} Active Tourists` : '580 Active Tourists'}</span>
+          <span>{tourists.length > 0 ? `${tourists.length * 12 + 580} Tourists` : '580 Tourists'}</span>
         </span>
       </div>
 
@@ -383,13 +470,20 @@ export default function LiveGisMap({
       >
         <ChangeView center={mapCenter} zoom={mapZoom} />
 
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        {baseMapType === 'satellite' ? (
+          <TileLayer
+            attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
+        ) : (
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        )}
 
         {/* Render Weather Station Markers */}
-        {showWeatherOverlay && REGIONAL_WEATHER_DATA.map((station) => (
+        {showWeatherOverlay && layerFilter.weather && REGIONAL_WEATHER_DATA.map((station) => (
           <Marker
             key={station.id}
             position={[station.lat, station.lng]}
@@ -412,53 +506,80 @@ export default function LiveGisMap({
         ))}
 
         {/* Render Geofence Zones */}
-        {geofences.map((fence) => {
+        {layerFilter.geofences && geofences.map((fence) => {
           if (!fence.isActive) return null;
           const isRestricted = fence.category === 'restricted';
           const isCurfew = fence.category === 'curfew';
           const color = isRestricted ? '#ef4444' : (isCurfew ? '#f59e0b' : '#3b82f6');
 
           if (fence.type === 'polygon' && fence.coordinates && fence.coordinates.length >= 3) {
+            const positions = fence.coordinates.map(pt => {
+              if (Array.isArray(pt)) return [parseFloat(pt[0]), parseFloat(pt[1])];
+              if (pt && typeof pt === 'object' && 'lat' in pt && 'lng' in pt) return [parseFloat(pt.lat), parseFloat(pt.lng)];
+              return null;
+            }).filter(Boolean);
+
+            if (positions.length < 3) return null;
+
             return (
               <Polygon
                 key={fence.id}
-                positions={fence.coordinates}
+                positions={positions}
                 pathOptions={{
                   color,
                   fillColor: color,
-                  fillOpacity: 0.25,
-                  weight: 2,
-                  dashArray: isCurfew ? '5, 5' : null
+                  fillOpacity: 0.28,
+                  weight: 2.5,
+                  dashArray: isCurfew ? '6, 6' : null
                 }}
               >
                 <Popup>
-                  <div className="text-xs space-y-1 p-1">
+                  <div className="text-xs space-y-1.5 p-1 min-w-[200px]">
                     <div className="font-extrabold text-slate-900">{fence.name}</div>
-                    <div className="text-[10px] text-red-600 font-bold uppercase">{fence.category} ZONE</div>
+                    <div className="text-[10px] text-red-600 font-bold uppercase">{fence.category?.replace('_', ' ')} ZONE</div>
                     <p className="text-slate-600 text-[11px]">{fence.advisory}</p>
-                    <div className="text-[10px] text-emerald-700 font-medium">Safe Route: {fence.safeRouteSuggestion}</div>
+                    {fence.safeRouteSuggestion && (
+                      <div className="text-[10px] text-emerald-700 font-medium bg-emerald-50 p-1.5 rounded-lg border border-emerald-100">
+                        <strong>Safe Route:</strong> {fence.safeRouteSuggestion}
+                      </div>
+                    )}
                   </div>
                 </Popup>
               </Polygon>
             );
-          } else if (fence.type === 'circle' && fence.center) {
+          } else if (fence.type === 'circle') {
+            let centerCoords = null;
+            if (fence.center && fence.center.lat && fence.center.lng) {
+              centerCoords = [parseFloat(fence.center.lat), parseFloat(fence.center.lng)];
+            } else if (fence.centerLat && fence.centerLng) {
+              centerCoords = [parseFloat(fence.centerLat), parseFloat(fence.centerLng)];
+            }
+
+            if (!centerCoords) return null;
+
             return (
               <Circle
                 key={fence.id}
-                center={[fence.center.lat, fence.center.lng]}
-                radius={fence.radiusMeters || 2000}
+                center={centerCoords}
+                radius={parseInt(fence.radiusMeters, 10) || 2000}
                 pathOptions={{
                   color,
                   fillColor: color,
-                  fillOpacity: 0.25,
-                  weight: 2
+                  fillOpacity: 0.28,
+                  weight: 2.5,
+                  dashArray: isCurfew ? '6, 6' : null
                 }}
               >
                 <Popup>
-                  <div className="text-xs space-y-1 p-1">
+                  <div className="text-xs space-y-1.5 p-1 min-w-[200px]">
                     <div className="font-extrabold text-slate-900">{fence.name}</div>
-                    <div className="text-[10px] text-amber-600 font-bold uppercase">{fence.category} ZONE</div>
+                    <div className="text-[10px] text-amber-600 font-bold uppercase">{fence.category?.replace('_', ' ')} ZONE</div>
                     <p className="text-slate-600 text-[11px]">{fence.advisory}</p>
+                    {fence.safeRouteSuggestion && (
+                      <div className="text-[10px] text-emerald-700 font-medium bg-emerald-50 p-1.5 rounded-lg border border-emerald-100">
+                        <strong>Safe Route:</strong> {fence.safeRouteSuggestion}
+                      </div>
+                    )}
                   </div>
                 </Popup>
               </Circle>
@@ -468,8 +589,9 @@ export default function LiveGisMap({
         })}
 
         {/* Render Tourist Pins */}
-        {tourists.map((tourist) => {
+        {layerFilter.tourists && tourists.map((tourist) => {
           const hasActiveSos = tourist.hasActiveSos || activeSosTouristIds.has(tourist.touristId);
+          if (layerFilter.sosOnly && !hasActiveSos) return null;
           const lat = tourist.lastLocation?.latitude || 26.1445;
           const lng = tourist.lastLocation?.longitude || 91.7362;
 
@@ -513,7 +635,7 @@ export default function LiveGisMap({
         })}
 
         {/* Render Patrol Unit Pins */}
-        {patrolUnits.map((unit) => (
+        {layerFilter.patrols && patrolUnits.map((unit) => (
           <Marker
             key={unit.id}
             position={[unit.latitude, unit.longitude]}

@@ -42,6 +42,117 @@ import {
   Newspaper
 } from 'lucide-react';
 
+const FALLBACK_TOURISTS = [
+  {
+    touristId: 'TID-NE-2026-88190',
+    fullName: 'Priya Sharma',
+    nationality: 'Indian',
+    bloodGroup: 'B+ Positive',
+    photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+    hasActiveSos: false,
+    optInTracking: true,
+    lastLocation: {
+      latitude: 25.5788,
+      longitude: 91.8933,
+      locationName: 'Shillong Peak Eco-Trail, Meghalaya',
+      timestamp: new Date().toISOString(),
+      batteryLevel: 82
+    },
+    pairedWearableId: 'WB-NE-089'
+  },
+  {
+    touristId: 'TID-NE-2026-90412',
+    fullName: 'John Miller',
+    nationality: 'British',
+    bloodGroup: 'A+ Positive',
+    photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    hasActiveSos: false,
+    optInTracking: true,
+    lastLocation: {
+      latitude: 26.5800,
+      longitude: 93.3800,
+      locationName: 'Kaziranga National Park (Kohora Range)',
+      timestamp: new Date().toISOString(),
+      batteryLevel: 65
+    },
+    pairedWearableId: 'WB-NE-104'
+  }
+];
+
+const FALLBACK_PATROL_UNITS = [
+  {
+    id: 'PATROL-GHY-01',
+    name: 'Guwahati PCR Alpha-1',
+    type: 'QUICK_RESPONSE_VEHICLE',
+    officerInCharge: 'Inspector Animesh Roy',
+    phone: '+91 94350 11223',
+    latitude: 26.1445,
+    longitude: 91.7362,
+    status: 'AVAILABLE',
+    assignedStation: 'Guwahati LGBI Checkpost'
+  },
+  {
+    id: 'PATROL-SHL-02',
+    name: 'Shillong Highway Interceptor 4',
+    type: 'HIGHWAY_PATROL',
+    officerInCharge: 'Sub-Inspector K. Sangma',
+    phone: '+91 94361 22334',
+    latitude: 25.5788,
+    longitude: 91.8933,
+    status: 'ON_MISSION',
+    assignedStation: 'East Khasi Hills Police Desk'
+  },
+  {
+    id: 'PATROL-TWG-03',
+    name: 'SDRF Tawang Mountain Rescue Unit',
+    type: 'DISASTER_RESCUE',
+    officerInCharge: 'Havildar T. Norbu',
+    phone: '+91 94360 44556',
+    latitude: 27.5052,
+    longitude: 92.1039,
+    status: 'AVAILABLE',
+    assignedStation: 'Dirang Transit HQ'
+  }
+];
+
+const FALLBACK_GEOFENCES = [
+  {
+    id: 'GF-NE-001',
+    name: 'Indo-Myanmar Border 5km Buffer Zone',
+    category: 'restricted',
+    severity: 'CRITICAL',
+    type: 'polygon',
+    coordinates: [[25.8, 95.0], [25.95, 95.35], [25.4, 95.25], [25.2, 94.9]],
+    advisory: 'Strict military restricted border defense corridor.',
+    safeRouteSuggestion: 'Redirect towards National Highway 29 (Kohima-Dimapur corridor).',
+    isActive: true
+  },
+  {
+    id: 'GF-NE-002',
+    name: 'Dzukou Valley Alpine Freezing Night Curfew',
+    category: 'curfew',
+    severity: 'HIGH',
+    type: 'circle',
+    center: { lat: 25.5682, lng: 94.0483 },
+    radiusMeters: 4500,
+    advisory: 'Extreme sub-zero night temperatures & flash fog hazard. Trekking strictly prohibited 18:00 - 05:30.',
+    safeRouteSuggestion: 'Retreat immediately to Viswema Base Camp.',
+    isActive: true
+  },
+  {
+    id: 'GF-NE-003',
+    name: 'Sela Pass Avalanche & Black Ice Zone (13,700 ft)',
+    category: 'restricted',
+    severity: 'CRITICAL',
+    type: 'circle',
+    center: { lat: 27.5052, lng: 92.1039 },
+    radiusMeters: 5000,
+    advisory: 'Heavy snowfall and black ice on NH-13 hairpin bends.',
+    safeRouteSuggestion: 'Halt vehicle at Dirang transit gate until BRO clearance.',
+    isActive: true
+  }
+];
+
 export default function AuthorityCommandPage({ setActivePage }) {
   const { user, loginWithDemo, demoPersonas } = useAuth();
   const { t } = useLanguage();
@@ -50,12 +161,13 @@ export default function AuthorityCommandPage({ setActivePage }) {
   // Sidebar navigation state: 'dashboard', 'tracker', 'map-zones', 'alerts', 'digital-ids', 'analytics', 'settings'
   const [activeTab, setActiveTab] = useState('dashboard');
 
-  const [tourists, setTourists] = useState([]);
-  const [patrolUnits, setPatrolUnits] = useState([]);
-  const [geofences, setGeofences] = useState([]);
+  const [tourists, setTourists] = useState(FALLBACK_TOURISTS);
+  const [patrolUnits, setPatrolUnits] = useState(FALLBACK_PATROL_UNITS);
+  const [geofences, setGeofences] = useState(FALLBACK_GEOFENCES);
   const [alerts, setAlerts] = useState([]);
   const [selectedEntity, setSelectedEntity] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLargeDashboardMap, setIsLargeDashboardMap] = useState(false);
 
   // Modals
   const [dispatchModalAlert, setDispatchModalAlert] = useState(null);
@@ -67,25 +179,39 @@ export default function AuthorityCommandPage({ setActivePage }) {
   const [isScanningAnomaly, setIsScanningAnomaly] = useState(false);
   const [anomalyScanResults, setAnomalyScanResults] = useState(null);
 
+  const isAuthorityRole = ['police', 'operator', 'tourism_official', 'admin'].includes(user?.role);
+
   const loadData = async () => {
     try {
-      const [liveMapRes, alertsRes, touristsRes] = await Promise.all([
+      const [liveMapRes, alertsRes, touristsRes, geofencesRes] = await Promise.allSettled([
         api.getLiveMapLocations(),
         api.getAlerts(),
-        api.getAllTouristIds()
+        api.getAllTouristIds(),
+        api.getGeofences()
       ]);
 
-      if (liveMapRes.success) {
-        setTourists(liveMapRes.tourists || []);
-        setPatrolUnits(liveMapRes.patrolUnits || []);
-        setGeofences(liveMapRes.geofences || []);
+      let publicFences = [];
+      if (geofencesRes.status === 'fulfilled' && geofencesRes.value?.success && geofencesRes.value?.geofences?.length > 0) {
+        publicFences = geofencesRes.value.geofences;
       }
 
-      if (alertsRes.success) {
-        setAlerts(alertsRes.alerts || []);
+      if (liveMapRes.status === 'fulfilled' && liveMapRes.value?.success) {
+        setTourists(liveMapRes.value.tourists?.length > 0 ? liveMapRes.value.tourists : FALLBACK_TOURISTS);
+        setPatrolUnits(liveMapRes.value.patrolUnits?.length > 0 ? liveMapRes.value.patrolUnits : FALLBACK_PATROL_UNITS);
+        setGeofences(liveMapRes.value.geofences?.length > 0 ? liveMapRes.value.geofences : (publicFences.length > 0 ? publicFences : FALLBACK_GEOFENCES));
+      } else {
+        setTourists(FALLBACK_TOURISTS);
+        setPatrolUnits(FALLBACK_PATROL_UNITS);
+        if (publicFences.length > 0) {
+          setGeofences(publicFences);
+        }
+      }
+
+      if (alertsRes.status === 'fulfilled' && alertsRes.value?.success) {
+        setAlerts(alertsRes.value.alerts || []);
       }
     } catch (e) {
-      console.error(e);
+      console.error('Authority loadData error:', e);
     }
   };
 
@@ -93,7 +219,7 @@ export default function AuthorityCommandPage({ setActivePage }) {
     loadData();
     const interval = setInterval(loadData, 6000);
     return () => clearInterval(interval);
-  }, []);
+  }, [user]);
 
   const handleAcknowledge = async (alertId) => {
     try {
@@ -300,6 +426,46 @@ export default function AuthorityCommandPage({ setActivePage }) {
 
         {/* Dashboard Content */}
         <main className="p-6 space-y-6">
+          {/* Authority Access Verification Banner */}
+          {!isAuthorityRole && (
+            <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white p-5 rounded-3xl border border-indigo-700/50 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="flex items-start space-x-3.5">
+                <div className="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-400/40 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <ShieldAlert className="w-5 h-5" />
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center space-x-2">
+                    <span className="font-black text-sm tracking-wide text-white">
+                      OFFICIAL LAW ENFORCEMENT & TOURISM PORTAL — SANDBOX PREVIEW
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full bg-amber-400 text-slate-900 text-[10px] font-black uppercase">
+                      Civilian Account: {user?.fullName || 'Guest'}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
+                    You are previewing the Safety Hub & GIS Command Center. To execute legal E-FIR dispatch, checkpost ILP verification, CSOC telemetry scans, or geofence curfews, sign in with your official badge credentials.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2 shrink-0">
+                <button
+                  onClick={() => setActivePage('authority-login')}
+                  className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md transition-all flex items-center space-x-1.5"
+                >
+                  <UserCheck className="w-4 h-4" />
+                  <span>Authority Portal Sign-In</span>
+                </button>
+                <button
+                  onClick={() => loginWithDemo('control.room@police.gov.in')}
+                  className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold text-xs transition-all"
+                  title="Switch to DSP Bimal Das Command Persona"
+                >
+                  1-Click DSP Mode
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* TAB 1: MAIN DASHBOARD (matching screenshot) */}
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
@@ -414,12 +580,21 @@ export default function AuthorityCommandPage({ setActivePage }) {
                       <div className="flex items-center space-x-2">
                         <MapPin className="w-4 h-4 text-blue-600" />
                         <h3 className="font-extrabold text-sm text-slate-900 dark:text-white">
-                          Interactive Tourist Map
+                          Interactive Tourist Map & Tactical Radar
                         </h3>
                       </div>
-                      <span className="text-[11px] text-slate-400">
-                        Real-time tourist tracking & geo-fencing
-                      </span>
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => setIsLargeDashboardMap(!isLargeDashboardMap)}
+                          className="px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 text-blue-700 dark:text-blue-300 text-[11px] font-bold flex items-center space-x-1 border border-blue-200 transition-colors"
+                        >
+                          <Maximize2 className="w-3 h-3" />
+                          <span>{isLargeDashboardMap ? 'Standard View' : 'Larger Map View'}</span>
+                        </button>
+                        <span className="hidden sm:inline text-[11px] text-slate-400">
+                          Real-time GIS & geo-fencing
+                        </span>
+                      </div>
                     </div>
 
                     {/* Enhanced Leaflet GIS Map with Live Weather Radar & Badges */}
@@ -431,7 +606,7 @@ export default function AuthorityCommandPage({ setActivePage }) {
                       selectedEntity={selectedEntity}
                       onSelectEntity={setSelectedEntity}
                       showWeatherLayer={true}
-                      heightClass="h-[420px]"
+                      heightClass={isLargeDashboardMap ? "h-[680px]" : "h-[450px]"}
                     />
                   </div>
 
@@ -706,7 +881,7 @@ export default function AuthorityCommandPage({ setActivePage }) {
                 selectedEntity={selectedEntity}
                 onSelectEntity={setSelectedEntity}
                 showWeatherLayer={true}
-                heightClass="h-[600px]"
+                heightClass="h-[740px]"
               />
             </div>
           )}
